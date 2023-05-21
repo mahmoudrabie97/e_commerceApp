@@ -1,0 +1,42 @@
+import 'package:e_commerce/utilites/dummydata.dart';
+import 'package:e_commerce/utilites/widgets/customsquarecontainer.dart';
+
+import 'package:flutter/material.dart';
+
+class ProductColors extends StatefulWidget {
+  const ProductColors({Key? key}) : super(key: key);
+
+  @override
+  State<ProductColors> createState() => _ProductColorsState();
+}
+
+class _ProductColorsState extends State<ProductColors> {
+  @override
+  Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+
+    return Container(
+      height: 160,
+      child: GridView.count(
+        childAspectRatio: 1.4,
+        crossAxisCount: 4,
+        shrinkWrap: true,
+        physics: NeverScrollableScrollPhysics(),
+        mainAxisSpacing: 14,
+        crossAxisSpacing: 40,
+        padding: EdgeInsets.all(10),
+        children: List.generate(productColors.length, (index) {
+          return GestureDetector(
+            onTap: () {},
+            child: customsquarecontainer(
+              height: 25,
+              width: 25,
+              text: '',
+              color: productColors[index],
+            ),
+          );
+        }),
+      ),
+    );
+  }
+}
