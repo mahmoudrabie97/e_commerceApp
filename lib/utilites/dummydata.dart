@@ -47,7 +47,7 @@ final List<ProductModel> dummyproduct = [
   ),
   ProductModel(
     productid: 3,
-    productimage: 'assets/images/medical 1.png',
+    productimage: 'assets/images/OPTO-EDU.png',
     producttitle: 'Medical Device',
     productprice: 30,
     description: 'd3',

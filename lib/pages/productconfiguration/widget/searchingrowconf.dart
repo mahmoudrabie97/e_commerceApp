@@ -30,7 +30,7 @@ class SearchinRowConfig extends StatelessWidget {
             ),
           ),
           Container(
-            color: Color(0xff7EC042),
+            color: const Color(0xff7EC042),
             height: 42,
             width: 40,
             child: SizedBox(

@@ -1,7 +1,6 @@
 import 'package:e_commerce/pages/loginpage.dart';
 import 'package:e_commerce/pages/signuppage.dart';
 import 'package:e_commerce/utilites/appcolors.dart';
-import 'package:e_commerce/utilites/constants.dart';
 import 'package:e_commerce/utilites/extentionhelper.dart';
 import 'package:e_commerce/utilites/widgets/custombutton.dart';
 import 'package:e_commerce/utilites/widgets/customtext.dart';
@@ -18,7 +17,7 @@ class WelcomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(
+            const SizedBox(
               height: 70,
             ),
             Column(
@@ -40,7 +39,7 @@ class WelcomePage extends StatelessWidget {
             Image.asset('assets/images/Cart-amico.png',
                 height: context.screenheight * .49),
             //    height: 400),
-            SizedBox(
+            const SizedBox(
               height: 40,
             ),
             Padding(

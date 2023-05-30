@@ -1,4 +1,5 @@
 import 'package:e_commerce/models/productmodel.dart';
+import 'package:e_commerce/pages/detailspage/widgets/customcircle.dart';
 import 'package:e_commerce/utilites/widgets/customtext.dart';
 import 'package:flutter/material.dart';
 
@@ -36,26 +37,8 @@ class DetailsPriceRow extends StatelessWidget {
           ],
         ),
         Spacer(),
-        Container(
-          height: 50,
-          width: 50,
-          margin: EdgeInsets.symmetric(
-            vertical: 5,
-            horizontal: 15,
-          ),
-          decoration: BoxDecoration(
-              color: Color(0xffECFCFF),
-              shape: BoxShape.circle,
-              boxShadow: [
-                BoxShadow(
-                    color: Color(0xffECFCFF), blurRadius: 4, spreadRadius: 2)
-              ]),
-          child: Center(
-            child: IconButton(
-              onPressed: () {},
-              icon: Image.asset('assets/images/heart.png'),
-            ),
-          ),
+        CustomCircle(
+          child: Image.asset('assets/images/heart.png'),
         ),
       ],
     );

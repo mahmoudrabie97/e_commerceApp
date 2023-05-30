@@ -35,7 +35,7 @@ class SearchingitemRow extends StatelessWidget {
           width: context.screenwidth * 0.07,
         ),
         Image(
-          image: AssetImage('assets/images/Buy1.png'),
+          image: const AssetImage('assets/images/Buy1.png'),
           width: context.screenwidth * 0.08,
           height: context.screenwidth * 0.08,
         ),

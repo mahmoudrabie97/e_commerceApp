@@ -1,6 +1,7 @@
 import 'package:e_commerce/pages/homepage/widgets/categoryitems.dart';
-import 'package:e_commerce/pages/homepage/widgets/customehometexticonrow.dart';
-import 'package:e_commerce/pages/productconfiguration/widget/customsearchingow.dart';
+import 'package:e_commerce/pages/homepage/widgets/customehomebestsellingrow.dart';
+import 'package:e_commerce/pages/homepage/widgets/customhomeproductsrow.dart';
+import 'package:e_commerce/pages/productconfiguration/widget/customsearchinrow.dart';
 import 'package:e_commerce/pages/productpage/widgets/productitems.dart';
 import 'package:e_commerce/utilites/dummydata.dart';
 import 'package:e_commerce/utilites/extentionhelper.dart';
@@ -61,7 +62,7 @@ class HomePge extends StatelessWidget {
                     Padding(
                         padding: EdgeInsets.fromLTRB(context.screenwidth * 0.05,
                             0, context.screenwidth * 0.05, 0),
-                        child: const CustomhometexticonRow(
+                        child: const CustomhomeBestSellingRow(
                           text: 'Best Selling Items',
                         )),
                     SizedBox(
@@ -85,7 +86,7 @@ class HomePge extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.fromLTRB(context.screenwidth * 0.05,
                           0, context.screenwidth * 0.05, 0),
-                      child: const CustomhometexticonRow(
+                      child: const CustomhomeProductsRow(
                         text: 'Our Products',
                       ),
                     ),
@@ -94,11 +95,11 @@ class HomePge extends StatelessWidget {
                       child: GridView.count(
                         crossAxisCount: 2,
                         shrinkWrap: true,
-                        physics: NeverScrollableScrollPhysics(),
+                        physics: const NeverScrollableScrollPhysics(),
                         childAspectRatio: (itemWidth / itemHeight),
                         mainAxisSpacing: 10,
                         crossAxisSpacing: 10,
-                        padding: EdgeInsets.all(10),
+                        padding: const EdgeInsets.all(10),
                         children: List.generate(2, (index) {
                           return Productitem(
                             productModel: dummyproduct[index],

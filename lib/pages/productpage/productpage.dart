@@ -2,7 +2,7 @@ import 'package:e_commerce/pages/productpage/widgets/productitems.dart';
 import 'package:e_commerce/utilites/dummydata.dart';
 import 'package:e_commerce/utilites/widgets/customtext.dart';
 import 'package:flutter/material.dart';
-import '../productconfiguration/widget/customsearchingow.dart';
+import '../productconfiguration/widget/customsearchinrow.dart';
 
 class ProductPage extends StatelessWidget {
   ProductPage({Key? key}) : super(key: key);
@@ -17,12 +17,12 @@ class ProductPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.grey.shade100,
       body: SingleChildScrollView(
-        child: Container(
+        child: SizedBox(
           width: screenWidth,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 50),
+              const SizedBox(height: 50),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
                 child: SizedBox(
@@ -39,16 +39,16 @@ class ProductPage extends StatelessWidget {
                 ),
                 child: Row(
                   children: [
-                    CustomText(
+                    const CustomText(
                       text: 'Products',
                       fontWeight: FontWeight.w500,
                     ),
-                    Spacer(),
+                    const Spacer(),
                     Padding(
                       padding: const EdgeInsets.only(right: 0),
                       child: Row(
                         children: [
-                          CustomText(
+                          const CustomText(
                             text: 'filters',
                             fontSize: 12,
                           ),
@@ -66,11 +66,11 @@ class ProductPage extends StatelessWidget {
               GridView.count(
                 crossAxisCount: 2,
                 shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 childAspectRatio: (itemWidth / itemHeight),
-                mainAxisSpacing: 10,
-                crossAxisSpacing: 10,
-                padding: EdgeInsets.all(10),
+                mainAxisSpacing: 15,
+                crossAxisSpacing: 20,
+                padding: const EdgeInsets.all(10),
                 children: List.generate(dummyproduct.length, (index) {
                   return Productitem(
                     productModel: dummyproduct[index],

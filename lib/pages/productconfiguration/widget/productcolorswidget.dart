@@ -13,18 +13,16 @@ class ProductColors extends StatefulWidget {
 class _ProductColorsState extends State<ProductColors> {
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-
-    return Container(
+    return SizedBox(
       height: 160,
       child: GridView.count(
         childAspectRatio: 1.4,
         crossAxisCount: 4,
         shrinkWrap: true,
-        physics: NeverScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
         mainAxisSpacing: 14,
         crossAxisSpacing: 40,
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         children: List.generate(productColors.length, (index) {
           return GestureDetector(
             onTap: () {},

@@ -35,7 +35,7 @@ class LoginPage extends StatelessWidget {
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 5,
                   ),
                   Image.asset(
@@ -70,7 +70,7 @@ class LoginPage extends StatelessWidget {
                   return null;
                 },
               ),
-              SizedBox(
+              const SizedBox(
                 height: 14,
               ),
               CustomTextFormField(
@@ -84,7 +84,7 @@ class LoginPage extends StatelessWidget {
                   return null;
                 },
               ),
-              SizedBox(
+              const SizedBox(
                 height: 17,
               ),
               CustomButton(

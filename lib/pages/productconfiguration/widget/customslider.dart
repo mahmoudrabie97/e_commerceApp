@@ -16,7 +16,7 @@ class _CustomSliderState extends State<CustomSlider> {
   @override
   Widget build(BuildContext context) {
     return SliderTheme(
-      data: SliderThemeData(
+      data: const SliderThemeData(
         trackHeight: 15,
         valueIndicatorColor: Colors.teal,
 

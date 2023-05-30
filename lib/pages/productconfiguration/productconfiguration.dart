@@ -16,7 +16,7 @@ class ProductConfiguration extends StatelessWidget {
     return Scaffold(
         body: SafeArea(
       child: SingleChildScrollView(
-        child: Container(
+        child: SizedBox(
           width: context.screenwidth,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -28,14 +28,14 @@ class ProductConfiguration extends StatelessWidget {
                   height: 90,
                   child: Row(
                     children: [
-                      CustomText(text: 'Product Size'),
+                      const CustomText(text: 'Product Size'),
                       SizedBox(
                         width: context.screenwidth * 0.07,
                       ),
-                      Spacer(),
+                      const Spacer(),
                       GestureDetector(
                         onTap: () {},
-                        child: customsquarecontainer(
+                        child: const customsquarecontainer(
                           height: 40,
                           width: 80,
                           text: 'Reset',
@@ -47,7 +47,7 @@ class ProductConfiguration extends StatelessWidget {
                 ),
               ),
               Sizelist(),
-              Divider(
+              const Divider(
                 color: Color(0xffECECEC),
                 thickness: 10,
               ),
@@ -58,14 +58,14 @@ class ProductConfiguration extends StatelessWidget {
                   height: 70,
                   child: Row(
                     children: [
-                      CustomText(text: 'Colors'),
+                      const CustomText(text: 'Colors'),
                       SizedBox(
                         width: context.screenwidth * 0.07,
                       ),
-                      Spacer(),
+                      const Spacer(),
                       GestureDetector(
                         onTap: () {},
-                        child: customsquarecontainer(
+                        child: const customsquarecontainer(
                           height: 40,
                           width: 80,
                           text: 'Reset',
@@ -76,32 +76,32 @@ class ProductConfiguration extends StatelessWidget {
                   ),
                 ),
               ),
-              ProductColors(),
-              Divider(
+              const ProductColors(),
+              const Divider(
                 color: Color(0xffECECEC),
                 thickness: 10,
               ),
-              Padding(
-                padding: const EdgeInsets.all(15.0),
+              const Padding(
+                padding: EdgeInsets.all(15.0),
                 child: CustomText(text: 'price'),
               ),
-              CustomSliderRow(),
-              SizedBox(
+              const CustomSliderRow(),
+              const SizedBox(
                 height: 20,
               ),
               CustomSlider(),
-              SizedBox(
+              const SizedBox(
                 height: 40,
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 20),
+              const Padding(
+                padding: EdgeInsets.only(left: 20),
                 child: CustomText(text: 'Search'),
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 20, right: 20),
                 child: SearchinRowConfig(),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 40,
               ),
             ],

@@ -1,5 +1,4 @@
 import 'package:e_commerce/utilites/appcolors.dart';
-import 'package:e_commerce/utilites/constants.dart';
 import 'package:flutter/material.dart';
 
 class BestSellingitem extends StatelessWidget {
@@ -11,7 +10,7 @@ class BestSellingitem extends StatelessWidget {
       child: Row(
         children: [
           Padding(
-            padding: EdgeInsets.symmetric(
+            padding: const EdgeInsets.symmetric(
               horizontal: 15,
             ),
             child: Container(
@@ -25,15 +24,15 @@ class BestSellingitem extends StatelessWidget {
                         color: Colors.grey.withOpacity(.5),
                         spreadRadius: 3,
                         blurRadius: 10,
-                        offset: Offset(0, 3))
+                        offset: const Offset(0, 3))
                   ]),
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10),
+                padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: Column(
                   children: [
                     Row(
                       children: [
-                        Spacer(),
+                        const Spacer(),
                         IconButton(
                             onPressed: () {},
                             icon: Image.asset('assets/images/heart.png'))
@@ -44,13 +43,13 @@ class BestSellingitem extends StatelessWidget {
                         'assets/images/medical 1.png',
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Row(
                       children: [
                         Column(
-                          children: [
+                          children: const [
                             Text(
                               'Medical Device',
                               style: TextStyle(fontSize: 12),
@@ -64,7 +63,7 @@ class BestSellingitem extends StatelessWidget {
                             ),
                           ],
                         ),
-                        Spacer(),
+                        const Spacer(),
                         Expanded(
                           child: Container(
                             height: 20,

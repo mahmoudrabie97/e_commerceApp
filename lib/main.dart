@@ -1,7 +1,5 @@
-import 'package:e_commerce/pages/homepage/hombottomnav.dart';
 import 'package:e_commerce/pages/welcomepage.dart';
 import 'package:e_commerce/utilites/appcolors.dart';
-import 'package:e_commerce/utilites/constants.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -18,7 +16,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: AppColor.appBgColor,
         primaryColor: AppColor.primary,
       ),
-      home: WelcomePage(),
+      home: const WelcomePage(),
     );
   }
 }

@@ -1,10 +1,10 @@
-import 'package:e_commerce/pages/productpage/productpage.dart';
+import 'package:e_commerce/pages/productconfiguration/productconfiguration.dart';
 import 'package:e_commerce/utilites/extentionhelper.dart';
 import 'package:e_commerce/utilites/widgets/customtext.dart';
 import 'package:flutter/material.dart';
 
-class CustomhometexticonRow extends StatelessWidget {
-  const CustomhometexticonRow({
+class CustomhomeBestSellingRow extends StatelessWidget {
+  const CustomhomeBestSellingRow({
     super.key,
     required this.text,
   });
@@ -18,13 +18,13 @@ class CustomhometexticonRow extends StatelessWidget {
           text: text,
           fontWeight: FontWeight.w500,
         ),
-        Spacer(),
+        const Spacer(),
         Padding(
           padding: const EdgeInsets.only(right: 40),
           child: IconButton(
             iconSize: context.screenwidth * 0.1,
             onPressed: () {
-              context.push(ProductPage());
+              context.push(const ProductConfiguration());
             },
             icon: Image.asset('assets/images/fowar1.png'),
           ),

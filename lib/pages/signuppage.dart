@@ -1,5 +1,4 @@
 import 'package:e_commerce/utilites/appcolors.dart';
-import 'package:e_commerce/utilites/constants.dart';
 import 'package:e_commerce/utilites/extentionhelper.dart';
 import 'package:e_commerce/utilites/widgets/custombutton.dart';
 import 'package:e_commerce/utilites/widgets/customtext.dart';
@@ -36,7 +35,7 @@ class SignUpPage extends StatelessWidget {
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 5,
                   ),
                   Image.asset(
@@ -69,7 +68,7 @@ class SignUpPage extends StatelessWidget {
                   return null;
                 },
               ),
-              SizedBox(
+              const SizedBox(
                 height: 14,
               ),
               CustomTextFormField(
@@ -83,7 +82,7 @@ class SignUpPage extends StatelessWidget {
                   return null;
                 },
               ),
-              SizedBox(
+              const SizedBox(
                 height: 14,
               ),
               CustomTextFormField(
@@ -98,7 +97,7 @@ class SignUpPage extends StatelessWidget {
                   return null;
                 },
               ),
-              SizedBox(
+              const SizedBox(
                 height: 14,
               ),
               CustomTextFormField(
@@ -113,7 +112,7 @@ class SignUpPage extends StatelessWidget {
                   return null;
                 },
               ),
-              SizedBox(
+              const SizedBox(
                 height: 25,
               ),
               CustomButton(

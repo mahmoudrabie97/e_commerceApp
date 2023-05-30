@@ -1,14 +1,14 @@
 import 'package:e_commerce/utilites/appcolors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import '../cartpage/catpage.dart';
+import '../cartpage/cartpage.dart';
 import '../categorypage/categorypage.dart';
 import '../homepage/homepage.dart';
 import '../profilepage/profilepage.dart';
 import '../seachpage/searchpage.dart';
 
 class HomeBottomNav extends StatefulWidget {
-  HomeBottomNav({Key? key}) : super(key: key);
+  const HomeBottomNav({Key? key}) : super(key: key);
 
   @override
   State<HomeBottomNav> createState() => _HomeBottomNavState();
@@ -19,9 +19,9 @@ class _HomeBottomNavState extends State<HomeBottomNav> {
   final List<Widget> pages = <Widget>[
     HomePge(),
     SearchPage(),
-    CartPage(),
-    Categorypage(),
-    ProfilePage(),
+    const CartPage(),
+    const Categorypage(),
+    const ProfilePage(),
   ];
   @override
   Widget build(BuildContext context) {
@@ -36,7 +36,7 @@ class _HomeBottomNavState extends State<HomeBottomNav> {
     return BottomNavigationBar(
       selectedItemColor: AppColor.kmaincolor,
       unselectedItemColor: Colors.grey,
-      unselectedLabelStyle: TextStyle(color: Colors.red),
+      unselectedLabelStyle: const TextStyle(color: Colors.red),
       currentIndex: currentindex,
       onTap: (value) {
         setState(() {

@@ -31,10 +31,10 @@ class _SizelistState extends State<Sizelist> {
           childAspectRatio: 1.5,
           crossAxisCount: 3,
           shrinkWrap: true,
-          physics: NeverScrollableScrollPhysics(),
+          physics: const NeverScrollableScrollPhysics(),
           mainAxisSpacing: 14,
           crossAxisSpacing: 90,
-          padding: EdgeInsets.all(10),
+          padding: const EdgeInsets.all(10),
           children: List.generate(productsize.length, (index) {
             return GestureDetector(
                 onTap: () {},

@@ -19,7 +19,7 @@ class customsquarecontainer extends StatelessWidget {
     return Container(
       height: height,
       width: width,
-      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       decoration: BoxDecoration(
           color: color,
           border: Border.all(width: 2, color: Colors.grey.withOpacity(.4))),

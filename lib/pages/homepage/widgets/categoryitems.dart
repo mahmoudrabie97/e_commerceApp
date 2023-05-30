@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class CategoryItem extends StatelessWidget {
-  CategoryItem({
+  const CategoryItem({
     Key? key,
     required this.dummynames,
     required this.dummyicons,
@@ -16,11 +16,11 @@ class CategoryItem extends StatelessWidget {
         Container(
           height: 100,
           width: 100,
-          margin: EdgeInsets.symmetric(
+          margin: const EdgeInsets.symmetric(
             vertical: 5,
             horizontal: 15,
           ),
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
               color: Color(0xffECFCFF),
               shape: BoxShape.rectangle,
               boxShadow: [
@@ -31,7 +31,7 @@ class CategoryItem extends StatelessWidget {
             child: dummyicons,
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 10,
         ),
         SizedBox(

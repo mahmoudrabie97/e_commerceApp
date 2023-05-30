@@ -17,7 +17,14 @@ class DetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: detailspageappbar(context),
+      appBar: detailspageappbar(
+        context,
+        const Text(
+          'Details Product',
+          style: TextStyle(color: Colors.black, fontSize: 14),
+        ),
+        true,
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.only(left: 10),
@@ -47,27 +54,27 @@ class DetailsPage extends StatelessWidget {
                   fontSize: 14,
                 ),
               ),
-              ChoosingColorsWidget(),
-              CustomText(
+              const ChoosingColorsWidget(),
+              const CustomText(
                 text: 'Description of product',
                 fontSize: 14,
                 fontWeight: FontWeight.bold,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 5,
               ),
               Padding(
                 padding: const EdgeInsets.only(right: 5),
                 child: CustomText(
-                    text: '${productModel.description}',
+                    text: productModel.description,
                     fontSize: 12,
-                    color: Color(0xff393F42)),
+                    color: const Color(0xff393F42)),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
-              AddingToCartRow(),
-              SizedBox(
+              const AddingToCartRow(),
+              const SizedBox(
                 height: 20,
               ),
             ],
