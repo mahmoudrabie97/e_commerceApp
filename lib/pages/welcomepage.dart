@@ -14,7 +14,7 @@ class WelcomePage extends StatelessWidget {
     return Scaffold(
       body: ListView(
         children: [
-          SizedBox(height: 70),
+          const SizedBox(height: 70),
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -33,7 +33,7 @@ class WelcomePage extends StatelessWidget {
           ),
           Image.asset('assets/images/Cart-amico.png',
               height: context.screenheight * .49),
-          SizedBox(height: 40),
+          const SizedBox(height: 40),
           Padding(
             padding: const EdgeInsets.only(
               right: 50,
@@ -48,7 +48,7 @@ class WelcomePage extends StatelessWidget {
               borderRadius: 10,
             ),
           ),
-          SizedBox(height: 15),
+          const SizedBox(height: 15),
           Padding(
             padding: const EdgeInsets.only(
               right: 50,
