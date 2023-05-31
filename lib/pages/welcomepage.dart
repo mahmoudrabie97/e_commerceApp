@@ -12,70 +12,59 @@ class WelcomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(
-              height: 70,
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
-                CustomText(
-                  text: '   Welcome To ',
-                  color: AppColor.kmaincolor,
-                  fontSize: 32,
-                ),
-                CustomText(
-                  text: '    E-Commerce ',
-                  color: AppColor.kmaincolor,
-                  fontSize: 32,
-                ),
-              ],
-            ),
-            Image.asset('assets/images/Cart-amico.png',
-                height: context.screenheight * .49),
-            //    height: 400),
-            const SizedBox(
-              height: 40,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(
-                right: 50,
-                left: 50,
+      body: ListView(
+        children: [
+          SizedBox(height: 70),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: const [
+              CustomText(
+                text: '   Welcome To ',
+                color: AppColor.kmaincolor,
+                fontSize: 32,
               ),
-              child: CustomButton(
-                buttonText: 'Sign In',
-                onPressed: () {
-                  context.push(LoginPage());
-                },
-                buttonColor: AppColor.kmaincolor,
-                borderRadius: 10,
+              CustomText(
+                text: '    E-Commerce ',
+                color: AppColor.kmaincolor,
+                fontSize: 32,
               ),
+            ],
+          ),
+          Image.asset('assets/images/Cart-amico.png',
+              height: context.screenheight * .49),
+          SizedBox(height: 40),
+          Padding(
+            padding: const EdgeInsets.only(
+              right: 50,
+              left: 50,
             ),
-            const SizedBox(
-              height: 15,
+            child: CustomButton(
+              buttonText: 'Sign In',
+              onPressed: () {
+                context.push(LoginPage());
+              },
+              buttonColor: AppColor.kmaincolor,
+              borderRadius: 10,
             ),
-            Padding(
-              padding: const EdgeInsets.only(
-                right: 50,
-                left: 50,
-              ),
-              child: CustomButton(
-                buttonText: 'Sign Up',
-                onPressed: () {
-                  context.push(SignUpPage());
-                },
-                buttonColor: Colors.white,
-                borderRadius: 10,
-                txtColor: AppColor.kmaincolor,
-              ),
-            )
-          ],
-        ),
+          ),
+          SizedBox(height: 15),
+          Padding(
+            padding: const EdgeInsets.only(
+              right: 50,
+              left: 50,
+            ),
+            child: CustomButton(
+              buttonText: 'Sign Up',
+              onPressed: () {
+                context.push(SignUpPage());
+              },
+              buttonColor: Colors.white,
+              borderRadius: 10,
+              txtColor: AppColor.kmaincolor,
+            ),
+          )
+        ],
       ),
     );
   }

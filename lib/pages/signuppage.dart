@@ -17,114 +17,108 @@ class SignUpPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       //backgroundColor: Colors.grey.shade100,
-      body: SingleChildScrollView(
-          child: Container(
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+      body: ListView(
+        padding: const EdgeInsets.all(20.0),
+        children: [
+          const SizedBox(
+            height: 25,
+          ),
+          Row(
             children: [
-              const SizedBox(
-                height: 25,
-              ),
-              Row(
-                children: [
-                  const CustomText(
-                    text: 'Sign Up',
-                    color: AppColor.kmaincolor,
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  const SizedBox(
-                    width: 5,
-                  ),
-                  Image.asset(
-                    'assets/images/icon-person.png',
-                    color: AppColor.kmaincolor,
-                    height: 40,
-                  )
-                ],
-              ),
-              const SizedBox(
-                height: 7,
-              ),
               const CustomText(
-                text: 'Welcome',
+                text: 'Sign Up',
                 color: AppColor.kmaincolor,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 35),
-                child: Image.asset('assets/images/Cart-pana.png',
-                    height: context.screenheight * .38),
-              ),
-              CustomTextFormField(
-                hintText: 'Name',
-                controller: _nameController,
-                keyboardType: TextInputType.name,
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'please enter your Name';
-                  }
-                  return null;
-                },
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
               ),
               const SizedBox(
-                height: 14,
+                width: 5,
               ),
-              CustomTextFormField(
-                hintText: 'Email',
-                controller: _emailController,
-                keyboardType: TextInputType.emailAddress,
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'please enter your email';
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(
-                height: 14,
-              ),
-              CustomTextFormField(
-                hintText: 'password',
-                obscureText: true,
-                controller: _passwordController,
-                keyboardType: TextInputType.visiblePassword,
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'please enter your password';
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(
-                height: 14,
-              ),
-              CustomTextFormField(
-                hintText: 'password confirmation',
-                obscureText: true,
-                controller: _passwordconfirmationController,
-                keyboardType: TextInputType.visiblePassword,
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'please re_enter your password';
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(
-                height: 25,
-              ),
-              CustomButton(
-                buttonText: 'Sign Up',
-                onPressed: () {},
-                buttonColor: AppColor.kmaincolor,
-                borderRadius: 12,
-              ),
+              Image.asset(
+                'assets/images/icon-person.png',
+                color: AppColor.kmaincolor,
+                height: 40,
+              )
             ],
           ),
-        ),
-      )),
+          const SizedBox(
+            height: 7,
+          ),
+          const CustomText(
+            text: 'Welcome',
+            color: AppColor.kmaincolor,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 35),
+            child: Image.asset('assets/images/Cart-pana.png',
+                height: context.screenheight * .38),
+          ),
+          CustomTextFormField(
+            hintText: 'Name',
+            controller: _nameController,
+            keyboardType: TextInputType.name,
+            validator: (value) {
+              if (value!.isEmpty) {
+                return 'please enter your Name';
+              }
+              return null;
+            },
+          ),
+          const SizedBox(
+            height: 14,
+          ),
+          CustomTextFormField(
+            hintText: 'Email',
+            controller: _emailController,
+            keyboardType: TextInputType.emailAddress,
+            validator: (value) {
+              if (value!.isEmpty) {
+                return 'please enter your email';
+              }
+              return null;
+            },
+          ),
+          const SizedBox(
+            height: 14,
+          ),
+          CustomTextFormField(
+            hintText: 'password',
+            obscureText: true,
+            controller: _passwordController,
+            keyboardType: TextInputType.visiblePassword,
+            validator: (value) {
+              if (value!.isEmpty) {
+                return 'please enter your password';
+              }
+              return null;
+            },
+          ),
+          const SizedBox(
+            height: 14,
+          ),
+          CustomTextFormField(
+            hintText: 'password confirmation',
+            obscureText: true,
+            controller: _passwordconfirmationController,
+            keyboardType: TextInputType.visiblePassword,
+            validator: (value) {
+              if (value!.isEmpty) {
+                return 'please re_enter your password';
+              }
+              return null;
+            },
+          ),
+          const SizedBox(
+            height: 25,
+          ),
+          CustomButton(
+            buttonText: 'Sign Up',
+            onPressed: () {},
+            buttonColor: AppColor.kmaincolor,
+            borderRadius: 12,
+          ),
+        ],
+      ),
     );
   }
 }
