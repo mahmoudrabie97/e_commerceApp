@@ -1,5 +1,5 @@
-import 'package:e_commerce/pages/loginpage.dart';
-import 'package:e_commerce/pages/signuppage.dart';
+import 'package:e_commerce/pages/authpage/loginpage.dart';
+import 'package:e_commerce/pages/authpage/signuppage.dart';
 import 'package:e_commerce/utilites/appcolors.dart';
 import 'package:e_commerce/utilites/extentionhelper.dart';
 import 'package:e_commerce/utilites/widgets/custombutton.dart';

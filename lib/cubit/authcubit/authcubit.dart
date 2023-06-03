@@ -34,7 +34,7 @@ class AuthCubit extends Cubit<AuthStates> {
         print(responseBody['error_description']);
         ShowMyDialog.showMsg(context, responseBody['error_description']);
 
-        emit(AuthErrorState());
+        emit(AuthErrorEmailorpasswordState());
       }
     }).catchError((error) {
       print('An error occurred: $error');
