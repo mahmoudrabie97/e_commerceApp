@@ -9,7 +9,7 @@ class CallApi {
   static String msg = '';
 
   static Future<http.Response?> postData(
-      {required Map<String, dynamic> data,
+      {required Map data,
       required String apiUrl,
       required BuildContext context}) async {
     try {
@@ -61,8 +61,8 @@ class CallApi {
     }
 
     if (msg != '') {
-      ShowMyDialog.showMsg(context, msg);
       debugPrint(msg);
+      ShowMyDialog.showMsg(context, msg);
     }
     return null;
   }

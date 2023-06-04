@@ -120,10 +120,14 @@ class LoginPage extends StatelessWidget {
                                   buttonText: 'Login',
                                   onPressed: () {
                                     if (formkey.currentState!.validate()) {
+                                      Map data = {
+                                        'userName': _emailController.text,
+                                        'password': _passwordController.text,
+                                        'grant_type': 'password'
+                                      };
+
                                       AuthCubit.get(context).loginUser(
-                                          email: _emailController.text,
-                                          password: _passwordController.text,
-                                          context: context);
+                                          userdata: data, context: context);
                                     }
                                   },
                                   buttonColor: AppColor.kmaincolor,

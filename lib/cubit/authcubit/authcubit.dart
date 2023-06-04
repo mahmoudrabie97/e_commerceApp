@@ -14,17 +14,12 @@ class AuthCubit extends Cubit<AuthStates> {
   static AuthCubit get(context) => BlocProvider.of(context);
   UserModel? userModel;
   void loginUser({
-    required String email,
-    required String password,
+    required Map userdata,
     required BuildContext context,
   }) {
     emit(AuthLoadingState());
     CallApi.postData(
-      data: {
-        'userName': email,
-        'password': password,
-        'grant_type': 'password',
-      },
+      data: userdata,
       apiUrl: login,
       context: context,
     ).then((value) {
@@ -35,6 +30,7 @@ class AuthCubit extends Cubit<AuthStates> {
 
         AppConstant.token = userModel!.accessToken;
         debugPrint('token=${AppConstant.token}');
+        debugPrint('usrId= ${userModel!.userId}');
 
         emit(AuthSucsessState());
       } else if (value.statusCode == 400) {
