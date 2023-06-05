@@ -22,7 +22,7 @@ class LoginPage extends StatelessWidget {
       create: (BuildContext context) => AuthCubit(),
       child: BlocConsumer<AuthCubit, AuthStates>(
         listener: (BuildContext context, Object? state) {
-          if (state is AuthSucsessState) {
+          if (state is LoginSucsessState) {
             context.push(const HomeBottomNav());
             // في حاله sucess
             //اللي هي دي داخل cubit
@@ -112,7 +112,7 @@ class LoginPage extends StatelessWidget {
                           const SizedBox(
                             height: 17,
                           ),
-                          state is AuthLoadingState
+                          state is LoginLoadingState
                               ? const Center(
                                   child: CircularProgressIndicator(),
                                 )

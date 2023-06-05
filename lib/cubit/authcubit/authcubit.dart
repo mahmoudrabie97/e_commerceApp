@@ -17,7 +17,7 @@ class AuthCubit extends Cubit<AuthStates> {
     required Map userdata,
     required BuildContext context,
   }) {
-    emit(AuthLoadingState());
+    emit(LoginLoadingState());
     CallApi.postData(
       data: userdata,
       apiUrl: login,
@@ -32,18 +32,18 @@ class AuthCubit extends Cubit<AuthStates> {
         debugPrint('token=${AppConstant.token}');
         debugPrint('usrId= ${userModel!.userId}');
 
-        emit(AuthSucsessState());
+        emit(LoginSucsessState());
       } else if (value.statusCode == 400) {
         final responseBody = json.decode(value.body);
         debugPrint(responseBody['error_description']);
         ShowMyDialog.showMsg(context, responseBody['error_description']);
 
-        emit(AuthErrorEmailorpasswordState());
+        emit(LoginErrorEmailorpasswordState());
       }
     }).catchError((error) {
       debugPrint('An error occurred: $error');
       // ShowMyDialog.showMsg(context, 'An error occurred: $error');
-      emit(AuthErrorState());
+      emit(LoginErrorState());
     });
   }
 }
