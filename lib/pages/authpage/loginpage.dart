@@ -32,7 +32,7 @@ class LoginPage extends StatelessWidget {
             // final responseBody = json.decode(value.body);
             // userModel = UserModel.fromJson(responseBody);
             // print(userModel!.accessToken);
-            // emit(AuthSucsessState());
+            // emit(LoginSucsessState());
           }
         },
         builder: (BuildContext context, state) {

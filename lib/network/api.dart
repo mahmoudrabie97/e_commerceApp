@@ -5,16 +5,16 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class CallApi {
-  static String baseurl = 'https://ecommerce.6sigmacode.com/';
   static String msg = '';
 
   static Future<http.Response?> postData(
       {required Map data,
+      required String baseUrl,
       required String apiUrl,
       required BuildContext context}) async {
     try {
       msg = '';
-      var fullUrl = baseurl + apiUrl;
+      var fullUrl = baseUrl + apiUrl;
 
       return await http.post(Uri.parse(fullUrl),
           body: data, headers: _setHeaders());
@@ -41,10 +41,12 @@ class CallApi {
   }
 
   static Future<http.Response?> getData(
-      {required String apiUrl, required BuildContext context}) async {
+      {required String baseUrl,
+      required String apiUrl,
+      required BuildContext context}) async {
     try {
       msg = '';
-      var fullUrl = baseurl + apiUrl;
+      var fullUrl = baseUrl + apiUrl;
       return await http.get(Uri.parse(fullUrl), headers: _setHeaders());
     } on IOException catch (e) {
       debugPrint('Socket Error: $e');

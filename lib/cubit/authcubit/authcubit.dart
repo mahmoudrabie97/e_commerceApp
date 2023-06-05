@@ -20,7 +20,8 @@ class AuthCubit extends Cubit<AuthStates> {
     emit(LoginLoadingState());
     CallApi.postData(
       data: userdata,
-      apiUrl: login,
+      baseUrl: baseloginurl,
+      apiUrl: loginurl,
       context: context,
     ).then((value) {
       if (value!.statusCode == 200) {
@@ -44,6 +45,32 @@ class AuthCubit extends Cubit<AuthStates> {
       debugPrint('An error occurred: $error');
       // ShowMyDialog.showMsg(context, 'An error occurred: $error');
       emit(LoginErrorState());
+    });
+  }
+
+  void registerUser({
+    required Map userdata,
+    required BuildContext context,
+  }) {
+    emit(RegisterLoadingState());
+    CallApi.postData(
+      data: userdata,
+      baseUrl: baseregisterurl,
+      apiUrl: registerurl,
+      context: context,
+    ).then((value) {
+      if (value!.statusCode == 200) {
+        emit(RegisterSucsessState());
+      } else if (value.statusCode == 500) {
+        final responseBody = json.decode(value.body);
+        debugPrint(responseBody['Message']);
+        ShowMyDialog.showMsg(context, responseBody['Message']);
+        emit(RegisterErrorDataState());
+      }
+    }).catchError((error) {
+      debugPrint('An error occurred: $error');
+      // ShowMyDialog.showMsg(context, 'An error occurred: $error');
+      emit(RegisterErrorState());
     });
   }
 }
