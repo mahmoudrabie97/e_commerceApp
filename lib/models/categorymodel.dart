@@ -1,4 +1,4 @@
-class Category {
+class CategoryModel {
   final int id;
   final String nameInArabic;
   final String nameInEnglish;
@@ -13,7 +13,7 @@ class Category {
   final bool showInHomeProductsSection;
   final dynamic attributeGroupDtos;
 
-  Category({
+  CategoryModel({
     required this.id,
     required this.nameInArabic,
     required this.nameInEnglish,
@@ -29,8 +29,8 @@ class Category {
     required this.attributeGroupDtos,
   });
 
-  factory Category.fromJson(Map<String, dynamic> json) {
-    return Category(
+  factory CategoryModel.fromJson(Map<String, dynamic> json) {
+    return CategoryModel(
       id: json['Id'],
       nameInArabic: json['NameInArabic'],
       nameInEnglish: json['NameInEnglish'],

@@ -3,6 +3,7 @@ import 'package:e_commerce/cubit/homecubit/homestates.dart';
 import 'package:e_commerce/pages/homepage/widgets/categoryitems.dart';
 import 'package:e_commerce/pages/homepage/widgets/customehomebestsellingrow.dart';
 import 'package:e_commerce/pages/homepage/widgets/customhomeproductsrow.dart';
+import 'package:e_commerce/pages/homepage/widgets/staticcontcat.dart';
 import 'package:e_commerce/pages/productconfiguration/widget/customsearchinrow.dart';
 import 'package:e_commerce/pages/productpage/widgets/productitems.dart';
 import 'package:e_commerce/utilites/dummydata.dart';
@@ -55,18 +56,41 @@ class HomePge extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 0.0),
                         child: SizedBox(
-                          height: 170,
-                          child: ListView.builder(
-                            shrinkWrap: true,
-                            scrollDirection: Axis.horizontal,
-                            itemCount: dummynames.length,
-                            itemBuilder: (BuildContext context, int index) {
-                              return CategoryItem(
-                                dummynames: dummynames[index],
-                                dummyicons: dummyicons[index],
-                              );
-                            },
-                          ),
+                          height: 180,
+                          child: state is GetSpecificCategoryLoadingState
+                              ? const Center(
+                                  child: CircularProgressIndicator(),
+                                )
+                              : ListView.builder(
+                                  shrinkWrap: true,
+                                  scrollDirection: Axis.horizontal,
+                                  itemCount: HomeCubit.get(context)
+                                          .caetgrymodel
+                                          .length +
+                                      1,
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
+                                    if (index <
+                                        HomeCubit.get(context)
+                                            .caetgrymodel
+                                            .length) {
+                                      return CategoryItem(
+                                        categoryname: HomeCubit.get(context)
+                                            .caetgrymodel[index]
+                                            .nameInEnglish,
+                                        categoryicon:
+                                            'https://www.shutterstock.com/image-photo/business-woman-drawing-global-structure-260nw-1006041130.jpg',
+
+                                        // HomeCubit.get(context)
+                                        //      .caetgrymodel[index]
+                                        //    .categoryImage ??
+                                        //'',
+                                      );
+                                    } else {
+                                      return StaticCategoryItem();
+                                    }
+                                  },
+                                ),
                         ),
                       ),
                       Padding(
