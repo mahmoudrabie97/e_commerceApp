@@ -44,7 +44,7 @@ class CategoryItem extends StatelessWidget {
             width: 80,
             child: Text(
               categoryname,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 12,
               ),
             ),

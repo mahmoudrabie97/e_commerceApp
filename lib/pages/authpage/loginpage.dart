@@ -1,5 +1,6 @@
 import 'package:e_commerce/cubit/authcubit/authcubit.dart';
 import 'package:e_commerce/cubit/authcubit/authstates.dart';
+import 'package:e_commerce/cubit/homecubit/homecubit.dart';
 import 'package:e_commerce/pages/homepage/hombottomnav.dart';
 import 'package:e_commerce/pages/authpage/signuppage.dart';
 import 'package:e_commerce/utilites/appcolors.dart';
@@ -23,7 +24,9 @@ class LoginPage extends StatelessWidget {
       child: BlocConsumer<AuthCubit, AuthStates>(
         listener: (BuildContext context, Object? state) {
           if (state is LoginSucsessState) {
-            context.push(const HomeBottomNav());
+            HomeCubit.get(context).getspecificCategoryHome(context: context);
+
+            context.pushrepacement(const HomeBottomNav());
             // في حاله sucess
             //اللي هي دي داخل cubit
             // يعني دخل pass and email صح

@@ -1,5 +1,5 @@
+import 'package:e_commerce/models/categorymodel.dart';
 import 'package:e_commerce/utilites/appcolors.dart';
-import 'package:e_commerce/models/productmodel.dart';
 
 import 'package:flutter/material.dart';
 
@@ -7,11 +7,11 @@ class CategoryItem extends StatelessWidget {
   const CategoryItem({
     Key? key,
     required this.height,
-    required this.productModel,
+    required this.categoryModel,
   }) : super(key: key);
 
   final double height;
-  final ProductModel productModel;
+  final CategoryModel categoryModel;
 
   @override
   Widget build(BuildContext context) {
@@ -45,18 +45,25 @@ class CategoryItem extends StatelessWidget {
                     children: [
                       Expanded(
                         child: Container(
-                          child: Image.asset(productModel.productimage),
+                          child: Image.asset('assets/images/fashion4.jpg'),
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(bottom: 10),
                         child: Row(
                           children: [
-                            Column(
-                              children: [
-                                Text(productModel.producttitle,
-                                    style: const TextStyle(fontSize: 12)),
-                              ],
+                            Expanded(
+                              child: Column(
+                                children: [
+                                  SizedBox(
+                                    width: 80,
+                                    child: Text(categoryModel.nameInEnglish,
+                                        style: const TextStyle(
+                                            fontSize: 10,
+                                            fontWeight: FontWeight.bold)),
+                                  ),
+                                ],
+                              ),
                             ),
                             const Spacer(),
                             GestureDetector(

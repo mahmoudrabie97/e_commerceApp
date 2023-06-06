@@ -1,5 +1,6 @@
 import 'package:e_commerce/cubit/authcubit/authcubit.dart';
 import 'package:e_commerce/cubit/authcubit/authstates.dart';
+import 'package:e_commerce/pages/authpage/loginpage.dart';
 import 'package:e_commerce/pages/homepage/hombottomnav.dart';
 import 'package:e_commerce/utilites/appcolors.dart';
 import 'package:e_commerce/utilites/extentionhelper.dart';
@@ -25,7 +26,7 @@ class SignUpPage extends StatelessWidget {
       child: BlocConsumer<AuthCubit, AuthStates>(
         listener: (BuildContext context, state) {
           if (state is RegisterSucsessState) {
-            context.pushrepacement(HomeBottomNav());
+            context.pushrepacement(LoginPage());
           }
         },
         builder: (BuildContext context, Object? state) {
