@@ -11,14 +11,14 @@ class HomeCubit extends Cubit<HomeStates> {
   HomeCubit() : super(InitialHomeState());
   static HomeCubit get(context) => BlocProvider.of(context);
 
-  List<CategoryModel> caetgrymodel = [];
+  List<CategoryModel> specificCategorylist = [];
   List<CategoryModel> allcatgorylist = [];
 
   void getspecificCategoryHome({
     required BuildContext context,
   }) {
     emit(GetSpecificCategoryLoadingState());
-    caetgrymodel = [];
+    specificCategorylist = [];
     CallApi.getData(
             baseUrl: basehomeurl,
             apiUrl: getspecficCategoryurl,
@@ -28,15 +28,15 @@ class HomeCubit extends Cubit<HomeStates> {
         print(value!.body);
         final responseBody = json.decode(value.body);
         for (var item in responseBody) {
-          caetgrymodel.add(CategoryModel.fromJson(item));
+          specificCategorylist.add(CategoryModel.fromJson(item));
         }
-        print(' ${caetgrymodel[2].id}');
+        print(' ${specificCategorylist[2].id}');
 
         emit(GetSpecificCategorySuccsessState());
       },
     ).catchError(
       ((error) {
-        GetSpecificCategoryErrorState();
+        emit(GetSpecificCategoryErrorState());
       }),
     );
   }

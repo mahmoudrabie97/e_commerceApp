@@ -24,29 +24,27 @@ class Categorypage extends StatelessWidget {
               ? const Center(
                   child: CircularProgressIndicator(),
                 )
-              : SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      GridView.count(
-                        crossAxisCount: 2,
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        childAspectRatio: (itemWidth / itemHeight),
-                        mainAxisSpacing: 20,
-                        crossAxisSpacing: 15,
-                        padding: const EdgeInsets.all(10),
-                        children: List.generate(
-                            HomeCubit.get(context).allcatgorylist.length,
-                            (index) {
-                          return CategoryItem(
-                            categoryModel:
-                                HomeCubit.get(context).allcatgorylist[index],
-                            height: itemHeight - 30,
-                          );
-                        }),
-                      ),
-                    ],
-                  ),
+              : ListView(
+                  children: [
+                    GridView.count(
+                      crossAxisCount: 2,
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      childAspectRatio: (itemWidth / itemHeight),
+                      mainAxisSpacing: 20,
+                      crossAxisSpacing: 15,
+                      padding: const EdgeInsets.all(10),
+                      children: List.generate(
+                          HomeCubit.get(context).allcatgorylist.length,
+                          (index) {
+                        return CategoryItem(
+                          categoryModel:
+                              HomeCubit.get(context).allcatgorylist[index],
+                          height: itemHeight - 30,
+                        );
+                      }),
+                    ),
+                  ],
                 ),
         );
       },

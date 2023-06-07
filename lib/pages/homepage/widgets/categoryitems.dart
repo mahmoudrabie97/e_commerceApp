@@ -41,7 +41,7 @@ class CategoryItem extends StatelessWidget {
         ),
         Expanded(
           child: SizedBox(
-            width: 80,
+            width: 105,
             child: Text(
               categoryname,
               style: const TextStyle(

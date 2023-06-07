@@ -26,7 +26,7 @@ class LoginPage extends StatelessWidget {
           if (state is LoginSucsessState) {
             HomeCubit.get(context).getspecificCategoryHome(context: context);
 
-            context.pushrepacement(const HomeBottomNav());
+            context.push(const HomeBottomNav());
             // في حاله sucess
             //اللي هي دي داخل cubit
             // يعني دخل pass and email صح

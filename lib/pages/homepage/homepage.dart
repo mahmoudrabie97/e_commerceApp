@@ -18,6 +18,8 @@ class HomePge extends StatelessWidget {
   final TextEditingController _searchController = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    HomeCubit.get(context).getAllCategory(context: context);
+
     double itemWidth = context.screenwidth * 0.4;
     double itemHeight = itemWidth / 0.8;
     return BlocConsumer<HomeCubit, HomeStates>(
@@ -55,24 +57,27 @@ class HomePge extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(vertical: 0.0),
                       child: SizedBox(
                         height: 180,
-                        child: state is GetSpecificCategoryLoadingState
+                        child: HomeCubit.get(context)
+                                .specificCategorylist
+                                .isEmpty
                             ? const Center(
                                 child: CircularProgressIndicator(),
                               )
-                            : ListView.builder(
+                            : ListView.separated(
                                 shrinkWrap: true,
                                 scrollDirection: Axis.horizontal,
-                                itemCount:
-                                    HomeCubit.get(context).caetgrymodel.length +
-                                        1,
+                                itemCount: HomeCubit.get(context)
+                                        .specificCategorylist
+                                        .length +
+                                    1,
                                 itemBuilder: (BuildContext context, int index) {
                                   if (index <
                                       HomeCubit.get(context)
-                                          .caetgrymodel
+                                          .specificCategorylist
                                           .length) {
                                     return CategoryItem(
                                       categoryname: HomeCubit.get(context)
-                                          .caetgrymodel[index]
+                                          .specificCategorylist[index]
                                           .nameInEnglish,
                                       categoryicon:
                                           'https://www.shutterstock.com/image-photo/business-woman-drawing-global-structure-260nw-1006041130.jpg',
@@ -85,12 +90,16 @@ class HomePge extends StatelessWidget {
                                   } else {
                                     return GestureDetector(
                                         onTap: () {
-                                          HomeCubit.get(context)
-                                              .getAllCategory(context: context);
-                                          context.push(Categorypage());
+                                          context.push(const Categorypage());
                                         },
                                         child: const StaticCategoryItem());
                                   }
+                                },
+                                separatorBuilder:
+                                    (BuildContext context, int index) {
+                                  return const SizedBox(
+                                    width: 10,
+                                  );
                                 },
                               ),
                       ),
