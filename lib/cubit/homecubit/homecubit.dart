@@ -1,6 +1,7 @@
 import 'dart:convert';
-
 import 'package:e_commerce/cubit/homecubit/homestates.dart';
+import 'package:e_commerce/models/bestsellingmodel.dart';
+import 'package:e_commerce/models/product.dart';
 import 'package:e_commerce/network/api.dart';
 import 'package:e_commerce/network/endpoints.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +14,9 @@ class HomeCubit extends Cubit<HomeStates> {
 
   List<CategoryModel> specificCategorylist = [];
   List<CategoryModel> allcatgorylist = [];
+  List<Product> bestsellingitemList = [];
+  List<ProductHome> productList = [];
+  List<ProductHome> getallproductList = [];
 
   void getspecificCategoryHome({
     required BuildContext context,
@@ -25,8 +29,8 @@ class HomeCubit extends Cubit<HomeStates> {
             context: context)
         .then(
       (value) {
-        print(value!.body);
-        final responseBody = json.decode(value.body);
+        //print(value!.body);
+        final responseBody = json.decode(value!.body);
         for (var item in responseBody) {
           specificCategorylist.add(CategoryModel.fromJson(item));
         }
@@ -51,8 +55,8 @@ class HomeCubit extends Cubit<HomeStates> {
             baseUrl: basehomeurl, apiUrl: getAllCategories, context: context)
         .then(
       (value) {
-        print(value!.body);
-        final responseBody = json.decode(value.body);
+        // print(value!.body);
+        final responseBody = json.decode(value!.body);
         for (var item in responseBody) {
           allcatgorylist.add(CategoryModel.fromJson(item));
         }
@@ -62,7 +66,85 @@ class HomeCubit extends Cubit<HomeStates> {
       },
     ).catchError(
       ((error) {
-        GetAllCategoryErrorState();
+        emit(GetAllCategoryErrorState());
+      }),
+    );
+  }
+
+  void getBestSelling({
+    required BuildContext context,
+  }) {
+    emit(GetBestSellingLoadingState());
+    bestsellingitemList = [];
+    CallApi.getData(
+            baseUrl: basehomeurl, apiUrl: getBestSellingurl, context: context)
+        .then(
+      (value) {
+        print(value!.body);
+        final responseBody = json.decode(value.body);
+        print('rsponsboy $responseBody');
+        print('successsssssssssssssssss');
+        for (var item in responseBody) {
+          bestsellingitemList.add(Product.fromJson(item));
+        }
+
+        emit(GetBestSellingSuccsessState());
+      },
+    ).catchError(
+      ((error) {
+        print('errorrr $error');
+        emit(GetBestSellingErrorState());
+      }),
+    );
+  }
+
+  void getspecificProduct({
+    required BuildContext context,
+  }) {
+    emit(GetSpecificProductLoadingState());
+    productList = [];
+    CallApi.getData(
+            baseUrl: basehomeurl,
+            apiUrl: getSpecificProductsurl,
+            context: context)
+        .then(
+      (value) {
+        print(value!.body);
+        final responseBody = json.decode(value.body);
+        for (var item in responseBody) {
+          productList.add(ProductHome.fromJson(item));
+          print('RRRRRRRRRRR ${productList[0].price}');
+        }
+
+        emit(GetSpecificProductSuccsessState());
+      },
+    ).catchError(
+      ((error) {
+        emit(GetSpecificProductErrorState());
+      }),
+    );
+  }
+
+  void getAllProduct({
+    required BuildContext context,
+  }) {
+    emit(GetAllProductLoadingState());
+    getallproductList = [];
+    CallApi.getData(
+            baseUrl: basehomeurl, apiUrl: getAllProductsurl, context: context)
+        .then(
+      (value) {
+        print(value!.body);
+        final responseBody = json.decode(value.body);
+        for (var item in responseBody) {
+          getallproductList.add(ProductHome.fromJson(item));
+        }
+
+        emit(GetAllProductSuccsessState());
+      },
+    ).catchError(
+      ((error) {
+        emit(GetAllProductErrorState());
       }),
     );
   }

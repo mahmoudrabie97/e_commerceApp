@@ -1,4 +1,5 @@
 import 'package:e_commerce/models/categorymodel.dart';
+import 'package:e_commerce/network/endpoints.dart';
 import 'package:e_commerce/utilites/appcolors.dart';
 
 import 'package:flutter/material.dart';
@@ -45,7 +46,9 @@ class CategoryItem extends StatelessWidget {
                     children: [
                       Expanded(
                         child: Container(
-                          child: Image.asset('assets/images/fashion4.jpg'),
+                          child: Image(
+                              image: NetworkImage(
+                                  '$baseimageurl${categoryModel.icon ?? 'https://www.shutterstock.com/image-photo/business-woman-drawing-global-structure-260nw-1006041130.jpg '}')),
                         ),
                       ),
                       Padding(

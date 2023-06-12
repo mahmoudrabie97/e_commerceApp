@@ -1,8 +1,11 @@
+import 'package:e_commerce/models/productmodel.dart';
 import 'package:e_commerce/utilites/appcolors.dart';
 import 'package:flutter/material.dart';
 
 class BestSellingitem extends StatelessWidget {
-  const BestSellingitem({Key? key}) : super(key: key);
+  const BestSellingitem(
+      {Key? key, required ProductModel productModel, required double height})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

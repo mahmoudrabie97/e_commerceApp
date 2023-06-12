@@ -1,4 +1,4 @@
-import 'package:e_commerce/models/product.dart';
+import 'package:e_commerce/models/bestsellingmodel.dart';
 import 'package:e_commerce/network/endpoints.dart';
 import 'package:e_commerce/pages/detailspage/detailspage.dart';
 import 'package:e_commerce/utilites/appcolors.dart';
@@ -6,15 +6,15 @@ import 'package:e_commerce/models/productmodel.dart';
 import 'package:e_commerce/utilites/extentionhelper.dart';
 import 'package:flutter/material.dart';
 
-class Productitem extends StatelessWidget {
-  const Productitem({
+class BestSellingItem extends StatelessWidget {
+  const BestSellingItem({
     Key? key,
     required this.height,
     required this.productModel,
   }) : super(key: key);
 
   final double height;
-  final ProductHome productModel;
+  final Product productModel;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class Productitem extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.only(right: 5, left: 5),
               child: Container(
-                width: 200,
+                width: 180,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(10),
@@ -53,33 +53,28 @@ class Productitem extends StatelessWidget {
                       ),
                       Expanded(
                         child: Container(
-                            child: Image(
-                                image: NetworkImage(
-                                    '$baseimageurl${productModel.mainImage}'))),
+                          child: Image(
+                              image: NetworkImage(
+                                  '$baseimageurl${productModel.mainImage}')),
+                        ),
                       ),
                       const SizedBox(height: 20),
                       Row(
                         children: [
-                          Expanded(
-                            child: Column(
-                              children: [
-                                Text(productModel.nameInEnglish,
-                                    style: const TextStyle(
-                                      fontSize: 12,
-                                    )),
-                                const SizedBox(height: 6),
-                                Text('\$${productModel.price}',
-                                    style: const TextStyle(color: Colors.grey)),
-                              ],
-                            ),
+                          Column(
+                            children: [
+                              Text(productModel.nameInEnglish ?? '',
+                                  style: const TextStyle(fontSize: 12)),
+                              const SizedBox(height: 6),
+                              Text('\$${productModel.price}',
+                                  style: const TextStyle(color: Colors.grey)),
+                            ],
                           ),
                           const Spacer(),
                           GestureDetector(
                             onTap: () {
                               //context.push(
-                              //  DetailsPage(
-                              //  productModel: productModel
-                              //));
+                              //  DetailsPage(productModel: productModel));
                             },
                             child: Container(
                               height: 25,

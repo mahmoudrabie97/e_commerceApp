@@ -1,4 +1,5 @@
 import 'package:e_commerce/cubit/homecubit/homecubit.dart';
+import 'package:e_commerce/network/endpoints.dart';
 import 'package:e_commerce/pages/welcomepage.dart';
 import 'package:e_commerce/simpleblocobserver.dart';
 import 'package:e_commerce/utilites/appcolors.dart';
@@ -16,7 +17,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (BuildContext context) => HomeCubit(),
+      create: (BuildContext context) =>
+          HomeCubit()..getBestSelling(context: context),
       child: MaterialApp(
         theme: ThemeData(
           scaffoldBackgroundColor: AppColor.appBgColor,

@@ -1,3 +1,4 @@
+import 'package:e_commerce/cubit/homecubit/homecubit.dart';
 import 'package:e_commerce/pages/productpage/widgets/productitems.dart';
 import 'package:e_commerce/utilites/dummydata.dart';
 import 'package:e_commerce/utilites/widgets/customtext.dart';
@@ -71,9 +72,11 @@ class ProductPage extends StatelessWidget {
                 mainAxisSpacing: 15,
                 crossAxisSpacing: 20,
                 padding: const EdgeInsets.all(10),
-                children: List.generate(dummyproduct.length, (index) {
+                children: List.generate(
+                    HomeCubit.get(context).getallproductList.length, (index) {
                   return Productitem(
-                    productModel: dummyproduct[index],
+                    productModel:
+                        HomeCubit.get(context).getallproductList[index],
                     height: itemHeight - 30,
                   );
                 }),

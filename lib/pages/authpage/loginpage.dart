@@ -25,6 +25,8 @@ class LoginPage extends StatelessWidget {
         listener: (BuildContext context, Object? state) {
           if (state is LoginSucsessState) {
             HomeCubit.get(context).getspecificCategoryHome(context: context);
+            HomeCubit.get(context).getspecificProduct(context: context);
+            //HomeCubit.get(context).getBestSelling(context: context);
 
             context.push(const HomeBottomNav());
             // في حاله sucess
