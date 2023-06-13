@@ -52,7 +52,7 @@ class Company {
 }
 
 class Product {
-  final num id;
+  final int id;
   final String? nameInArabic;
   final String? nameInEnglish;
   final String? descriptionInArabic;

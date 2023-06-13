@@ -1,8 +1,7 @@
 import 'package:e_commerce/models/product.dart';
 import 'package:e_commerce/network/endpoints.dart';
-import 'package:e_commerce/pages/detailspage/detailspage.dart';
+import 'package:e_commerce/pages/subProductPage/sub_products.dart';
 import 'package:e_commerce/utilites/appcolors.dart';
-import 'package:e_commerce/models/productmodel.dart';
 import 'package:e_commerce/utilites/extentionhelper.dart';
 import 'package:flutter/material.dart';
 
@@ -76,10 +75,14 @@ class Productitem extends StatelessWidget {
                           const Spacer(),
                           GestureDetector(
                             onTap: () {
-                              //context.push(
-                              //  DetailsPage(
-                              //  productModel: productModel
+                              // context.push(
+                              // DetailsPage(
+                              // productModel: productModel
                               //));
+
+                              context.push(SubProductPage(
+                                productid: productModel.id,
+                              ));
                             },
                             child: Container(
                               height: 25,

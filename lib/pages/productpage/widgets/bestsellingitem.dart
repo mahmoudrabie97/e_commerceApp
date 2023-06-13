@@ -1,6 +1,7 @@
 import 'package:e_commerce/models/bestsellingmodel.dart';
 import 'package:e_commerce/network/endpoints.dart';
 import 'package:e_commerce/pages/detailspage/detailspage.dart';
+import 'package:e_commerce/pages/subProductPage/sub_products.dart';
 import 'package:e_commerce/utilites/appcolors.dart';
 import 'package:e_commerce/models/productmodel.dart';
 import 'package:e_commerce/utilites/extentionhelper.dart';
@@ -75,6 +76,9 @@ class BestSellingItem extends StatelessWidget {
                             onTap: () {
                               //context.push(
                               //  DetailsPage(productModel: productModel));
+                              context.push(SubProductPage(
+                                productid: productModel.id,
+                              ));
                             },
                             child: Container(
                               height: 25,

@@ -11,3 +11,4 @@ const String baseimageurl = 'https://ecommerce.6sigmacode.com';
 const String getBestSellingurl = 'Home/GetBestSelling';
 const String getSpecificProductsurl = 'Home/GetSpecificProducts';
 const String getAllProductsurl = 'Home/GetAllProducts';
+const String getProductDetailsbypidUrl = 'Home/GetProductDetails';
