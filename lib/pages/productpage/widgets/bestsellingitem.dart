@@ -62,14 +62,16 @@ class BestSellingItem extends StatelessWidget {
                       const SizedBox(height: 20),
                       Row(
                         children: [
-                          Column(
-                            children: [
-                              Text(productModel.nameInEnglish ?? '',
-                                  style: const TextStyle(fontSize: 12)),
-                              const SizedBox(height: 6),
-                              Text('\$${productModel.price}',
-                                  style: const TextStyle(color: Colors.grey)),
-                            ],
+                          Expanded(
+                            child: Column(
+                              children: [
+                                Text(productModel.nameInEnglish ?? '',
+                                    style: const TextStyle(fontSize: 12)),
+                                const SizedBox(height: 6),
+                                Text('\$${productModel.price}',
+                                    style: const TextStyle(color: Colors.grey)),
+                              ],
+                            ),
                           ),
                           const Spacer(),
                           GestureDetector(

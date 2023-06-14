@@ -15,18 +15,18 @@ class SubProductPage extends StatelessWidget {
       body: SafeArea(
           child: Column(
         children: [
-          SizedBox(
+          const SizedBox(
             height: 80,
           ),
           Expanded(
             child: FutureBuilder(
-              future: ProductCubit.get(context).getProductdetailsbyId(
+              future: ProductCubit.get(context).getProductdetailsbyproductId(
                   productid: productid, context: context),
               builder: (BuildContext context, AsyncSnapshot snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Center(child: CircularProgressIndicator());
+                  return const Center(child: CircularProgressIndicator());
                 } else if (snapshot.hasError) {
-                  return Center(child: Text('Error Occurred'));
+                  return const Center(child: Text('Error Occurred'));
                 } else {
                   return GridView.count(
                     crossAxisCount: 2,
@@ -42,6 +42,7 @@ class SubProductPage extends StatelessWidget {
                         productDetailsBypId: ProductCubit.get(context)
                             .ProductdetailsbyidList[index],
                         height: itemHeight - 30,
+                        index: index,
                       );
                     }),
                   );

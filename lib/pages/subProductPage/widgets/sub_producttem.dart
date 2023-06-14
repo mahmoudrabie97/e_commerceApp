@@ -1,6 +1,8 @@
 import 'package:e_commerce/models/product_detailspid.dart';
 import 'package:e_commerce/network/endpoints.dart';
+import 'package:e_commerce/pages/detailspage/detailspage.dart';
 import 'package:e_commerce/utilites/appcolors.dart';
+import 'package:e_commerce/utilites/extentionhelper.dart';
 import 'package:flutter/material.dart';
 
 class SubProductitem extends StatelessWidget {
@@ -8,10 +10,12 @@ class SubProductitem extends StatelessWidget {
     Key? key,
     required this.height,
     required this.productDetailsBypId,
+    required this.index,
   }) : super(key: key);
 
   final double height;
   final ProductDetailsBypId productDetailsBypId;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
@@ -75,10 +79,9 @@ class SubProductitem extends StatelessWidget {
                             const Spacer(),
                             GestureDetector(
                               onTap: () {
-                                // context.push(
-                                // DetailsPage(
-                                // productModel: productModel
-                                //));
+                                context.push(DetailsPage(
+                                    productDetailId: productDetailsBypId.id,
+                                    index: index));
                               },
                               child: Container(
                                 height: 25,
