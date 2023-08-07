@@ -33,11 +33,11 @@ class CustomTextFormField extends StatelessWidget {
         hintStyle: TextStyle(color: hinnntcolr),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10.0),
-          borderSide: const BorderSide(color: Colors.white),
+          borderSide: const BorderSide(color: Colors.grey),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10.0),
-          borderSide: const BorderSide(color: Colors.white),
+          borderSide: const BorderSide(color: Colors.grey),
         ),
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10.0),

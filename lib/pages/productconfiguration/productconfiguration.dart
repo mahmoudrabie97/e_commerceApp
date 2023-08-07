@@ -46,7 +46,7 @@ class ProductConfiguration extends StatelessWidget {
                   ),
                 ),
               ),
-              Sizelist(),
+              const Sizelist(),
               const Divider(
                 color: Color(0xffECECEC),
                 thickness: 10,
@@ -89,7 +89,7 @@ class ProductConfiguration extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              CustomSlider(),
+              const CustomSlider(),
               const SizedBox(
                 height: 40,
               ),

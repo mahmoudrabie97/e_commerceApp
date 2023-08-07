@@ -1,6 +1,3 @@
-import 'package:e_commerce/cubit/productcubit/productcubit.dart';
-import 'package:e_commerce/models/productmodel.dart';
-import 'package:e_commerce/network/endpoints.dart';
 import 'package:e_commerce/pages/detailspage/widgets/customcircle.dart';
 import 'package:e_commerce/utilites/widgets/customtext.dart';
 import 'package:flutter/material.dart';
@@ -26,15 +23,15 @@ class DetailsPriceRow extends StatelessWidget {
               const SizedBox(
                 height: 15,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Row(
                 children: [
-                  Text('Price :'),
+                  const Text('Price :'),
                   Text(
                     '\$${price.toString()}',
-                    style: TextStyle(
+                    style: const TextStyle(
                         fontWeight: FontWeight.bold, color: Colors.red),
                   ),
                   const SizedBox(
@@ -47,7 +44,9 @@ class DetailsPriceRow extends StatelessWidget {
         ),
         const Spacer(),
         CustomCircle(
-          child: Image.asset('assets/images/heart.png'),
+          child: Image.asset(
+            'assets/images/heart.png',
+          ),
         ),
       ],
     );

@@ -51,10 +51,9 @@ class Productitem extends StatelessWidget {
                         ],
                       ),
                       Expanded(
-                        child: Container(
-                            child: Image(
-                                image: NetworkImage(
-                                    '$baseimageurl${productModel.mainImage}'))),
+                        child: Image(
+                            image: NetworkImage(
+                                '$baseimageurl${productModel.mainImage}')),
                       ),
                       const SizedBox(height: 20),
                       Row(

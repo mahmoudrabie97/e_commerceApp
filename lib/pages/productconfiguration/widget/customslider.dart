@@ -1,8 +1,7 @@
-import 'package:e_commerce/pages/productconfiguration/widget/customcirclethumb.dart';
 import 'package:flutter/material.dart';
 
 class CustomSlider extends StatefulWidget {
-  CustomSlider({Key? key}) : super(key: key);
+  const CustomSlider({Key? key}) : super(key: key);
 
   @override
   State<CustomSlider> createState() => _CustomSliderState();

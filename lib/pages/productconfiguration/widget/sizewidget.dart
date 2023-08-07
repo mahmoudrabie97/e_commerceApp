@@ -3,7 +3,7 @@ import 'package:e_commerce/utilites/widgets/customsquarecontainer.dart';
 import 'package:flutter/material.dart';
 
 class Sizelist extends StatefulWidget {
-  Sizelist({Key? key}) : super(key: key);
+  const Sizelist({Key? key}) : super(key: key);
 
   @override
   State<Sizelist> createState() => _SizelistState();
@@ -21,11 +21,9 @@ class _SizelistState extends State<Sizelist> {
   var currentselected = 0;
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-    double itemWidth = screenWidth * .1;
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: context.screenwidth * 0.00),
-      child: Container(
+      child: SizedBox(
         height: 150,
         child: GridView.count(
           childAspectRatio: 1.5,

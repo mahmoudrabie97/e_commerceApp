@@ -30,10 +30,16 @@ class SearchPage extends StatelessWidget {
         child: Column(
           children: [
             Row(
-              children: const [
-                CustomText(text: 'Last search'),
-                Spacer(),
-                CustomText(
+              children: [
+                Text(
+                  'Last Search',
+                  style: Theme.of(context)
+                      .textTheme
+                      .headlineSmall!
+                      .copyWith(fontSize: 14),
+                ),
+                const Spacer(),
+                const CustomText(
                   text: 'Clear all',
                   color: Colors.red,
                   fontSize: 12,

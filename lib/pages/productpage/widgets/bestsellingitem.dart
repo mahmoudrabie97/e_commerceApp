@@ -1,9 +1,7 @@
 import 'package:e_commerce/models/bestsellingmodel.dart';
 import 'package:e_commerce/network/endpoints.dart';
-import 'package:e_commerce/pages/detailspage/detailspage.dart';
 import 'package:e_commerce/pages/subProductPage/sub_products.dart';
 import 'package:e_commerce/utilites/appcolors.dart';
-import 'package:e_commerce/models/productmodel.dart';
 import 'package:e_commerce/utilites/extentionhelper.dart';
 import 'package:flutter/material.dart';
 
@@ -48,16 +46,16 @@ class BestSellingItem extends StatelessWidget {
                           const Spacer(),
                           IconButton(
                             onPressed: () {},
-                            icon: Image.asset('assets/images/heart.png'),
+                            icon: Image.asset(
+                              'assets/images/heart.png',
+                            ),
                           )
                         ],
                       ),
                       Expanded(
-                        child: Container(
-                          child: Image(
-                              image: NetworkImage(
-                                  '$baseimageurl${productModel.mainImage}')),
-                        ),
+                        child: Image(
+                            image: NetworkImage(
+                                '$baseimageurl${productModel.mainImage}')),
                       ),
                       const SizedBox(height: 20),
                       Row(

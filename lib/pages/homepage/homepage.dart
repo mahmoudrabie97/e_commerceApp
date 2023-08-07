@@ -11,7 +11,6 @@ import 'package:e_commerce/pages/homepage/widgets/staticcontcat.dart';
 import 'package:e_commerce/pages/productconfiguration/widget/customsearchinrow.dart';
 import 'package:e_commerce/pages/productpage/widgets/bestsellingitem.dart';
 import 'package:e_commerce/pages/productpage/widgets/productitems.dart';
-import 'package:e_commerce/utilites/dummydata.dart';
 import 'package:e_commerce/utilites/extentionhelper.dart';
 import 'package:e_commerce/utilites/widgets/customtext.dart';
 import 'package:flutter/material.dart';

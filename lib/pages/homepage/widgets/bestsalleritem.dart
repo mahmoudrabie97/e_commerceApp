@@ -41,10 +41,8 @@ class BestSellingitem extends StatelessWidget {
                             icon: Image.asset('assets/images/heart.png'))
                       ],
                     ),
-                    Container(
-                      child: Image.asset(
-                        'assets/images/medical 1.png',
-                      ),
+                    Image.asset(
+                      'assets/images/medical 1.png',
                     ),
                     const SizedBox(
                       height: 20,

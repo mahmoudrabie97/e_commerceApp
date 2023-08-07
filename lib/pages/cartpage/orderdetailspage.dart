@@ -1,5 +1,5 @@
-import 'package:e_commerce/pages/cartpage/orderdetailspage.dart';
-import 'package:e_commerce/pages/cartpage/widgets/cartitem.dart';
+import 'package:e_commerce/pages/cartpage/confirmorderpage.dart';
+import 'package:e_commerce/pages/cartpage/widgets/orderdetailsitem.dart';
 import 'package:e_commerce/utilites/custommethods.dart';
 import 'package:e_commerce/utilites/dummydata.dart';
 import 'package:e_commerce/utilites/extentionhelper.dart';
@@ -7,15 +7,15 @@ import 'package:e_commerce/utilites/widgets/custombutton.dart';
 import 'package:e_commerce/utilites/widgets/customtext.dart';
 import 'package:flutter/material.dart';
 
-class CartPage extends StatelessWidget {
-  const CartPage({Key? key}) : super(key: key);
+class OrderDetailsPage extends StatelessWidget {
+  const OrderDetailsPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: detailspageappbar(
         context,
-        const Text('Your Cart',
+        const Text(' Order Details',
             style: TextStyle(color: Colors.black, fontSize: 14)),
         false,
       ),
@@ -30,7 +30,7 @@ class CartPage extends StatelessWidget {
                 return const SizedBox(height: 19);
               },
               itemBuilder: (BuildContext context, int index) {
-                return CartItemWidget(
+                return OrderDetailsItem(
                   productModel: dummyproduct[index],
                 );
               },
@@ -61,10 +61,10 @@ class CartPage extends StatelessWidget {
                         borderRadius: 0,
                         buttonText: 'Continue for payments',
                         onPressed: () {
-                          context.push(const OrderDetailsPage());
+                          context.push(ConfirmOrderPage());
                         }),
                   ),
-                )
+                ),
               ],
             ),
           )

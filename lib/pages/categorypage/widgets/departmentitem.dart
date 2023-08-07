@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 
-class StaticCategoryItem extends StatelessWidget {
-  const StaticCategoryItem({
+class DepartmentItem extends StatelessWidget {
+  const DepartmentItem({
     Key? key,
+    required this.categoryname,
+    required this.categoryicon,
   }) : super(key: key);
+  final String categoryname;
+  final String categoryicon;
 
   @override
   Widget build(BuildContext context) {
@@ -24,20 +28,23 @@ class StaticCategoryItem extends StatelessWidget {
                     color: Color(0xffECFCFF), blurRadius: 4, spreadRadius: 2)
               ]),
           child: Center(
-            child: Image.asset(
-              'assets/images/Category1.png',
-              height: 60,
+            child: Image(
+              image: NetworkImage(
+                categoryicon,
+              ),
+              height: 100,
             ),
           ),
         ),
         const SizedBox(
-          height: 15,
+          height: 10,
         ),
-        const SizedBox(
-          child: Center(
+        Expanded(
+          child: SizedBox(
+            width: 105,
             child: Text(
-              'ALL',
-              style: TextStyle(
+              categoryname,
+              style: const TextStyle(
                 fontSize: 12,
               ),
             ),

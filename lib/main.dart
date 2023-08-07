@@ -1,6 +1,5 @@
 import 'package:e_commerce/cubit/homecubit/homecubit.dart';
 import 'package:e_commerce/cubit/productcubit/productcubit.dart';
-import 'package:e_commerce/network/endpoints.dart';
 import 'package:e_commerce/pages/welcomepage.dart';
 import 'package:e_commerce/simpleblocobserver.dart';
 import 'package:e_commerce/utilites/appcolors.dart';

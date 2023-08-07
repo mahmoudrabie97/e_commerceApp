@@ -12,11 +12,11 @@ class CustomCircle extends StatelessWidget {
     return Container(
       height: 50,
       width: 50,
-      margin: EdgeInsets.symmetric(
+      margin: const EdgeInsets.symmetric(
         vertical: 5,
         horizontal: 15,
       ),
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
           color: Color(0xffECFCFF),
           shape: BoxShape.circle,
           boxShadow: [

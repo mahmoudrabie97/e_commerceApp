@@ -6,7 +6,7 @@ class ShowMyDialog {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text("Error"),
+          title: const Text("Error"),
           content: SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
@@ -16,7 +16,7 @@ class ShowMyDialog {
           ),
           actions: <Widget>[
             TextButton(
-              child: Text('Okay'),
+              child: const Text('Ok'),
               onPressed: () {
                 Navigator.of(context).pop();
               },

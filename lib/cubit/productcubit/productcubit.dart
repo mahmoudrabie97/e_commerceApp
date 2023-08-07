@@ -60,9 +60,9 @@ class ProductCubit extends Cubit<ProductStates> {
           getProductDetailsByProductDetailIdList
               .add(ProductDetailsByproductdetailsid.fromJson(item));
           print(
-              'wiiiiiiiiiiiiiiiii ${getProductDetailsByProductDetailIdList[0].productDetailImages[0].id}');
+              ' ${getProductDetailsByProductDetailIdList[0].productDetailImages[0].id}');
           print(
-              'wiiiiiiiiiiiiiiiii ${getProductDetailsByProductDetailIdList[0].productDetailImages[0].image}');
+              ' ${getProductDetailsByProductDetailIdList[0].productDetailImages[0].image}');
         }
 
         emit(GetProductDetailsByProductDetailIdSuccessState());

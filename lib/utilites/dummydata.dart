@@ -110,11 +110,11 @@ final List<ProductModel> dummyproduct = [
   ),
 ];
 final List<Color> productColors = [
-  Color(0xff7EC042),
-  Color(0xffEB996E),
-  Color(0xffD65B5B),
-  Color(0xff582FFF),
-  Color(0xffFFBE9D),
-  Color(0xff484C52),
-  Color(0xffD1EBFF),
+  const Color(0xff7EC042),
+  const Color(0xffEB996E),
+  const Color(0xffD65B5B),
+  const Color(0xff582FFF),
+  const Color(0xffFFBE9D),
+  const Color(0xff484C52),
+  const Color(0xffD1EBFF),
 ];

@@ -1,7 +1,6 @@
 import 'package:e_commerce/cubit/authcubit/authcubit.dart';
 import 'package:e_commerce/cubit/authcubit/authstates.dart';
 import 'package:e_commerce/pages/authpage/loginpage.dart';
-import 'package:e_commerce/pages/homepage/hombottomnav.dart';
 import 'package:e_commerce/utilites/appcolors.dart';
 import 'package:e_commerce/utilites/extentionhelper.dart';
 import 'package:e_commerce/utilites/widgets/custombutton.dart';

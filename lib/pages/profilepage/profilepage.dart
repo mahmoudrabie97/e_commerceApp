@@ -1,4 +1,6 @@
+import 'package:e_commerce/pages/wishlistpage/wishlistpage.dart';
 import 'package:e_commerce/utilites/appcolors.dart';
+import 'package:e_commerce/utilites/extentionhelper.dart';
 import 'package:e_commerce/utilites/widgets/customtext.dart';
 import 'package:flutter/material.dart';
 
@@ -64,10 +66,15 @@ class ProfilePage extends StatelessWidget {
                 const Icon(Icons.shopping_bag_outlined,
                     color: AppColor.kmaincolor, size: 29),
                 'Change Password'),
-            buildlisttile(
-                const Icon(Icons.favorite,
-                    color: AppColor.kmaincolor, size: 29),
-                'Wishlists'),
+            GestureDetector(
+              onTap: () {
+                context.push(WishListsPage());
+              },
+              child: buildlisttile(
+                  const Icon(Icons.favorite,
+                      color: AppColor.kmaincolor, size: 29),
+                  'Wishlists'),
+            ),
             buildlisttile(const Icon(Icons.logout, size: 29), 'Logout'),
           ],
         ),
