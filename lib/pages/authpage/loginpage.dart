@@ -4,6 +4,7 @@ import 'package:e_commerce/cubit/homecubit/homecubit.dart';
 import 'package:e_commerce/pages/homepage/hombottomnav.dart';
 import 'package:e_commerce/pages/authpage/signuppage.dart';
 import 'package:e_commerce/utilites/appcolors.dart';
+import 'package:e_commerce/utilites/custommethods.dart';
 import 'package:e_commerce/utilites/extentionhelper.dart';
 import 'package:e_commerce/utilites/widgets/custombutton.dart';
 import 'package:e_commerce/utilites/widgets/customtext.dart';
@@ -100,6 +101,8 @@ class LoginPage extends StatelessWidget {
                           validator: (value) {
                             if (value!.isEmpty) {
                               return 'please enter your email';
+                            } else if (!isEmailValid(value)) {
+                              return 'Invalid email format';
                             }
                             return null;
                           },

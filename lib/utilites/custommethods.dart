@@ -1,6 +1,11 @@
 import 'package:e_commerce/utilites/extentionhelper.dart';
 import 'package:flutter/material.dart';
 
+bool isEmailValid(String email) {
+  final emailRegex = RegExp(r'^[\w-]+(.[\w-]+)*@([\w-]+.)+[a-zA-Z]{2,7}$');
+  return emailRegex.hasMatch(email);
+}
+
 AppBar detailspageappbar(
     BuildContext context, Widget widget, bool ceneredtitle) {
   return AppBar(

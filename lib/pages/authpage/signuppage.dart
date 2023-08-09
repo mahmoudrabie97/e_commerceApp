@@ -2,6 +2,7 @@ import 'package:e_commerce/cubit/authcubit/authcubit.dart';
 import 'package:e_commerce/cubit/authcubit/authstates.dart';
 import 'package:e_commerce/pages/authpage/loginpage.dart';
 import 'package:e_commerce/utilites/appcolors.dart';
+import 'package:e_commerce/utilites/custommethods.dart';
 import 'package:e_commerce/utilites/extentionhelper.dart';
 import 'package:e_commerce/utilites/widgets/custombutton.dart';
 import 'package:e_commerce/utilites/widgets/customtext.dart';
@@ -104,6 +105,8 @@ class SignUpPage extends StatelessWidget {
                         validator: (value) {
                           if (value!.isEmpty) {
                             return 'please enter your email';
+                          } else if (!isEmailValid(value)) {
+                            return 'Invalid email format';
                           }
                           return null;
                         },
