@@ -1,13 +1,11 @@
-import 'package:e_commerce/cubit/homecubit/homecubit.dart';
-import 'package:e_commerce/pages/productconfiguration/productconfiguration.dart';
-import 'package:e_commerce/pages/productpage/widgets/productitems.dart';
-import 'package:e_commerce/utilites/extentionhelper.dart';
+import 'package:e_commerce/pages/categorypage/widgets/productcategoryitem.dart';
+import 'package:e_commerce/utilites/dummydata.dart';
 import 'package:e_commerce/utilites/widgets/customtext.dart';
 import 'package:flutter/material.dart';
 import '../productconfiguration/widget/customsearchinrow.dart';
 
-class ProductPage extends StatelessWidget {
-  ProductPage({Key? key}) : super(key: key);
+class ProductOfCategory extends StatelessWidget {
+  ProductOfCategory({Key? key}) : super(key: key);
   final TextEditingController _searchController = TextEditingController();
 
   @override
@@ -42,7 +40,7 @@ class ProductPage extends StatelessWidget {
                 child: Row(
                   children: [
                     const CustomText(
-                      text: 'Products',
+                      text: ' product of the category ',
                       fontWeight: FontWeight.w500,
                     ),
                     const Spacer(),
@@ -56,9 +54,7 @@ class ProductPage extends StatelessWidget {
                           ),
                           IconButton(
                             iconSize: screenWidth * 0.1,
-                            onPressed: () {
-                              context.push(const ProductConfiguration());
-                            },
+                            onPressed: () {},
                             icon: Image.asset('assets/images/Filter 2.png'),
                           ),
                         ],
@@ -75,11 +71,8 @@ class ProductPage extends StatelessWidget {
                 mainAxisSpacing: 15,
                 crossAxisSpacing: 20,
                 padding: const EdgeInsets.all(10),
-                children: List.generate(
-                    HomeCubit.get(context).getallproductList.length, (index) {
-                  return Productitem(
-                    productModel:
-                        HomeCubit.get(context).getallproductList[index],
+                children: List.generate(dummyproduct.length, (index) {
+                  return ProductCategoryitem(
                     height: itemHeight - 30,
                   );
                 }),

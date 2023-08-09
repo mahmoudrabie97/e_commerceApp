@@ -12,7 +12,22 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class AuthCubit extends Cubit<AuthStates> {
   AuthCubit() : super(AuthInitialState());
   static AuthCubit get(context) => BlocProvider.of(context);
+
+  IconData sufficxic = Icons.visibility_off;
+  bool isSecure = true;
   UserModel? userModel;
+
+  void changeSecurePassword() {
+    if (isSecure) {
+      sufficxic = Icons.visibility_off;
+      isSecure = false;
+    } else {
+      sufficxic = Icons.remove_red_eye_outlined;
+      isSecure = true;
+    }
+    emit(ChangesecurepasswordState());
+  }
+
   void loginUser({
     required Map userdata,
     required BuildContext context,

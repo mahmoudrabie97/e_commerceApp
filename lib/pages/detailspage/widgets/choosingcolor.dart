@@ -9,16 +9,16 @@ class ChoosingColorsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 155,
       child: GridView.count(
         childAspectRatio: 1.4,
         crossAxisCount: 4,
         shrinkWrap: true,
-        physics: NeverScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
         mainAxisSpacing: 14,
         crossAxisSpacing: 40,
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         children: List.generate(productColors.length, (index) {
           return GestureDetector(
             onTap: () {},

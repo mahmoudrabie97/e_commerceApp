@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'dart:convert';
 import 'package:e_commerce/cubit/homecubit/homestates.dart';
 import 'package:e_commerce/models/bestsellingmodel.dart';
@@ -113,7 +115,6 @@ class HomeCubit extends Cubit<HomeStates> {
         final responseBody = json.decode(value.body);
         for (var item in responseBody) {
           productList.add(ProductHome.fromJson(item));
-          print('RRRRRRRRRRR ${productList[0].price}');
         }
 
         emit(GetSpecificProductSuccsessState());

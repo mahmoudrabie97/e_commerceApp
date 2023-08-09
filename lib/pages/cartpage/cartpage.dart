@@ -67,7 +67,7 @@ class CartPage extends StatelessWidget {
                 )
               ],
             ),
-          )
+          ),
         ],
       ),
     );

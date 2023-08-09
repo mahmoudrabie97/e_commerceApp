@@ -49,8 +49,8 @@ class BestSellingitem extends StatelessWidget {
                     ),
                     Row(
                       children: [
-                        Column(
-                          children: const [
+                        const Column(
+                          children: [
                             Text(
                               'Medical Device',
                               style: TextStyle(fontSize: 12),

@@ -36,11 +36,11 @@ class SubProductPage extends StatelessWidget {
                     crossAxisSpacing: 15,
                     padding: const EdgeInsets.all(10),
                     children: List.generate(
-                        ProductCubit.get(context).ProductdetailsbyidList.length,
+                        ProductCubit.get(context).productdetailsbyidList.length,
                         (index) {
                       return SubProductitem(
                         productDetailsBypId: ProductCubit.get(context)
-                            .ProductdetailsbyidList[index],
+                            .productdetailsbyidList[index],
                         height: itemHeight - 30,
                         index: index,
                       );

@@ -49,8 +49,8 @@ class SearchPage extends StatelessWidget {
             const SizedBox(
               height: 18,
             ),
-            Row(
-              children: const [
+            const Row(
+              children: [
                 Icon(Icons.watch_later_outlined, color: Colors.grey),
                 SizedBox(
                   width: 10,

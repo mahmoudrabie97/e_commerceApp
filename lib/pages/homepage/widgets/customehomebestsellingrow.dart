@@ -1,3 +1,4 @@
+import 'package:e_commerce/pages/bestsellingpage/bestselling.dart';
 import 'package:e_commerce/pages/productconfiguration/productconfiguration.dart';
 import 'package:e_commerce/utilites/extentionhelper.dart';
 import 'package:e_commerce/utilites/widgets/customtext.dart';
@@ -24,7 +25,7 @@ class CustomhomeBestSellingRow extends StatelessWidget {
           child: IconButton(
             iconSize: context.screenwidth * 0.1,
             onPressed: () {
-              context.push(const ProductConfiguration());
+              context.push(BeststSellingProduct());
             },
             icon: Image.asset('assets/images/fowar1.png'),
           ),

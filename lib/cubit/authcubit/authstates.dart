@@ -10,6 +10,8 @@ class LoginErrorEmailorpasswordState extends AuthStates {}
 
 class LoginErrorState extends AuthStates {}
 
+class ChangesecurepasswordState extends AuthStates {}
+
 class RegisterLoadingState extends AuthStates {}
 
 class RegisterSucsessState extends AuthStates {}

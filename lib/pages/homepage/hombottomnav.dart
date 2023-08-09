@@ -20,7 +20,7 @@ class _HomeBottomNavState extends State<HomeBottomNav> {
     HomePge(),
     SearchPage(),
     const CartPage(),
-    const Categorypage(),
+    Categorypage(),
     const ProfilePage(),
   ];
   @override

@@ -17,6 +17,10 @@ class SignUpPage extends StatelessWidget {
   final TextEditingController _passwordconfirmationController =
       TextEditingController();
   final formkey = GlobalKey<FormState>();
+  final FocusNode field1 = FocusNode();
+  final FocusNode field2 = FocusNode();
+  final FocusNode field3 = FocusNode();
+  final FocusNode field4 = FocusNode();
 
   @override
   Widget build(BuildContext context) {
@@ -75,6 +79,10 @@ class SignUpPage extends StatelessWidget {
                         hintText: 'Name',
                         controller: _nameController,
                         keyboardType: TextInputType.name,
+                        focusnode: field1,
+                        onsubmitted: (value) {
+                          FocusScope.of(context).requestFocus(field2);
+                        },
                         validator: (value) {
                           if (value!.isEmpty) {
                             return 'please enter your Name';
@@ -89,6 +97,10 @@ class SignUpPage extends StatelessWidget {
                         hintText: 'Email',
                         controller: _emailController,
                         keyboardType: TextInputType.emailAddress,
+                        focusnode: field2,
+                        onsubmitted: (value) {
+                          FocusScope.of(context).requestFocus(field3);
+                        },
                         validator: (value) {
                           if (value!.isEmpty) {
                             return 'please enter your email';
@@ -101,13 +113,33 @@ class SignUpPage extends StatelessWidget {
                       ),
                       CustomTextFormField(
                         hintText: 'password',
-                        obscureText: true,
+                        suffixicon: AuthCubit.get(context).sufficxic,
+                        suffixpressed: () {
+                          AuthCubit.get(context).changeSecurePassword();
+                        },
+                        obscureText:
+                            AuthCubit.get(context).isSecure ? true : false,
                         controller: _passwordController,
                         keyboardType: TextInputType.visiblePassword,
+                        focusnode: field3,
+                        onsubmitted: (value) {
+                          FocusScope.of(context).requestFocus(field4);
+                        },
                         validator: (value) {
                           if (value!.isEmpty) {
                             return 'please enter your password';
                           }
+                          if (value[0] != value[0].toUpperCase()) {
+                            return 'first letter must be capital';
+                          }
+                          if (value.length < 6) {
+                            return 'password must have at least 6 characters';
+                          }
+                          // التحقق مما إذا كانت الكلمة تحتوي على أحرف خاصة
+                          if (!value.contains(RegExp(r'[!@#\$&*~-]'))) {
+                            return 'The password must contain special characters';
+                          }
+
                           return null;
                         },
                       ),
@@ -116,15 +148,25 @@ class SignUpPage extends StatelessWidget {
                       ),
                       CustomTextFormField(
                         hintText: 'password confirmation',
-                        obscureText: true,
+                        suffixicon: AuthCubit.get(context).sufficxic,
+                        suffixpressed: () {
+                          AuthCubit.get(context).changeSecurePassword();
+                        },
+                        obscureText:
+                            AuthCubit.get(context).isSecure ? true : false,
                         controller: _passwordconfirmationController,
                         keyboardType: TextInputType.visiblePassword,
+                        focusnode: field4,
                         validator: (value) {
                           if (value!.isEmpty) {
-                            return 'please re_enter your password';
+                            return 'please re enter your password';
                           }
+
                           return null;
                         },
+                      ),
+                      const SizedBox(
+                        height: 14,
                       ),
                       const SizedBox(
                         height: 25,

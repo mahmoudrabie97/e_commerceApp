@@ -57,10 +57,10 @@ class DetailsPage extends StatelessWidget {
                       ),
                       DetailsPriceRow(
                         productname: ProductCubit.get(context)
-                            .ProductdetailsbyidList[index]
+                            .productdetailsbyidList[index]
                             .categoryName,
                         price: ProductCubit.get(context)
-                            .ProductdetailsbyidList[index]
+                            .productdetailsbyidList[index]
                             .price,
                       ),
                       const SizedBox(
@@ -74,7 +74,7 @@ class DetailsPage extends StatelessWidget {
                           fontSize: 14,
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 5,
                       ),
                       const ChoosingColorsWidget(),

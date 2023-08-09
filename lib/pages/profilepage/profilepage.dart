@@ -1,3 +1,4 @@
+import 'package:e_commerce/pages/cartpage/myorderspage.dart';
 import 'package:e_commerce/pages/wishlistpage/wishlistpage.dart';
 import 'package:e_commerce/utilites/appcolors.dart';
 import 'package:e_commerce/utilites/extentionhelper.dart';
@@ -59,16 +60,24 @@ class ProfilePage extends StatelessWidget {
                 const Icon(Icons.add_location_alt,
                     color: AppColor.kmaincolor, size: 29),
                 'Address'),
-            buildlisttile(
-                const Icon(Icons.edit, color: AppColor.kmaincolor, size: 29),
-                'Orders'),
-            buildlisttile(
-                const Icon(Icons.shopping_bag_outlined,
-                    color: AppColor.kmaincolor, size: 29),
-                'Change Password'),
             GestureDetector(
               onTap: () {
-                context.push(WishListsPage());
+                context.push(const MyOrdersPage());
+              },
+              child: buildlisttile(
+                  const Icon(Icons.edit, color: AppColor.kmaincolor, size: 29),
+                  'Orders'),
+            ),
+            GestureDetector(
+              onTap: () {},
+              child: buildlisttile(
+                  const Icon(Icons.shopping_bag_outlined,
+                      color: AppColor.kmaincolor, size: 29),
+                  'Change Password'),
+            ),
+            GestureDetector(
+              onTap: () {
+                context.push(const WishListsPage());
               },
               child: buildlisttile(
                   const Icon(Icons.favorite,

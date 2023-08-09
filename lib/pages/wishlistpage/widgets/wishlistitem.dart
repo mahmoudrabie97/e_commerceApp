@@ -29,8 +29,9 @@ class WishListItem extends StatelessWidget {
                   Row(
                     children: [
                       const CustomText(text: 'Air pods max by Apple'),
-                      Spacer(),
-                      IconButton(onPressed: () {}, icon: Icon(Icons.close))
+                      const Spacer(),
+                      IconButton(
+                          onPressed: () {}, icon: const Icon(Icons.close))
                     ],
                   ),
                   const CustomText(text: 'instock', color: Colors.grey),
@@ -39,7 +40,7 @@ class WishListItem extends StatelessWidget {
                     child: Row(
                       children: [
                         const CustomText(text: '\$ 1999,99'),
-                        Spacer(),
+                        const Spacer(),
                         Padding(
                           padding: const EdgeInsets.only(right: 10),
                           child: Image.asset(

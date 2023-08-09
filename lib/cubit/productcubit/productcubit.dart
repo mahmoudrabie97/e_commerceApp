@@ -12,7 +12,7 @@ import '../../network/endpoints.dart';
 class ProductCubit extends Cubit<ProductStates> {
   ProductCubit() : super(ProductInitialState());
   static ProductCubit get(context) => BlocProvider.of(context);
-  List<ProductDetailsBypId> ProductdetailsbyidList = [];
+  List<ProductDetailsBypId> productdetailsbyidList = [];
   List<ProductDetailsByproductdetailsid>
       getProductDetailsByProductDetailIdList = [];
 
@@ -25,12 +25,12 @@ class ProductCubit extends Cubit<ProductStates> {
         .then(
       (value) {
         emit(GetProductDetailsLoadingState());
-        ProductdetailsbyidList = [];
+        productdetailsbyidList = [];
         print(value!.body);
         final responseBody = json.decode(value.body);
         print('rsponsboy $responseBody');
         for (var item in responseBody) {
-          ProductdetailsbyidList.add(ProductDetailsBypId.fromJson(item));
+          productdetailsbyidList.add(ProductDetailsBypId.fromJson(item));
         }
 
         emit(GetProductDetailsSuccessState());

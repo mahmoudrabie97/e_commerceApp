@@ -16,6 +16,8 @@ class LoginPage extends StatelessWidget {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final formkey = GlobalKey<FormState>();
+  final FocusNode field1 = FocusNode();
+  final FocusNode field2 = FocusNode();
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +30,7 @@ class LoginPage extends StatelessWidget {
             HomeCubit.get(context).getspecificProduct(context: context);
             //HomeCubit.get(context).getBestSelling(context: context);
 
-            context.push(const HomeBottomNav());
+            context.pushrepacement(const HomeBottomNav());
             // في حاله sucess
             //اللي هي دي داخل cubit
             // يعني دخل pass and email صح
@@ -91,6 +93,10 @@ class LoginPage extends StatelessWidget {
                           hintText: 'Email',
                           controller: _emailController,
                           keyboardType: TextInputType.emailAddress,
+                          focusnode: field1,
+                          onsubmitted: (value) {
+                            FocusScope.of(context).requestFocus(field2);
+                          },
                           validator: (value) {
                             if (value!.isEmpty) {
                               return 'please enter your email';
@@ -103,9 +109,14 @@ class LoginPage extends StatelessWidget {
                         ),
                         CustomTextFormField(
                           hintText: 'password',
+                          suffixicon: AuthCubit.get(context).sufficxic,
+                          suffixpressed: () {
+                            AuthCubit.get(context).changeSecurePassword();
+                          },
                           controller: _passwordController,
-                          obscureText: true,
+                          obscureText: AuthCubit.get(context).isSecure,
                           keyboardType: TextInputType.visiblePassword,
+                          focusnode: field2,
                           validator: (value) {
                             if (value!.isEmpty) {
                               return 'please enter your password';

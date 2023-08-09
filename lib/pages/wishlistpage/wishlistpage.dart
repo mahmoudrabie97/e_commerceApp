@@ -1,10 +1,7 @@
-import 'package:e_commerce/pages/cartpage/orderdetailspage.dart';
 import 'package:e_commerce/pages/wishlistpage/widgets/wishlistitem.dart';
 import 'package:e_commerce/utilites/custommethods.dart';
 import 'package:e_commerce/utilites/dummydata.dart';
 import 'package:e_commerce/utilites/extentionhelper.dart';
-import 'package:e_commerce/utilites/widgets/custombutton.dart';
-import 'package:e_commerce/utilites/widgets/customtext.dart';
 import 'package:flutter/material.dart';
 
 class WishListsPage extends StatelessWidget {

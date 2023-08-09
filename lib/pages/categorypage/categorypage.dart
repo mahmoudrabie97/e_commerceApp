@@ -9,7 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class Categorypage extends StatelessWidget {
-  const Categorypage({Key? key}) : super(key: key);
+  Categorypage({Key? key}) : super(key: key);
+  final List<String> texts = ['Devices', 'Tools', 'New Dep', 'Men Clothes'];
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,7 @@ class Categorypage extends StatelessWidget {
       builder: (BuildContext context, Object? state) {
         return Scaffold(
           appBar: detailspageappbar(context,
-              const CustomText(text: 'Category', color: Colors.black), true),
+              const CustomText(text: 'Department', color: Colors.black), true),
           body: state is GetAllCategoryLoadingState
               ? const Center(
                   child: CircularProgressIndicator(),
@@ -40,7 +41,7 @@ class Categorypage extends StatelessWidget {
                         },
                         itemBuilder: (BuildContext context, int index) {
                           return DepartmentItem(
-                              categoryname: 'devices',
+                              categoryname: texts[index],
                               categoryicon:
                                   'https://www.shutterstock.com/shutterstock/photos/1006041130/display_1500/stock-photo-business-woman-drawing-global-structure-networking-and-data-exchanges-customer-connection-on-dark-1006041130.jpg');
                         },

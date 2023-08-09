@@ -13,14 +13,14 @@ class AddingToCartRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Customsquantityontainer(
+        const Customsquantityontainer(
           height: 60,
           width: 150,
-          color: const Color(0xffD5D5D5),
+          color: Color(0xffD5D5D5),
           child: Row(
             // crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: const [
+            children: [
               Customsquantityontainer(
                   height: 40,
                   width: 40,

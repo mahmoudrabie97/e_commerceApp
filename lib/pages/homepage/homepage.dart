@@ -94,8 +94,7 @@ class HomePge extends StatelessWidget {
                                       } else {
                                         return GestureDetector(
                                             onTap: () {
-                                              context
-                                                  .push(const Categorypage());
+                                              context.push(Categorypage());
                                             },
                                             child: const StaticCategoryItem());
                                       }

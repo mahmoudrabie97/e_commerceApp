@@ -4,6 +4,7 @@ import 'package:e_commerce/utilites/custommethods.dart';
 import 'package:e_commerce/utilites/extentionhelper.dart';
 import 'package:e_commerce/utilites/widgets/custombutton.dart';
 import 'package:e_commerce/utilites/widgets/customtext.dart';
+import 'package:e_commerce/utilites/widgets/customtextfieldm.dart';
 
 import 'package:e_commerce/utilites/widgets/customtextformfield.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +15,7 @@ final List<String> paymentoptions = [
 ];
 
 class ConfirmOrderPage extends StatefulWidget {
-  ConfirmOrderPage({Key? key}) : super(key: key);
+  const ConfirmOrderPage({Key? key}) : super(key: key);
 
   @override
   State<ConfirmOrderPage> createState() => _ConfirmOrderPageState();
@@ -135,19 +136,10 @@ class _ConfirmOrderPageState extends State<ConfirmOrderPage> {
                   child: CustomText(text: 'Order Notes (Optional) '),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(left: 20, right: 20),
-                  child: CustomTextFormField(
-                    //المفروض هنا طالما النص متعدد يعني بتستخد maxlines>1 المفروض استخدم textfield not textformfield
-
-                    controller: _ordernotescontrolle,
-                    validator: (text) {
-                      if (text!.isEmpty) {
-                        return 'text must not be null';
-                      }
-                      return null;
-                    },
-                  ),
-                ),
+                    padding: const EdgeInsets.only(left: 20, right: 20),
+                    child: CustomTextField(
+                      controller: _ordernotescontrolle,
+                    )),
               ],
             ),
             SizedBox(
@@ -316,7 +308,7 @@ class _ConfirmOrderPageState extends State<ConfirmOrderPage> {
                 items: countrylist.map(buildCountryMenuItem).toList(),
                 onChanged: (value) {
                   setState(() {
-                    this.city = value;
+                    city = value;
                   });
                 }),
           ),
@@ -348,7 +340,7 @@ class _ConfirmOrderPageState extends State<ConfirmOrderPage> {
                 items: countrylist.map(buildCountryMenuItem).toList(),
                 onChanged: (value) {
                   setState(() {
-                    this.state = value;
+                    state = value;
                   });
                 }),
           ),
