@@ -8,11 +8,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
   Bloc.observer = SimpleBlocObserver();
-  runApp(const MyApp());
+  runApp(const EcommerceApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class EcommerceApp extends StatelessWidget {
+  const EcommerceApp({super.key});
 
   @override
   Widget build(BuildContext context) {

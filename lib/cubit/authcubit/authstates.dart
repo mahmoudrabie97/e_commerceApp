@@ -12,6 +12,8 @@ class LoginErrorState extends AuthStates {}
 
 class ChangesecurepasswordState extends AuthStates {}
 
+class ChangesecurepasswordconfigState extends AuthStates {}
+
 class RegisterLoadingState extends AuthStates {}
 
 class RegisterSucsessState extends AuthStates {}

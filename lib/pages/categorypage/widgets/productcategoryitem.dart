@@ -1,5 +1,3 @@
-import 'package:e_commerce/models/product.dart';
-import 'package:e_commerce/network/endpoints.dart';
 import 'package:e_commerce/pages/subProductPage/sub_products.dart';
 import 'package:e_commerce/utilites/appcolors.dart';
 import 'package:e_commerce/utilites/dummydata.dart';

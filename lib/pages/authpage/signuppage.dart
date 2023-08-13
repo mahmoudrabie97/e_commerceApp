@@ -116,12 +116,12 @@ class SignUpPage extends StatelessWidget {
                       ),
                       CustomTextFormField(
                         hintText: 'password',
-                        suffixicon: AuthCubit.get(context).sufficxic,
+                        suffixicon: AuthCubit.get(context).sufficxicp,
                         suffixpressed: () {
                           AuthCubit.get(context).changeSecurePassword();
                         },
                         obscureText:
-                            AuthCubit.get(context).isSecure ? true : false,
+                            AuthCubit.get(context).isSecurep ? true : false,
                         controller: _passwordController,
                         keyboardType: TextInputType.visiblePassword,
                         focusnode: field3,
@@ -151,12 +151,12 @@ class SignUpPage extends StatelessWidget {
                       ),
                       CustomTextFormField(
                         hintText: 'password confirmation',
-                        suffixicon: AuthCubit.get(context).sufficxic,
+                        suffixicon: AuthCubit.get(context).sufficxicpc,
                         suffixpressed: () {
-                          AuthCubit.get(context).changeSecurePassword();
+                          AuthCubit.get(context).changeSecurePasswordconfig();
                         },
                         obscureText:
-                            AuthCubit.get(context).isSecure ? true : false,
+                            AuthCubit.get(context).isSecurepc ? true : false,
                         controller: _passwordconfirmationController,
                         keyboardType: TextInputType.visiblePassword,
                         focusnode: field4,

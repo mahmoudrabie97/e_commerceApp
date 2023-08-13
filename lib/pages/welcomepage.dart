@@ -15,10 +15,10 @@ class WelcomePage extends StatelessWidget {
       body: ListView(
         children: [
           const SizedBox(height: 70),
-          Column(
+          const Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
+            children: [
               CustomText(
                 text: '   Welcome To ',
                 color: AppColor.kmaincolor,

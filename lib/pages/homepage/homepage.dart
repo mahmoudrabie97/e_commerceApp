@@ -43,13 +43,13 @@ class HomePge extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const SizedBox(
-                          height: 50,
+                          height: 20,
                         ),
                         Padding(
                           padding: EdgeInsets.symmetric(
                               horizontal: context.screenwidth * 0.05),
                           child: SizedBox(
-                            height: 90,
+                            height: 60,
                             child: SearchingitemRow(
                                 searchController: _searchController),
                           ),
@@ -61,6 +61,9 @@ class HomePge extends StatelessWidget {
                               text: 'Category',
                               fontWeight: FontWeight.w500,
                             )),
+                        SizedBox(
+                          height: 5,
+                        ),
                         Padding(
                           padding: const EdgeInsets.symmetric(vertical: 0.0),
                           child: SizedBox(

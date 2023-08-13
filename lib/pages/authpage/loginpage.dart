@@ -112,12 +112,12 @@ class LoginPage extends StatelessWidget {
                         ),
                         CustomTextFormField(
                           hintText: 'password',
-                          suffixicon: AuthCubit.get(context).sufficxic,
+                          suffixicon: AuthCubit.get(context).sufficxicp,
                           suffixpressed: () {
                             AuthCubit.get(context).changeSecurePassword();
                           },
                           controller: _passwordController,
-                          obscureText: AuthCubit.get(context).isSecure,
+                          obscureText: AuthCubit.get(context).isSecurep,
                           keyboardType: TextInputType.visiblePassword,
                           focusnode: field2,
                           validator: (value) {
