@@ -26,10 +26,10 @@ class HomeCubit extends Cubit<HomeStates> {
     emit(GetSpecificCategoryLoadingState());
     specificCategorylist = [];
     CallApi.getData(
-            baseUrl: basehomeurl,
-            apiUrl: getspecficCategoryurl,
-            context: context)
-        .then(
+        baseUrl: basehomeurl,
+        apiUrl: getspecficCategoryurl,
+        context: context,
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'}).then(
       (value) {
         //print(value!.body);
         final responseBody = json.decode(value!.body);
@@ -54,8 +54,10 @@ class HomeCubit extends Cubit<HomeStates> {
 
     allcatgorylist = [];
     CallApi.getData(
-            baseUrl: basehomeurl, apiUrl: getAllCategories, context: context)
-        .then(
+        baseUrl: basehomeurl,
+        apiUrl: getAllCategories,
+        context: context,
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'}).then(
       (value) {
         // print(value!.body);
         final responseBody = json.decode(value!.body);
@@ -79,8 +81,10 @@ class HomeCubit extends Cubit<HomeStates> {
     emit(GetBestSellingLoadingState());
     bestsellingitemList = [];
     CallApi.getData(
-            baseUrl: basehomeurl, apiUrl: getBestSellingurl, context: context)
-        .then(
+        baseUrl: basehomeurl,
+        apiUrl: getBestSellingurl,
+        context: context,
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'}).then(
       (value) {
         print(value!.body);
         final responseBody = json.decode(value.body);
@@ -106,10 +110,10 @@ class HomeCubit extends Cubit<HomeStates> {
     emit(GetSpecificProductLoadingState());
     productList = [];
     CallApi.getData(
-            baseUrl: basehomeurl,
-            apiUrl: getSpecificProductsurl,
-            context: context)
-        .then(
+        baseUrl: basehomeurl,
+        apiUrl: getSpecificProductsurl,
+        context: context,
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'}).then(
       (value) {
         print(value!.body);
         final responseBody = json.decode(value.body);
@@ -132,8 +136,10 @@ class HomeCubit extends Cubit<HomeStates> {
     emit(GetAllProductLoadingState());
     getallproductList = [];
     CallApi.getData(
-            baseUrl: basehomeurl, apiUrl: getAllProductsurl, context: context)
-        .then(
+        baseUrl: basehomeurl,
+        apiUrl: getAllProductsurl,
+        context: context,
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'}).then(
       (value) {
         print(value!.body);
         final responseBody = json.decode(value.body);

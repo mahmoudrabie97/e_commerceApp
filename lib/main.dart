@@ -1,5 +1,6 @@
 import 'package:e_commerce/cubit/homecubit/homecubit.dart';
 import 'package:e_commerce/cubit/productcubit/productcubit.dart';
+import 'package:e_commerce/cubit/favouritecartcubit/favouritecartcubit.dart';
 import 'package:e_commerce/pages/welcomepage.dart';
 import 'package:e_commerce/simpleblocobserver.dart';
 import 'package:e_commerce/utilites/appcolors.dart';
@@ -22,8 +23,10 @@ class EcommerceApp extends StatelessWidget {
           create: (BuildContext context) => HomeCubit(),
         ),
         BlocProvider(create: (BuildContext context) => ProductCubit()),
+        BlocProvider(create: (BuildContext context) => FavouriteCartcubit()),
       ],
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         theme: ThemeData(
           scaffoldBackgroundColor: AppColor.appBgColor,
           primaryColor: AppColor.primary,

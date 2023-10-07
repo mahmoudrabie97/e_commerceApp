@@ -13,18 +13,19 @@ class ProductCubit extends Cubit<ProductStates> {
   ProductCubit() : super(ProductInitialState());
   static ProductCubit get(context) => BlocProvider.of(context);
   List<ProductDetailsBypId> productdetailsbyidList = [];
+  List<ProductDetailsBypId> filterproductdetailsbyidList = [];
   List<ProductDetailsByproductdetailsid>
       getProductDetailsByProductDetailIdList = [];
 
   Future getProductdetailsbyproductId(
       {required int productid, required BuildContext context}) {
+    emit(GetProductDetailsLoadingState());
     return CallApi.getData(
-            baseUrl: basehomeurl,
-            apiUrl: '$getProductDetailsbypidUrl/$productid',
-            context: context)
-        .then(
+        baseUrl: basehomeurl,
+        apiUrl: '$getProductDetailsbypidUrl/$productid',
+        context: context,
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'}).then(
       (value) {
-        emit(GetProductDetailsLoadingState());
         productdetailsbyidList = [];
         print(value!.body);
         final responseBody = json.decode(value.body);
@@ -46,10 +47,10 @@ class ProductCubit extends Cubit<ProductStates> {
   Future getProductdetailsbyByProductDetailId(
       {required int productDetailId, required BuildContext context}) {
     return CallApi.getData(
-            baseUrl: basehomeurl,
-            apiUrl: '$getProductDetailsByProductDetailIdUrl/$productDetailId',
-            context: context)
-        .then(
+        baseUrl: basehomeurl,
+        apiUrl: '$getProductDetailsByProductDetailIdUrl/$productDetailId',
+        context: context,
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'}).then(
       (value) {
         emit(GetProductDetailsByProductDetailIdLoadingState());
         getProductDetailsByProductDetailIdList = [];

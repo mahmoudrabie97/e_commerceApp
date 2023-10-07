@@ -11,6 +11,7 @@ class SubProductPage extends StatelessWidget {
   Widget build(BuildContext context) {
     double itemWidth = context.screenwidth * 0.4;
     double itemHeight = itemWidth / 0.8;
+
     return Scaffold(
       body: SafeArea(
           child: Column(

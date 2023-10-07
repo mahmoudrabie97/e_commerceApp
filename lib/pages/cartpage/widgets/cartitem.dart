@@ -1,12 +1,13 @@
-import 'package:e_commerce/models/productmodel.dart';
+import 'package:e_commerce/models/cartmodel.dart';
+import 'package:e_commerce/network/endpoints.dart';
 import 'package:e_commerce/utilites/widgets/customtext.dart';
 import 'package:flutter/material.dart';
 
 class CartItemWidget extends StatelessWidget {
-  final ProductModel productModel;
+  final CartModel cartModel;
   const CartItemWidget({
     super.key,
-    required this.productModel,
+    required this.cartModel,
   });
 
   @override
@@ -15,8 +16,8 @@ class CartItemWidget extends StatelessWidget {
       height: 140,
       child: Row(
         children: [
-          Image.asset(
-            productModel.productimage,
+          Image.network(
+            '$baseimageurl${cartModel.productDetail!.productDetailImage![0].image ?? 'https://t3.ftcdn.net/jpg/04/62/93/66/360_F_462936689_BpEEcxfgMuYPfTaIAOC1tCDurmsno7Sp.jpg'}',
             fit: BoxFit.fill,
             width: 140,
           ),
@@ -26,13 +27,20 @@ class CartItemWidget extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const CustomText(text: 'Air pods max by Apple'),
-                  const CustomText(text: 'Variant: Grey', color: Colors.grey),
+                  CustomText(
+                      text:
+                          cartModel.productDetail!.productNameInEnglish ?? ''),
+                  CustomText(
+                      text:
+                          'old price: ${cartModel.productDetail!.oldPrice ?? '\$'}',
+                      color: Colors.grey),
                   const Spacer(),
                   Expanded(
                     child: Row(
                       children: [
-                        const CustomText(text: '\$ 1999,99'),
+                        CustomText(
+                            text:
+                                '\$ ${cartModel.productDetail!.price ?? '\$'}'),
                         const Spacer(),
                         Row(
                           children: [

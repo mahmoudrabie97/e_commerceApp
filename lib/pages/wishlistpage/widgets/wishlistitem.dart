@@ -1,12 +1,15 @@
-import 'package:e_commerce/models/productmodel.dart';
+import 'package:e_commerce/cubit/favouritecartcubit/favouritecartcubit.dart';
+import 'package:e_commerce/models/favouritemodel.dart';
+
+import 'package:e_commerce/network/endpoints.dart';
 import 'package:e_commerce/utilites/widgets/customtext.dart';
 import 'package:flutter/material.dart';
 
 class WishListItem extends StatelessWidget {
-  final ProductModel productModel;
+  final FavouriteModel favouritemodel;
   const WishListItem({
     super.key,
-    required this.productModel,
+    required this.favouritemodel,
   });
 
   @override
@@ -15,10 +18,13 @@ class WishListItem extends StatelessWidget {
       height: 140,
       child: Row(
         children: [
-          Image.asset(
-            productModel.productimage,
+          Image.network(
+            '$baseimageurl${favouritemodel.product!.mainImage}',
             fit: BoxFit.fill,
             width: 140,
+          ),
+          SizedBox(
+            width: 18,
           ),
           Expanded(
             child: Padding(
@@ -28,18 +34,29 @@ class WishListItem extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      const CustomText(text: 'Air pods max by Apple'),
+                      CustomText(
+                          text: favouritemodel.product!.nameInEnglish ?? ''),
                       const Spacer(),
                       IconButton(
-                          onPressed: () {}, icon: const Icon(Icons.close))
+                          onPressed: () {
+                            FavouriteCartcubit.get(context)
+                                .removeItemFromWishlist(
+                                    context: context,
+                                    productid: favouritemodel.id);
+                          },
+                          icon: const Icon(Icons.close))
                     ],
                   ),
-                  const CustomText(text: 'instock', color: Colors.grey),
+                  CustomText(
+                      text: favouritemodel.product!.oldPrice.toString(),
+                      color: Colors.grey),
                   const Spacer(),
                   Expanded(
                     child: Row(
                       children: [
-                        const CustomText(text: '\$ 1999,99'),
+                        CustomText(
+                            text:
+                                '\$ ${favouritemodel.product!.price.toString()}'),
                         const Spacer(),
                         Padding(
                           padding: const EdgeInsets.only(right: 10),

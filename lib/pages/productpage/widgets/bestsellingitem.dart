@@ -1,9 +1,11 @@
+import 'package:e_commerce/cubit/favouritecartcubit/favouritecartcubit.dart';
 import 'package:e_commerce/models/bestsellingmodel.dart';
 import 'package:e_commerce/network/endpoints.dart';
 import 'package:e_commerce/pages/subProductPage/sub_products.dart';
 import 'package:e_commerce/utilites/appcolors.dart';
 import 'package:e_commerce/utilites/extentionhelper.dart';
 import 'package:flutter/material.dart';
+import 'package:iconly/iconly.dart';
 
 class BestSellingItem extends StatelessWidget {
   const BestSellingItem({
@@ -45,11 +47,22 @@ class BestSellingItem extends StatelessWidget {
                         children: [
                           const Spacer(),
                           IconButton(
-                            onPressed: () {},
-                            icon: Image.asset(
-                              'assets/images/heart.png',
-                            ),
-                          )
+                              color: FavouriteCartcubit.get(context)
+                                          .isvavouriteproduct ==
+                                      false
+                                  ? Colors.grey
+                                  : Colors.red,
+                              onPressed: () {
+                                FavouriteCartcubit.get(context)
+                                    .addproductTowishlist(
+                                        context: context,
+                                        productid: productModel.id);
+                              },
+                              icon: FavouriteCartcubit.get(context)
+                                          .isvavouriteproduct ==
+                                      false
+                                  ? Icon(IconlyLight.heart)
+                                  : Icon(Icons.favorite))
                         ],
                       ),
                       Expanded(

@@ -1,9 +1,14 @@
+import 'package:e_commerce/cubit/homecubit/homecubit.dart';
 import 'package:e_commerce/cubit/productcubit/productcubit.dart';
+import 'package:e_commerce/models/product_detailspid.dart';
 import 'package:e_commerce/network/endpoints.dart';
 import 'package:e_commerce/pages/detailspage/widgets/addingtocartrow.dart';
 import 'package:e_commerce/pages/detailspage/widgets/choosingcolor.dart';
 import 'package:e_commerce/pages/detailspage/widgets/detailspricerow.dart';
+import 'package:e_commerce/pages/detailspage/widgets/subproductdetail.dart';
+import 'package:e_commerce/pages/subProductPage/widgets/sub_producttem.dart';
 import 'package:e_commerce/utilites/custommethods.dart';
+import 'package:e_commerce/utilites/extentionhelper.dart';
 import 'package:e_commerce/utilites/widgets/customtext.dart';
 import 'package:flutter/material.dart';
 
@@ -18,6 +23,11 @@ class DetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('iddddddddddddddddd$productDetailId');
+    double itemWidth = context.screenwidth * 0.4;
+    double itemHeight = itemWidth / 0.8;
+    // ProductCubit.get(context)
+    //     .getProductdetailsbyproductId(productid: productid, context: context);
     return Scaffold(
       appBar: detailspageappbar(
         context,
@@ -36,6 +46,11 @@ class DetailsPage extends StatelessWidget {
           } else if (snapshot.hasError) {
             return const Center(child: Text('Error'));
           } else {
+            final List<ProductDetailsBypId> filteredList =
+                ProductCubit.get(context)
+                    .productdetailsbyidList
+                    .where((item) => item.id != productDetailId)
+                    .toList();
             return ListView(
               children: [
                 Padding(
@@ -66,18 +81,6 @@ class DetailsPage extends StatelessWidget {
                       const SizedBox(
                         height: 29,
                       ),
-                      const Padding(
-                        padding: EdgeInsets.only(left: 7),
-                        child: CustomText(
-                          text: 'Choose the color',
-                          color: Colors.grey,
-                          fontSize: 14,
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      const ChoosingColorsWidget(),
                       const CustomText(
                         text: 'Description ',
                         fontSize: 14,
@@ -103,6 +106,42 @@ class DetailsPage extends StatelessWidget {
                       const AddingToCartRow(),
                       const SizedBox(
                         height: 20,
+                      ),
+                      Container(
+                        padding: const EdgeInsets.all(10),
+                        // margin: EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          color: Colors.grey[200],
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: const CustomText(
+                          text: 'Browse similar products interesting',
+                          color: Colors.black,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      SizedBox(
+                        height: 200,
+                        child: GridView.count(
+                          scrollDirection: Axis.vertical,
+                          crossAxisCount: 2,
+                          shrinkWrap: true,
+                          childAspectRatio: .8,
+                          mainAxisSpacing: 15,
+                          crossAxisSpacing: 15,
+                          padding: const EdgeInsets.all(10),
+                          children: List.generate(filteredList.length, (index) {
+                            return SubProductDetailItm(
+                              productDetailsBypId: filteredList[index],
+                              height: itemHeight - 30,
+                              index: index,
+                            );
+                          }),
+                        ),
                       ),
                     ],
                   ),

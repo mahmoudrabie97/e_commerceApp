@@ -14,3 +14,7 @@ const String getAllProductsurl = 'Home/GetAllProducts';
 const String getProductDetailsbypidUrl = 'Home/GetProductDetails';
 const String getProductDetailsByProductDetailIdUrl =
     'Home/GetProductDetailsByProductDetailId';
+const String getwishlistsitemurl = 'Home/GetWishlistItems';
+const String removeWishlisturl = 'Home/RemoveItemToWishlist/';
+const String showcrtitemurl = 'Home/ShowCartItems';
+const String additemtoWishlist = 'Home/AddItemToWishlist/';

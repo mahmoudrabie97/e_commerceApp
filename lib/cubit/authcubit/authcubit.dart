@@ -45,11 +45,16 @@ class AuthCubit extends Cubit<AuthStates> {
     required Map userdata,
     required BuildContext context,
   }) {
+    Map<String, String> headers = {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Authorization': 'Bearer ${AppConstant.token}'
+    };
     emit(LoginLoadingState());
     CallApi.postData(
       data: userdata,
-      baseUrl: baseloginurl,
+      baseUrl: basehomeurl,
       apiUrl: loginurl,
+      headers: headers,
       context: context,
     ).then((value) {
       if (value!.statusCode == 200) {
@@ -67,6 +72,8 @@ class AuthCubit extends Cubit<AuthStates> {
         debugPrint(responseBody['error_description']);
         ShowMyDialog.showMsg(context, responseBody['error_description']);
 
+        print(value.body);
+
         emit(LoginErrorEmailorpasswordState());
       }
     }).catchError((error) {
@@ -80,11 +87,16 @@ class AuthCubit extends Cubit<AuthStates> {
     required Map userdata,
     required BuildContext context,
   }) {
+    Map<String, String> headers = {
+      // 'Content-Type': 'application/x-www-form-urlencoded',
+      'Authorization': 'Bearer ${AppConstant.token}'
+    };
     emit(RegisterLoadingState());
     CallApi.postData(
       data: userdata,
       baseUrl: baseregisterurl,
       apiUrl: registerurl,
+      headers: headers,
       context: context,
     ).then((value) {
       if (value!.statusCode == 200) {
