@@ -1,6 +1,7 @@
 import 'package:e_commerce/cubit/homecubit/homecubit.dart';
 import 'package:e_commerce/pages/productconfiguration/productconfiguration.dart';
 import 'package:e_commerce/pages/productpage/widgets/productitems.dart';
+import 'package:e_commerce/utilites/custommethods.dart';
 import 'package:e_commerce/utilites/extentionhelper.dart';
 import 'package:e_commerce/utilites/widgets/customtext.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +18,7 @@ class ProductPage extends StatelessWidget {
     double itemHeight = itemWidth / 0.8;
 
     return Scaffold(
+      appBar: detailspageappbar(context, Text(''), true),
       backgroundColor: Colors.grey.shade100,
       body: SingleChildScrollView(
         child: SizedBox(

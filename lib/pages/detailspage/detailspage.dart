@@ -3,10 +3,8 @@ import 'package:e_commerce/cubit/productcubit/productcubit.dart';
 import 'package:e_commerce/models/product_detailspid.dart';
 import 'package:e_commerce/network/endpoints.dart';
 import 'package:e_commerce/pages/detailspage/widgets/addingtocartrow.dart';
-import 'package:e_commerce/pages/detailspage/widgets/choosingcolor.dart';
 import 'package:e_commerce/pages/detailspage/widgets/detailspricerow.dart';
 import 'package:e_commerce/pages/detailspage/widgets/subproductdetail.dart';
-import 'package:e_commerce/pages/subProductPage/widgets/sub_producttem.dart';
 import 'package:e_commerce/utilites/custommethods.dart';
 import 'package:e_commerce/utilites/extentionhelper.dart';
 import 'package:e_commerce/utilites/widgets/customtext.dart';
@@ -26,8 +24,8 @@ class DetailsPage extends StatelessWidget {
     print('iddddddddddddddddd$productDetailId');
     double itemWidth = context.screenwidth * 0.4;
     double itemHeight = itemWidth / 0.8;
-    // ProductCubit.get(context)
-    //     .getProductdetailsbyproductId(productid: productid, context: context);
+    //ProductCubit.get(context)
+    //    .getProductdetailsbyproductId(productid: productid, context: context);
     return Scaffold(
       appBar: detailspageappbar(
         context,

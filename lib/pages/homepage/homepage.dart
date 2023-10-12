@@ -61,7 +61,7 @@ class HomePge extends StatelessWidget {
                               text: 'Category',
                               fontWeight: FontWeight.w500,
                             )),
-                        SizedBox(
+                        const SizedBox(
                           height: 5,
                         ),
                         Padding(

@@ -21,8 +21,12 @@ class FavouriteCartcubit extends Cubit<FavouriteCartStates> {
   List<FavouriteModel> getWishlistItemsList = [];
   List<CartModel> showcartItemsList = [];
   IconData icon = IconlyLight.heart;
-  bool isvavouriteproduct = false;
+  bool isFavouriteproduct = false;
 
+  // هستخدم فكره ال set عشان مفيهاش تكرار (هاخد كل الاي دي الي في الفيفروت واحفظهم في الست )
+  Set<String> favouritesId = {};
+
+//////////////////////////////////////////////////// get wish
   Future getwishlistsitms({required BuildContext context}) {
     Map<String, String> headers = {
       // 'Content-Type': 'application/x-www-form-urlencoded',
@@ -39,6 +43,7 @@ class FavouriteCartcubit extends Cubit<FavouriteCartStates> {
     ).then(
       (value) {
         getWishlistItemsList = [];
+        favouritesId = {};
         if (value!.statusCode == 200) {
           print(value.body);
           final responseBody = json.decode(value.body);
@@ -46,8 +51,10 @@ class FavouriteCartcubit extends Cubit<FavouriteCartStates> {
           log('${AppConstant.token}');
           for (var item in responseBody) {
             getWishlistItemsList.add(FavouriteModel.fromJson(item));
+            favouritesId.add(item['ProductId'].toString());
           }
-          print(getWishlistItemsList.length);
+          print(favouritesId);
+          // print(getWishlistItemsList.length);
 
           emit(GetWishlistsSuccessState());
         } else if (value.statusCode == 401) {
@@ -65,11 +72,60 @@ class FavouriteCartcubit extends Cubit<FavouriteCartStates> {
     );
   }
 
+//////////////////////////////////////
+  ///add product to wishlist
+  Future<void> addproductTowishlist(
+      {required BuildContext context, required int? productid}) async {
+    Map<String, String> headers = {
+      // 'Content-Type': 'application/x-www-form-urlencoded',
+      'Authorization': 'Bearer ${AppConstant.token}'
+    };
+    emit(AddWishListsLoadingState());
+    CallApi.postData(
+      data: {},
+      baseUrl: basehomeurl,
+      apiUrl: '$additemtoWishlist$productid',
+      headers: headers,
+      context: context,
+    ).then((value) async {
+      if (value!.statusCode == 200) {
+        isFavouriteproduct = true;
+
+        //delete
+
+        ////addd
+        favouritesId.add(productid.toString());
+
+        print(favouritesId);
+
+        showmessageToast(
+            backgroundcolor: Colors.green, message: 'item added  succefully');
+
+        await getwishlistsitms(context: context);
+        emit(AddWishlistsSuccessState());
+      } else if (value.statusCode == 400) {
+        print('no item aadded to wishlist');
+        showmessageToast(
+            backgroundcolor: Colors.red, message: 'this item already added');
+        emit(AddWishlistsnotfound());
+      } else {
+        print('error');
+      }
+    }).catchError((error) {
+      print(error.toString());
+      showmessageToast(
+          backgroundcolor: Colors.red,
+          message: ' un known error please try again later....... ');
+      emit(AddWishlistsErrorState());
+    });
+  }
+
+/////////////////////////////////////
   void removeItemFromWishlist(
       {required BuildContext context, required int? productid}) {
     Map<String, String> headers = {
       'Content-Type': 'application/x-www-form-urlencoded',
-      //'Authorization': 'Bearer ${AppConstant.token}'
+      'Authorization': 'Bearer ${AppConstant.token}'
     };
     emit(RemoveWishListsLoadingState());
     CallApi.postData(
@@ -82,13 +138,21 @@ class FavouriteCartcubit extends Cubit<FavouriteCartStates> {
       if (value!.statusCode == 200) {
         showmessageToast(
             backgroundcolor: Colors.green, message: 'item removed succefully');
-        isvavouriteproduct = false;
+        isFavouriteproduct = false;
+
+        favouritesId.remove(productid.toString());
+
+        //delete
+        print(favouritesId);
+
         getwishlistsitms(context: context);
       } else if (value.statusCode == 400) {
         print('no item in wishlist');
         showmessageToast(
             backgroundcolor: Colors.red, message: 'this item already reomve');
         emit(RemoveWishlistsnotfound());
+      } else {
+        print('errrrror');
       }
     }).catchError((error) {
       print(error.toString());
@@ -141,40 +205,18 @@ class FavouriteCartcubit extends Cubit<FavouriteCartStates> {
     );
   }
 
-  void addproductTowishlist(
-      {required BuildContext context, required int? productid}) {
-    Map<String, String> headers = {
-      // 'Content-Type': 'application/x-www-form-urlencoded',
-      'Authorization': 'Bearer ${AppConstant.token}'
-    };
-    emit(AddWishListsLoadingState());
-    CallApi.postData(
-      data: {},
-      baseUrl: basehomeurl,
-      apiUrl: '$additemtoWishlist$productid',
-      headers: headers,
-      context: context,
-    ).then((value) {
-      if (value!.statusCode == 200) {
-        isvavouriteproduct = true;
-        showmessageToast(
-            backgroundcolor: Colors.green, message: 'item added  succefully');
-
-        emit(AddWishlistsSuccessState());
-      } else if (value.statusCode == 400) {
-        print('no item aadded to wishlist');
-        showmessageToast(
-            backgroundcolor: Colors.red, message: 'this item already added');
-        emit(AddWishlistsnotfound());
-      } else {
-        print('error');
+  void checkProductInWishlist(
+      {required int? productId, required BuildContext context}) {
+    bool isProductInWishlist = false;
+    for (var item in getWishlistItemsList) {
+      if (item.product!.id == productId) {
+        isProductInWishlist = true;
+        removeItemFromWishlist(context: context, productid: productId);
       }
-    }).catchError((error) {
-      print(error.toString());
-      showmessageToast(
-          backgroundcolor: Colors.red,
-          message: ' un known error please try again later....... ');
-      emit(AddWishlistsErrorState());
-    });
+    }
+    if (!isProductInWishlist) {
+      isProductInWishlist = false;
+      addproductTowishlist(context: context, productid: productId);
+    }
   }
 }

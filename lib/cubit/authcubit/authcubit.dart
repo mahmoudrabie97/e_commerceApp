@@ -100,7 +100,7 @@ class AuthCubit extends Cubit<AuthStates> {
       context: context,
     ).then((value) {
       if (value!.statusCode == 200) {
-        emit(RegisterSucsessState());
+                emit(RegisterSucsessState());
       } else if (value.statusCode == 500) {
         final responseBody = json.decode(value.body);
         debugPrint(responseBody['Message']);

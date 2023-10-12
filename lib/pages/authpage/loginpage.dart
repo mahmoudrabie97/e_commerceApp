@@ -32,6 +32,7 @@ class LoginPage extends StatelessWidget {
             //HomeCubit.get(context).getBestSelling(context: context);
 
             context.pushrepacement(const HomeBottomNav());
+
             // في حاله sucess
             //اللي هي دي داخل cubit
             // يعني دخل pass and email صح
@@ -143,6 +144,7 @@ class LoginPage extends StatelessWidget {
                                       'password': _passwordController.text,
                                       'grant_type': 'password'
                                     };
+                                    print('emmmmmmmm${_emailController.text}');
 
                                     AuthCubit.get(context).loginUser(
                                         userdata: data, context: context);

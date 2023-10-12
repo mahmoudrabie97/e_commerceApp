@@ -19,6 +19,7 @@ class SubProductitem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('pidddddd${productDetailsBypId.productId}');
     return SizedBox(
       child: Row(
         children: [

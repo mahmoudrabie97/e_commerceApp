@@ -1,9 +1,13 @@
+import 'package:e_commerce/cubit/favouritecartcubit/favouritecartcubit.dart';
+import 'package:e_commerce/cubit/favouritecartcubit/favouritecartstates.dart';
 import 'package:e_commerce/models/product.dart';
 import 'package:e_commerce/network/endpoints.dart';
 import 'package:e_commerce/pages/subProductPage/sub_products.dart';
 import 'package:e_commerce/utilites/appcolors.dart';
 import 'package:e_commerce/utilites/extentionhelper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:iconly/iconly.dart';
 
 class Productitem extends StatelessWidget {
   const Productitem({
@@ -44,10 +48,29 @@ class Productitem extends StatelessWidget {
                       Row(
                         children: [
                           const Spacer(),
-                          IconButton(
-                            onPressed: () {},
-                            icon: Image.asset('assets/images/heart.png'),
-                          )
+                          BlocConsumer<FavouriteCartcubit, FavouriteCartStates>(
+                            listener: (BuildContext context, Object? state) {},
+                            builder: (BuildContext context, state) {
+                              final isProductInWishlist =
+                                  FavouriteCartcubit.get(context)
+                                      .favouritesId
+                                      .contains(productModel.id.toString());
+                              return IconButton(
+                                  color: isProductInWishlist
+                                      ? Colors.red
+                                      : Colors.grey,
+                                  onPressed: () {
+                                    print('itttttttttttt${productModel.id}');
+                                    FavouriteCartcubit.get(context)
+                                        .checkProductInWishlist(
+                                            context: context,
+                                            productId: productModel.id);
+                                  },
+                                  icon: isProductInWishlist
+                                      ? Icon(Icons.favorite)
+                                      : const Icon(IconlyBroken.heart));
+                            },
+                          ),
                         ],
                       ),
                       Expanded(

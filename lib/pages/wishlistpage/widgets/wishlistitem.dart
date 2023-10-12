@@ -39,10 +39,11 @@ class WishListItem extends StatelessWidget {
                       const Spacer(),
                       IconButton(
                           onPressed: () {
+                            print('removeeee id ${favouritemodel.id}');
                             FavouriteCartcubit.get(context)
                                 .removeItemFromWishlist(
                                     context: context,
-                                    productid: favouritemodel.id);
+                                    productid: favouritemodel.productId);
                           },
                           icon: const Icon(Icons.close))
                     ],
