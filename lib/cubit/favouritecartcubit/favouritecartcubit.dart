@@ -26,7 +26,8 @@ class FavouriteCartcubit extends Cubit<FavouriteCartStates> {
   // هستخدم فكره ال set عشان مفيهاش تكرار (هاخد كل الاي دي الي في الفيفروت واحفظهم في الست )
   Set<String> favouritesId = {};
 
-//////////////////////////////////////////////////// get wish
+////////////////.... Wishlists Functions.../////////////////////
+
   Future getwishlistsitms({required BuildContext context}) {
     Map<String, String> headers = {
       // 'Content-Type': 'application/x-www-form-urlencoded',
@@ -72,8 +73,6 @@ class FavouriteCartcubit extends Cubit<FavouriteCartStates> {
     );
   }
 
-//////////////////////////////////////
-  ///add product to wishlist
   Future<void> addproductTowishlist(
       {required BuildContext context, required int? productid}) async {
     Map<String, String> headers = {
@@ -163,6 +162,22 @@ class FavouriteCartcubit extends Cubit<FavouriteCartStates> {
     });
   }
 
+  void checkProductInWishlist(
+      {required int? productId, required BuildContext context}) {
+    bool isProductInWishlist = false;
+    for (var item in getWishlistItemsList) {
+      if (item.product!.id == productId) {
+        isProductInWishlist = true;
+        removeItemFromWishlist(context: context, productid: productId);
+      }
+    }
+    if (!isProductInWishlist) {
+      isProductInWishlist = false;
+      addproductTowishlist(context: context, productid: productId);
+    }
+  }
+
+  ////////////////////////////////// Cart Functions //////////////////
   Future showCartItem({required BuildContext context}) {
     Map<String, String> headers = {
       // 'Content-Type': 'application/x-www-form-urlencoded',
@@ -205,18 +220,74 @@ class FavouriteCartcubit extends Cubit<FavouriteCartStates> {
     );
   }
 
-  void checkProductInWishlist(
-      {required int? productId, required BuildContext context}) {
-    bool isProductInWishlist = false;
-    for (var item in getWishlistItemsList) {
-      if (item.product!.id == productId) {
-        isProductInWishlist = true;
-        removeItemFromWishlist(context: context, productid: productId);
+  void addToCart(
+      {required BuildContext context, required int? productdetailId}) {
+    Map<String, String> headers = {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Authorization': 'Bearer ${AppConstant.token}'
+    };
+    emit(AddToCartLoadingState());
+    CallApi.postData(
+            data: {},
+            baseUrl: basehomeurl,
+            apiUrl: '$addingitemtoCart$productdetailId',
+            headers: headers,
+            context: context)
+        .then((value) {
+      if (value!.statusCode == 200) {
+        showmessageToast(
+            backgroundcolor: Colors.green,
+            message: 'item added to cart succefully');
+
+        emit(AddToCartSuccessState());
+      } else if (value.statusCode == 400) {
+        print('no item in wishlist');
+        showmessageToast(
+            backgroundcolor: Colors.red,
+            message: 'ann error occured, try later');
+        emit(AddTocartnotfound());
+      } else {
+        print('errrrror');
       }
-    }
-    if (!isProductInWishlist) {
-      isProductInWishlist = false;
-      addproductTowishlist(context: context, productid: productId);
-    }
+    }).catchError((error) {
+      print(error.toString());
+      showmessageToast(backgroundcolor: Colors.red, message: error.toString());
+      emit(AddWTocartErrorState());
+    });
+  }
+
+  void removeFromCart(
+      {required BuildContext context, required int? productdetailId}) {
+    Map<String, String> headers = {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      //'Authorization': 'Bearer ${AppConstant.token}'
+    };
+    emit(RemoveFromCartLoadingState());
+    CallApi.postData(
+            data: {},
+            baseUrl: basehomeurl,
+            apiUrl: '$removeitemfromCart$productdetailId',
+            headers: headers,
+            context: context)
+        .then((value) {
+      if (value!.statusCode == 200) {
+        showmessageToast(
+            backgroundcolor: Colors.green,
+            message: 'item removed from cart succefully');
+        showCartItem(context: context);
+      } else if (value.statusCode == 400) {
+        print('no item in wishlist');
+        showmessageToast(
+            backgroundcolor: Colors.red,
+            message: 'ann error occured, try later');
+        emit(RemoveFromCartcartnotfound());
+      } else {
+        print('errrrror');
+      }
+    }).catchError((error) {
+      print(error.toString());
+      showmessageToast(backgroundcolor: Colors.red, message: error.toString());
+      emit(RemoveFromcartErrorState());
+    });
   }
 }

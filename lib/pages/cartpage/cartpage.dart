@@ -26,62 +26,76 @@ class CartPage extends StatelessWidget {
                 style: TextStyle(color: Colors.black, fontSize: 14)),
             false,
           ),
-          body: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                height: context.screenheight - 300,
-                child: ListView.separated(
-                  itemCount:
-                      FavouriteCartcubit.get(context).showcartItemsList.length,
-                  separatorBuilder: (BuildContext context, int index) {
-                    return const Divider(
-                      thickness: .5,
-                      color: Colors.green,
-                    );
-                  },
-                  itemBuilder: (BuildContext context, int index) {
-                    return CartItemWidget(
-                      cartModel: FavouriteCartcubit.get(context)
-                          .showcartItemsList[index],
-                    );
-                  },
-                ),
-              ),
-              const Spacer(),
-              Expanded(
-                child: Column(
-                  children: [
-                    const Padding(
-                      padding: EdgeInsets.only(left: 10, right: 10),
-                      child: Row(
-                        children: [
-                          CustomText(text: 'Totals'),
-                          Spacer(),
-                          CustomText(text: '\$ 2499,99')
-                        ],
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 15,
-                    ),
-                    SizedBox(
-                      height: 45,
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 50.0, right: 50.0),
-                        child: CustomButton(
-                            borderRadius: 0,
-                            buttonText: 'Continue for payments',
-                            onPressed: () {
-                              context.push(const OrderDetailsPage());
-                            }),
+          body: state is ShowCartLoadingState
+              ? const Center(
+                  child: CircularProgressIndicator(),
+                )
+              : FavouriteCartcubit.get(context).showcartItemsList.isEmpty
+                  ? Center(
+                      child: Image.asset(
+                        'assets/images/emptycart.jpg',
+                        width: 400,
                       ),
                     )
-                  ],
-                ),
-              ),
-            ],
-          ),
+                  : Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          height: context.screenheight - 300,
+                          child: ListView.separated(
+                            itemCount: FavouriteCartcubit.get(context)
+                                .showcartItemsList
+                                .length,
+                            separatorBuilder:
+                                (BuildContext context, int index) {
+                              return const Divider(
+                                thickness: .5,
+                                color: Colors.green,
+                              );
+                            },
+                            itemBuilder: (BuildContext context, int index) {
+                              return CartItemWidget(
+                                cartModel: FavouriteCartcubit.get(context)
+                                    .showcartItemsList[index],
+                              );
+                            },
+                          ),
+                        ),
+                        const Spacer(),
+                        Expanded(
+                          child: Column(
+                            children: [
+                              const Padding(
+                                padding: EdgeInsets.only(left: 10, right: 10),
+                                child: Row(
+                                  children: [
+                                    CustomText(text: 'Totals'),
+                                    Spacer(),
+                                    CustomText(text: '\$ 2499,99')
+                                  ],
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 15,
+                              ),
+                              SizedBox(
+                                height: 45,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 50.0, right: 50.0),
+                                  child: CustomButton(
+                                      borderRadius: 0,
+                                      buttonText: 'Continue for payments',
+                                      onPressed: () {
+                                        context.push(const OrderDetailsPage());
+                                      }),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
         );
       },
     );

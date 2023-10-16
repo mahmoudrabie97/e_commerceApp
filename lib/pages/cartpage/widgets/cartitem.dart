@@ -1,8 +1,10 @@
+import 'package:e_commerce/cubit/favouritecartcubit/favouritecartcubit.dart';
 import 'package:e_commerce/models/cartmodel.dart';
 import 'package:e_commerce/network/endpoints.dart';
 import 'package:e_commerce/utilites/widgets/customtext.dart';
 import 'package:flutter/material.dart';
 
+//t
 class CartItemWidget extends StatelessWidget {
   final CartModel cartModel;
   const CartItemWidget({
@@ -63,7 +65,11 @@ class CartItemWidget extends StatelessWidget {
                             IconButton(
                               color: Colors.grey,
                               padding: EdgeInsets.zero,
-                              onPressed: () {},
+                              onPressed: () {
+                                FavouriteCartcubit.get(context).removeFromCart(
+                                    context: context,
+                                    productdetailId: cartModel.id);
+                              },
                               icon: const Icon(Icons.delete_outline),
                             )
                           ],

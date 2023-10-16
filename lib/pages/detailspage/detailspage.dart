@@ -101,7 +101,7 @@ class DetailsPage extends StatelessWidget {
                       const SizedBox(
                         height: 20,
                       ),
-                      const AddingToCartRow(),
+                      AddingToCartRow(productdetailId: productDetailId),
                       const SizedBox(
                         height: 20,
                       ),

@@ -18,3 +18,6 @@ const String getwishlistsitemurl = 'Home/GetWishlistItems';
 const String removeWishlisturl = 'Home/RemoveFromWishlist/';
 const String showcrtitemurl = 'Home/ShowCartItems';
 const String additemtoWishlist = 'Home/AddItemToWishlist/';
+/////////////////cart endpoints///
+const String addingitemtoCart = 'Home/AddToCart/';
+const String removeitemfromCart = 'Home/RemoveCartItems/';
