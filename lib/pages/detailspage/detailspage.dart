@@ -1,3 +1,4 @@
+import 'package:e_commerce/cubit/favouritecartcubit/favouritecartcubit.dart';
 import 'package:e_commerce/cubit/homecubit/homecubit.dart';
 import 'package:e_commerce/cubit/productcubit/productcubit.dart';
 import 'package:e_commerce/models/product_detailspid.dart';
@@ -101,7 +102,11 @@ class DetailsPage extends StatelessWidget {
                       const SizedBox(
                         height: 20,
                       ),
-                      AddingToCartRow(productdetailId: productDetailId),
+                      AddingToCartRow(
+                        productdetailId: productDetailId,
+                        cartModel: FavouriteCartcubit.get(context)
+                            .showcartItemsList[index],
+                      ),
                       const SizedBox(
                         height: 20,
                       ),
