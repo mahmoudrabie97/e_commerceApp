@@ -51,15 +51,20 @@ class AddingToCartRow extends StatelessWidget {
             child: BlocConsumer<FavouriteCartcubit, FavouriteCartStates>(
               listener: (BuildContext context, state) {},
               builder: (BuildContext context, Object? state) {
-                return CustomButton(
-                  buttonText: 'Add to cart',
-                  onPressed: () {
-                    FavouriteCartcubit.get(context).addToCart(
-                        context: context, productdetailId: productdetailId);
-                  },
-                  buttonColor: AppColor.kmaincolor,
-                  borderRadius: 0,
-                );
+                return state is AddToCartLoadingState
+                    ? const Center(
+                        child: CircularProgressIndicator(),
+                      )
+                    : CustomButton(
+                        buttonText: 'Add to cart',
+                        onPressed: () {
+                          FavouriteCartcubit.get(context).addToCart(
+                              context: context,
+                              productdetailId: productdetailId);
+                        },
+                        buttonColor: AppColor.kmaincolor,
+                        borderRadius: 0,
+                      );
               },
             ),
           ),

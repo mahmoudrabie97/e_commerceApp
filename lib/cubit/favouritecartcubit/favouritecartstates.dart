@@ -48,4 +48,14 @@ class RemoveFromCartSuccessState extends FavouriteCartStates {}
 
 class RemoveFromCartcartnotfound extends FavouriteCartStates {}
 
+class UpdateCartLoadingState extends FavouriteCartStates {}
+
+class UpdateCartSuccessState extends FavouriteCartStates {}
+
+class UpdatecartErrorState extends FavouriteCartStates {}
+
 class RemoveFromcartErrorState extends FavouriteCartStates {}
+
+class IncreaseQuntityState extends FavouriteCartStates {}
+
+class DecreaseQuntityState extends FavouriteCartStates {}

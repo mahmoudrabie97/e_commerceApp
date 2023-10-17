@@ -21,3 +21,4 @@ const String additemtoWishlist = 'Home/AddItemToWishlist/';
 /////////////////cart endpoints///
 const String addingitemtoCart = 'Home/AddToCart/';
 const String removeitemfromCart = 'Home/RemoveCartItems/';
+const String updatecartUrl = 'Home/UpdateCartItems';

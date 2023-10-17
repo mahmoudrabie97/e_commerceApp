@@ -22,6 +22,7 @@ class FavouriteCartcubit extends Cubit<FavouriteCartStates> {
   List<CartModel> showcartItemsList = [];
   IconData icon = IconlyLight.heart;
   bool isFavouriteproduct = false;
+  int quntitycart = 1;
 
   // هستخدم فكره ال set عشان مفيهاش تكرار (هاخد كل الاي دي الي في الفيفروت واحفظهم في الست )
   Set<String> favouritesId = {};
@@ -199,6 +200,7 @@ class FavouriteCartcubit extends Cubit<FavouriteCartStates> {
           final responseBody = json.decode(value.body);
           print('rsponsboy $responseBody');
           log('${AppConstant.token}');
+
           for (var item in responseBody) {
             showcartItemsList.add(CartModel.fromJson(item));
           }
@@ -289,5 +291,57 @@ class FavouriteCartcubit extends Cubit<FavouriteCartStates> {
       showmessageToast(backgroundcolor: Colors.red, message: error.toString());
       emit(RemoveFromcartErrorState());
     });
+  }
+
+  void updateCart(
+      {required BuildContext context, required CartModel cartModel}) {
+    Map<String, String> headers = {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Authorization': 'Bearer ${AppConstant.token}'
+    };
+    emit(UpdateCartLoadingState());
+    CallApi.postData(
+            data: {
+          'Id': cartModel.id.toString(),
+          'ProductDetailId': cartModel.productDetailId.toString(),
+          'Quantity': cartModel.quantity.toString(),
+        },
+            baseUrl: basehomeurl,
+            apiUrl: updatecartUrl,
+            headers: headers,
+            context: context)
+        .then((value) {
+      if (value!.statusCode == 200) {
+        emit(UpdateCartSuccessState());
+      } else if (value.statusCode == 400) {
+        emit(UpdatecartErrorState());
+      } else {
+        print('errrrror');
+      }
+    }).catchError((error) {
+      print(error.toString());
+      showmessageToast(backgroundcolor: Colors.red, message: error.toString());
+      emit(UpdateCartSuccessState());
+    });
+  }
+
+  void increasequntity(
+      {required int? productquntity, required CartModel? cartModel}) {
+    productquntity = productquntity! + 1;
+    cartModel!.quantity = productquntity;
+
+    emit(IncreaseQuntityState());
+  }
+
+  void decreasequntity(
+      {required int? productquntity, required CartModel? cartModel}) {
+    if (productquntity! > 1) {
+      productquntity = productquntity - 1;
+      cartModel!.quantity = productquntity;
+
+      emit(DecreaseQuntityState());
+    } else {
+      print('nooo');
+    }
   }
 }
