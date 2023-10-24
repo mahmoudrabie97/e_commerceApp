@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:e_commerce/cubit/favouritecartcubit/favouritecartstates.dart';
 import 'package:e_commerce/models/cartmodel.dart';
+import 'package:e_commerce/models/product_detailspid.dart';
 
 import 'package:e_commerce/network/api.dart';
 import 'package:e_commerce/utilites/constants.dart';
@@ -343,5 +344,61 @@ class FavouriteCartcubit extends Cubit<FavouriteCartStates> {
     } else {
       print('nooo');
     }
+  }
+
+  ////////////////////////
+  void plusquntity(
+      {required num? productquntity,
+      required ProductDetailsBypId? productDetailsBypId}) {
+    productquntity = productquntity! + 1;
+    productDetailsBypId!.quantity = productquntity;
+
+    emit(PlusQuntityState());
+  }
+
+  void minusquntity(
+      {required num? productquntity,
+      required ProductDetailsBypId? productDetailsBypId}) {
+    if (productquntity! > 1) {
+      productquntity = productquntity - 1;
+      productDetailsBypId!.quantity = productquntity;
+
+      emit((MinusQuntityState()));
+    } else {
+      print('nooo');
+    }
+  }
+
+  void updateCartFromSubproduct(
+      {required BuildContext context,
+      ProductDetailsBypId? productDetailsBypId}) {
+    Map<String, String> headers = {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Authorization': 'Bearer ${AppConstant.token}'
+    };
+    emit(UpdateCartLoadingState());
+    CallApi.postData(
+            data: {
+          'Id': productDetailsBypId!.id.toString(),
+          'ProductDetailId': productDetailsBypId.productId.toString(),
+          'Quantity': productDetailsBypId.quantity.toString(),
+        },
+            baseUrl: basehomeurl,
+            apiUrl: updatecartUrl,
+            headers: headers,
+            context: context)
+        .then((value) {
+      if (value!.statusCode == 200) {
+        emit(UpdateCartSuccessState());
+      } else if (value.statusCode == 400) {
+        emit(UpdatecartErrorState());
+      } else {
+        print('errrrror');
+      }
+    }).catchError((error) {
+      print(error.toString());
+      showmessageToast(backgroundcolor: Colors.red, message: error.toString());
+      emit(UpdateCartSuccessState());
+    });
   }
 }

@@ -31,3 +31,9 @@ class GetAllProductLoadingState extends HomeStates {}
 class GetAllProductSuccsessState extends HomeStates {}
 
 class GetAllProductErrorState extends HomeStates {}
+
+class FilterProductLoadingState extends HomeStates {}
+
+class FilterProductSuccessState extends HomeStates {}
+
+class FilterProductErrorState extends HomeStates {}

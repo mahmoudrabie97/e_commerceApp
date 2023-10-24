@@ -12,6 +12,7 @@ const String getBestSellingurl = 'Home/GetBestSelling';
 const String getSpecificProductsurl = 'Home/GetSpecificProducts';
 const String getAllProductsurl = 'Home/GetAllProducts';
 const String getProductDetailsbypidUrl = 'Home/GetProductDetails';
+const String getfilterproductUrl = 'Home/GetFilterProducts';
 const String getProductDetailsByProductDetailIdUrl =
     'Home/GetProductDetailsByProductDetailId';
 const String getwishlistsitemurl = 'Home/GetWishlistItems';

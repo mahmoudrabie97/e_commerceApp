@@ -6,6 +6,7 @@ import 'package:e_commerce/network/endpoints.dart';
 import 'package:e_commerce/pages/detailspage/widgets/addingtocartrow.dart';
 import 'package:e_commerce/pages/detailspage/widgets/detailspricerow.dart';
 import 'package:e_commerce/pages/detailspage/widgets/subproductdetail.dart';
+import 'package:e_commerce/utilites/constants.dart';
 import 'package:e_commerce/utilites/custommethods.dart';
 import 'package:e_commerce/utilites/extentionhelper.dart';
 import 'package:e_commerce/utilites/widgets/customtext.dart';
@@ -16,12 +17,15 @@ class DetailsPage extends StatelessWidget {
     Key? key,
     required this.productDetailId,
     required this.index,
+    required this.pmodel,
   }) : super(key: key);
   final int productDetailId;
+  final ProductDetailsBypId pmodel;
   final int index;
 
   @override
   Widget build(BuildContext context) {
+    ProductCubit.get(context).getProductdetailsbyByProductDetailId;
     print('iddddddddddddddddd$productDetailId');
     double itemWidth = context.screenwidth * 0.4;
     double itemHeight = itemWidth / 0.8;
@@ -103,9 +107,9 @@ class DetailsPage extends StatelessWidget {
                         height: 20,
                       ),
                       AddingToCartRow(
-                        productdetailId: productDetailId,
-                        cartModel: FavouriteCartcubit.get(context)
-                            .showcartItemsList[index],
+                        productdetailId: productDetailId, pmodel: pmodel,
+                        // cartModel: FavouriteCartcubit.get(context)
+                        //   .showcartItemsList[index],
                       ),
                       const SizedBox(
                         height: 20,

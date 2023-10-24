@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../network/endpoints.dart';
+import '../../utilites/custommethods.dart';
 
 class ProductCubit extends Cubit<ProductStates> {
   ProductCubit() : super(ProductInitialState());
@@ -75,4 +76,6 @@ class ProductCubit extends Cubit<ProductStates> {
       }),
     );
   }
+
+  ////////////////////////// Filter Cart ////////////
 }

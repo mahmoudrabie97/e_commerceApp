@@ -4,6 +4,7 @@ import 'package:e_commerce/cubit/authcubit/authstates.dart';
 import 'package:e_commerce/models/user_model.dart';
 import 'package:e_commerce/network/api.dart';
 import 'package:e_commerce/network/endpoints.dart';
+import 'package:e_commerce/network/local_network.dart';
 import 'package:e_commerce/utilites/constants.dart';
 import 'package:e_commerce/utilites/widgets/showdialog.dart';
 import 'package:flutter/material.dart';
@@ -56,13 +57,15 @@ class AuthCubit extends Cubit<AuthStates> {
       apiUrl: loginurl,
       headers: headers,
       context: context,
-    ).then((value) {
+    ).then((value) async {
       if (value!.statusCode == 200) {
         debugPrint(value.body);
         final responseBody = json.decode(value.body);
         userModel = UserModel.fromJson(responseBody);
 
         AppConstant.token = userModel!.accessToken;
+        await CachNetwork.insertTocache(
+            key: 'token', value: userModel!.accessToken ?? '');
         debugPrint('token=${AppConstant.token}');
         debugPrint('usrId= ${userModel!.userId}');
 
@@ -100,7 +103,7 @@ class AuthCubit extends Cubit<AuthStates> {
       context: context,
     ).then((value) {
       if (value!.statusCode == 200) {
-                emit(RegisterSucsessState());
+        emit(RegisterSucsessState());
       } else if (value.statusCode == 500) {
         final responseBody = json.decode(value.body);
         debugPrint(responseBody['Message']);

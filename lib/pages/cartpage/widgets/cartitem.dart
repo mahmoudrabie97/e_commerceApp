@@ -55,6 +55,8 @@ class CartItemWidget extends StatelessWidget {
                                       .decreasequntity(
                                           productquntity: cartModel.quantity,
                                           cartModel: cartModel);
+                                  FavouriteCartcubit.get(context).updateCart(
+                                      context: context, cartModel: cartModel);
                                 },
                                 icon: const Icon(Icons.remove),
                               ),

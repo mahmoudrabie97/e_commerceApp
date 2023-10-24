@@ -59,3 +59,7 @@ class RemoveFromcartErrorState extends FavouriteCartStates {}
 class IncreaseQuntityState extends FavouriteCartStates {}
 
 class DecreaseQuntityState extends FavouriteCartStates {}
+
+class MinusQuntityState extends FavouriteCartStates {}
+
+class PlusQuntityState extends FavouriteCartStates {}

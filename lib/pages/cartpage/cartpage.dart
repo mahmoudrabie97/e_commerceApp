@@ -3,6 +3,7 @@ import 'package:e_commerce/cubit/favouritecartcubit/favouritecartstates.dart';
 import 'package:e_commerce/models/cartmodel.dart';
 import 'package:e_commerce/pages/cartpage/orderdetailspage.dart';
 import 'package:e_commerce/pages/cartpage/widgets/cartitem.dart';
+import 'package:e_commerce/utilites/constants.dart';
 import 'package:e_commerce/utilites/custommethods.dart';
 import 'package:e_commerce/utilites/extentionhelper.dart';
 import 'package:e_commerce/utilites/widgets/custombutton.dart';
@@ -76,11 +77,12 @@ class CartPage extends StatelessWidget {
                           child: Column(
                             children: [
                               Padding(
-                                padding: EdgeInsets.only(left: 10, right: 10),
+                                padding:
+                                    const EdgeInsets.only(left: 10, right: 10),
                                 child: Row(
                                   children: [
-                                    CustomText(text: 'Totals'),
-                                    Spacer(),
+                                    const CustomText(text: 'Totals'),
+                                    const Spacer(),
                                     CustomText(
                                         text:
                                             '\$${calculateTotalPrice(context: context).toString()}')

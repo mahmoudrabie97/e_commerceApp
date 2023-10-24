@@ -80,8 +80,10 @@ class SubProductitem extends StatelessWidget {
                             GestureDetector(
                               onTap: () {
                                 context.push(DetailsPage(
-                                    productDetailId: productDetailsBypId.id,
-                                    index: index));
+                                  productDetailId: productDetailsBypId.id,
+                                  index: index,
+                                  pmodel: productDetailsBypId,
+                                ));
                               },
                               child: Container(
                                 height: 25,

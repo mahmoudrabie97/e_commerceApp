@@ -19,6 +19,8 @@ class SubProductDetailItm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('pppppppppppppp${productDetailsBypId.id}');
+    print('iiiiiiiiiiiiiiiiiii$index');
     return SizedBox(
       child: Row(
         children: [
@@ -79,8 +81,10 @@ class SubProductDetailItm extends StatelessWidget {
                             GestureDetector(
                               onTap: () {
                                 context.push(DetailsPage(
-                                    productDetailId: productDetailsBypId.id,
-                                    index: index));
+                                  productDetailId: productDetailsBypId.id,
+                                  index: index,
+                                  pmodel: productDetailsBypId,
+                                ));
                               },
                               child: Container(
                                 height: 25,

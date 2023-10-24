@@ -6,6 +6,7 @@ import 'package:e_commerce/models/bestsellingmodel.dart';
 import 'package:e_commerce/models/product.dart';
 import 'package:e_commerce/network/api.dart';
 import 'package:e_commerce/network/endpoints.dart';
+import 'package:e_commerce/utilites/custommethods.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:e_commerce/models/categorymodel.dart';
@@ -154,5 +155,42 @@ class HomeCubit extends Cubit<HomeStates> {
         emit(GetAllProductErrorState());
       }),
     );
+  }
+
+  //////////////////////////////Filter product////////////////////////
+  void filterProduct({
+    required BuildContext context,
+    required String searchtext,
+  }) {
+    Map<String, String> headers = {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      // 'Authorization': 'Bearer ${AppConstant.token}'
+    };
+    emit(FilterProductLoadingState());
+    CallApi.postData(
+            data: {
+          "SearchText": searchtext,
+          "MinPriceText": '0',
+          "MaxPriceText": '0',
+          "productId": '0'
+        },
+            baseUrl: basehomeurl,
+            apiUrl: getfilterproductUrl,
+            headers: headers,
+            context: context)
+        .then((value) {
+      if (value!.statusCode == 200) {
+        print(value.body);
+        emit(FilterProductSuccessState());
+      } else if (value.statusCode == 400) {
+        emit(FilterProductErrorState());
+      } else {
+        print('errrrror');
+      }
+    }).catchError((error) {
+      print(error.toString());
+      showmessageToast(backgroundcolor: Colors.red, message: error.toString());
+      emit(FilterProductErrorState());
+    });
   }
 }
