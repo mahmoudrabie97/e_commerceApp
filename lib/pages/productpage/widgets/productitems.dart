@@ -60,11 +60,11 @@ class Productitem extends StatelessWidget {
                                       ? Colors.red
                                       : Colors.grey,
                                   onPressed: () {
-                                    print('itttttttttttt${productModel.id}');
-                                    FavouriteCartcubit.get(context)
-                                        .checkProductInWishlist(
-                                            context: context,
-                                            productId: productModel.id);
+                                    // print('itttttttttttt${productModel.id}');
+                                    // FavouriteCartcubit.get(context)
+                                    //     .checkProductInWishlist(
+                                    //         context: context,
+                                    //         productId: productModel.id);
                                   },
                                   icon: isProductInWishlist
                                       ? Icon(Icons.favorite)

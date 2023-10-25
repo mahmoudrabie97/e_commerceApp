@@ -19,7 +19,7 @@ class WishListItem extends StatelessWidget {
       child: Row(
         children: [
           Image.network(
-            '$baseimageurl${favouritemodel.product!.mainImage}',
+            '$baseimageurl${favouritemodel.productDetail!.productDetailImage![0].image}',
             fit: BoxFit.fill,
             width: 140,
           ),
@@ -34,8 +34,18 @@ class WishListItem extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      CustomText(
-                          text: favouritemodel.product!.nameInEnglish ?? ''),
+                      Expanded(
+                        child: SizedBox(
+                          width: double.infinity,
+                          child: Text(
+                            favouritemodel
+                                    .productDetail!.productNameInEnglish ??
+                                '',
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 2,
+                          ),
+                        ),
+                      ),
                       const Spacer(),
                       IconButton(
                           onPressed: () {
@@ -43,13 +53,14 @@ class WishListItem extends StatelessWidget {
                             FavouriteCartcubit.get(context)
                                 .removeItemFromWishlist(
                                     context: context,
-                                    productid: favouritemodel.productId);
+                                    productdetailsid:
+                                        favouritemodel.productDetailId);
                           },
                           icon: const Icon(Icons.close))
                     ],
                   ),
                   CustomText(
-                      text: favouritemodel.product!.oldPrice.toString(),
+                      text: favouritemodel.productDetail!.oldPrice.toString(),
                       color: Colors.grey),
                   const Spacer(),
                   Expanded(
@@ -57,7 +68,7 @@ class WishListItem extends StatelessWidget {
                       children: [
                         CustomText(
                             text:
-                                '\$ ${favouritemodel.product!.price.toString()}'),
+                                '\$ ${favouritemodel.productDetail!.price.toString()}'),
                         const Spacer(),
                         Padding(
                           padding: const EdgeInsets.only(right: 10),

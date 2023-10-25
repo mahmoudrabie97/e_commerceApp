@@ -80,6 +80,7 @@ class DetailsPage extends StatelessWidget {
                         price: ProductCubit.get(context)
                             .productdetailsbyidList[index]
                             .price,
+                        productdetailsid: productDetailId,
                       ),
                       const SizedBox(
                         height: 29,

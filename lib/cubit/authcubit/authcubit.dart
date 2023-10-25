@@ -78,6 +78,15 @@ class AuthCubit extends Cubit<AuthStates> {
         print(value.body);
 
         emit(LoginErrorEmailorpasswordState());
+      } else if (value.statusCode == 500) {
+        ShowMyDialog.showMsg(context, 'internal server error,');
+        emit(LoginServerErrorState());
+      }
+      else{
+            ShowMyDialog.showMsg(context, 'unknown error,');
+             emit(LoginErrorState());
+
+
       }
     }).catchError((error) {
       debugPrint('An error occurred: $error');

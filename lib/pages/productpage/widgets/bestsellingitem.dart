@@ -55,16 +55,17 @@ class BestSellingItem extends StatelessWidget {
                                   FavouriteCartcubit.get(context)
                                       .favouritesId
                                       .contains(productModel.id.toString());
+
                               return IconButton(
                                   color: isProductInWishlist
                                       ? Colors.red
                                       : Colors.grey,
                                   onPressed: () {
                                     print('itttttttttttt${productModel.id}');
-                                    FavouriteCartcubit.get(context)
-                                        .checkProductInWishlist(
-                                            context: context,
-                                            productId: productModel.id);
+                                    //    FavouriteCartcubit.get(context)
+                                    //      .checkProductInWishlist(
+                                    //          context: context,
+                                    //          productId: productModel.id);
                                   },
                                   icon: isProductInWishlist
                                       ? Icon(Icons.favorite)

@@ -51,12 +51,13 @@ class FavouriteCartcubit extends Cubit<FavouriteCartStates> {
           print(value.body);
           final responseBody = json.decode(value.body);
           print('rsponsboy $responseBody');
-          log('${AppConstant.token}');
+          // log('${AppConstant.token}');
           for (var item in responseBody) {
             getWishlistItemsList.add(FavouriteModel.fromJson(item));
-            favouritesId.add(item['ProductId'].toString());
+            favouritesId.add(item['ProductDetail']['Id'].toString());
           }
-          print(favouritesId);
+          print('faaaaaaaaaaaaavvv$favouritesId');
+          print('dayyyyyyyyyyyyyyyyyyyyy$getWishlistItemsList');
           // print(getWishlistItemsList.length);
 
           emit(GetWishlistsSuccessState());
@@ -76,7 +77,7 @@ class FavouriteCartcubit extends Cubit<FavouriteCartStates> {
   }
 
   Future<void> addproductTowishlist(
-      {required BuildContext context, required int? productid}) async {
+      {required BuildContext context, required int? productdetailsid}) async {
     Map<String, String> headers = {
       // 'Content-Type': 'application/x-www-form-urlencoded',
       'Authorization': 'Bearer ${AppConstant.token}'
@@ -85,7 +86,7 @@ class FavouriteCartcubit extends Cubit<FavouriteCartStates> {
     CallApi.postData(
       data: {},
       baseUrl: basehomeurl,
-      apiUrl: '$additemtoWishlist$productid',
+      apiUrl: '$additemtoWishlist$productdetailsid',
       headers: headers,
       context: context,
     ).then((value) async {
@@ -95,7 +96,7 @@ class FavouriteCartcubit extends Cubit<FavouriteCartStates> {
         //delete
 
         ////addd
-        favouritesId.add(productid.toString());
+        favouritesId.add(productdetailsid.toString());
 
         print(favouritesId);
 
@@ -123,7 +124,7 @@ class FavouriteCartcubit extends Cubit<FavouriteCartStates> {
 
 /////////////////////////////////////
   void removeItemFromWishlist(
-      {required BuildContext context, required int? productid}) {
+      {required BuildContext context, required int? productdetailsid}) {
     Map<String, String> headers = {
       'Content-Type': 'application/x-www-form-urlencoded',
       'Authorization': 'Bearer ${AppConstant.token}'
@@ -132,7 +133,7 @@ class FavouriteCartcubit extends Cubit<FavouriteCartStates> {
     CallApi.postData(
             data: {},
             baseUrl: basehomeurl,
-            apiUrl: '$removeWishlisturl$productid',
+            apiUrl: '$removeWishlisturl$productdetailsid',
             headers: headers,
             context: context)
         .then((value) {
@@ -141,7 +142,7 @@ class FavouriteCartcubit extends Cubit<FavouriteCartStates> {
             backgroundcolor: Colors.green, message: 'item removed succefully');
         isFavouriteproduct = false;
 
-        favouritesId.remove(productid.toString());
+        favouritesId.remove(productdetailsid.toString());
 
         //delete
         print(favouritesId);
@@ -165,17 +166,19 @@ class FavouriteCartcubit extends Cubit<FavouriteCartStates> {
   }
 
   void checkProductInWishlist(
-      {required int? productId, required BuildContext context}) {
+      {required int? productdetailsid, required BuildContext context}) {
     bool isProductInWishlist = false;
     for (var item in getWishlistItemsList) {
-      if (item.product!.id == productId) {
+      if (item.productDetailId == productdetailsid) {
         isProductInWishlist = true;
-        removeItemFromWishlist(context: context, productid: productId);
+        removeItemFromWishlist(
+            context: context, productdetailsid: productdetailsid);
       }
     }
     if (!isProductInWishlist) {
       isProductInWishlist = false;
-      addproductTowishlist(context: context, productid: productId);
+      addproductTowishlist(
+          context: context, productdetailsid: productdetailsid);
     }
   }
 
