@@ -3,11 +3,15 @@ import 'package:e_commerce/pages/subProductPage/widgets/sub_producttem.dart';
 import 'package:e_commerce/utilites/custommethods.dart';
 import 'package:e_commerce/utilites/extentionhelper.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class SubProductPage extends StatelessWidget {
-  const SubProductPage({Key? key, required this.productid}) : super(key: key);
+  const SubProductPage(
+      {Key? key, required this.productid, required this.productname})
+      : super(key: key);
 
   final int productid;
+  final String productname;
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +19,14 @@ class SubProductPage extends StatelessWidget {
     double itemHeight = itemWidth / 0.8;
 
     return Scaffold(
-      appBar: detailspageappbar(context, Text(''), true),
+      appBar: detailspageappbar(
+          context,
+          Text('$productname ',
+              style: GoogleFonts.akayaKanadaka(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                  color: Colors.black)),
+          true),
       body: SafeArea(
           child: Column(
         children: [

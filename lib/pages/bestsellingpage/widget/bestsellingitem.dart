@@ -1,16 +1,24 @@
+import 'package:e_commerce/cubit/favouritecartcubit/favouritecartcubit.dart';
+import 'package:e_commerce/cubit/favouritecartcubit/favouritecartstates.dart';
+import 'package:e_commerce/models/bestsellingmodel.dart';
+import 'package:e_commerce/network/endpoints.dart';
 import 'package:e_commerce/pages/subProductPage/sub_products.dart';
 import 'package:e_commerce/utilites/appcolors.dart';
 import 'package:e_commerce/utilites/dummydata.dart';
 import 'package:e_commerce/utilites/extentionhelper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:iconly/iconly.dart';
 
 class BestSellingitem extends StatelessWidget {
   const BestSellingitem({
     Key? key,
     required this.height,
+    required this.productModel,
   }) : super(key: key);
 
   final double height;
+  final Product productModel;
 
   @override
   Widget build(BuildContext context) {
@@ -38,18 +46,10 @@ class BestSellingitem extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: Column(
                     children: [
-                      Row(
-                        children: [
-                          const Spacer(),
-                          IconButton(
-                            onPressed: () {},
-                            icon: Image.asset('assets/images/heart.png'),
-                          )
-                        ],
-                      ),
                       Expanded(
                         child: Image(
-                            image: AssetImage(dummyproduct[0].productimage)),
+                            image: NetworkImage(
+                                '$baseimageurl${productModel.mainImage}')),
                       ),
                       const SizedBox(height: 20),
                       Row(
@@ -57,13 +57,9 @@ class BestSellingitem extends StatelessWidget {
                           Expanded(
                             child: Column(
                               children: [
-                                Text(dummyproduct[0].producttitle,
-                                    style: const TextStyle(
-                                      fontSize: 12,
-                                    )),
+                                Text(productModel.nameInEnglish ?? '',
+                                    style: const TextStyle(fontSize: 12)),
                                 const SizedBox(height: 6),
-                                Text('\$55',
-                                    style: const TextStyle(color: Colors.grey)),
                               ],
                             ),
                           ),
@@ -76,7 +72,8 @@ class BestSellingitem extends StatelessWidget {
                               //));
 
                               context.push(SubProductPage(
-                                productid: dummyproduct[0].productid,
+                                productid: productModel.id,
+                                productname: productModel.nameInEnglish ?? '',
                               ));
                             },
                             child: Container(
@@ -87,6 +84,9 @@ class BestSellingitem extends StatelessWidget {
                             ),
                           )
                         ],
+                      ),
+                      SizedBox(
+                        height: 10,
                       ),
                     ],
                   ),

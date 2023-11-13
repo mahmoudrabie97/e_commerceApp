@@ -1,3 +1,4 @@
+import 'package:e_commerce/pages/cartpage/cartpage.dart';
 import 'package:e_commerce/utilites/extentionhelper.dart';
 import 'package:e_commerce/utilites/widgets/customtextformfield.dart';
 import 'package:flutter/material.dart';
@@ -34,10 +35,15 @@ class SearchingitemRow extends StatelessWidget {
         SizedBox(
           width: context.screenwidth * 0.07,
         ),
-        Image(
-          image: const AssetImage('assets/images/Buy1.png'),
-          width: context.screenwidth * 0.08,
-          height: context.screenwidth * 0.08,
+        InkWell(
+          onTap: () {
+            context.push(CartPage());
+          },
+          child: Image(
+            image: const AssetImage('assets/images/Buy1.png'),
+            width: context.screenwidth * 0.08,
+            height: context.screenwidth * 0.08,
+          ),
         ),
       ],
     );

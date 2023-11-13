@@ -1,24 +1,18 @@
-import 'package:e_commerce/cubit/favouritecartcubit/favouritecartcubit.dart';
-import 'package:e_commerce/cubit/favouritecartcubit/favouritecartstates.dart';
-import 'package:e_commerce/models/bestsellingmodel.dart';
+import 'package:e_commerce/models/mostviewed.dart';
 import 'package:e_commerce/network/endpoints.dart';
-import 'package:e_commerce/pages/subProductPage/sub_products.dart';
 import 'package:e_commerce/utilites/appcolors.dart';
-import 'package:e_commerce/utilites/extentionhelper.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:iconly/iconly.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class BestSellingItem extends StatelessWidget {
-  const BestSellingItem({
+class MostVistedProductUserItem extends StatelessWidget {
+  final double height;
+  final MostViewed mostViewedmodel;
+
+  const MostVistedProductUserItem({
     Key? key,
     required this.height,
-    required this.productModel,
+    required this.mostViewedmodel,
   }) : super(key: key);
-
-  final double height;
-  final Product productModel;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +23,7 @@ class BestSellingItem extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.only(right: 5, left: 5),
               child: Container(
-                width: 180,
+                width: 200,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(10),
@@ -49,7 +43,6 @@ class BestSellingItem extends StatelessWidget {
                       // Row(
                       //   children: [
                       //     const Spacer(),
-
                       //     BlocConsumer<FavouriteCartcubit, FavouriteCartStates>(
                       //       listener: (BuildContext context, Object? state) {},
                       //       builder: (BuildContext context, state) {
@@ -57,35 +50,31 @@ class BestSellingItem extends StatelessWidget {
                       //             FavouriteCartcubit.get(context)
                       //                 .favouritesId
                       //                 .contains(productModel.id.toString());
-
                       //         return IconButton(
                       //             color: isProductInWishlist
                       //                 ? Colors.red
                       //                 : Colors.grey,
                       //             onPressed: () {
-                      //               print('itttttttttttt${productModel.id}');
-                      //               //    FavouriteCartcubit.get(context)
-                      //               //      .checkProductInWishlist(
-                      //               //          context: context,
-                      //               //          productId: productModel.id);
+                      //               // print('itttttttttttt${productModel.id}');
+                      //               // FavouriteCartcubit.get(context)
+                      //               //     .checkProductInWishlist(
+                      //               //         context: context,
+                      //               //         productId: productModel.id);
                       //             },
                       //             icon: isProductInWishlist
                       //                 ? Icon(Icons.favorite)
                       //                 : const Icon(IconlyBroken.heart));
                       //       },
                       //     ),
-
-                      //     // FavouriteCartcubit.get(context)
-                      //     //         .favouritesId
-                      //     //         .contains(productModel.id.toString())
-                      //     //     ? const Icon(Icons.favorite)
-                      //     //     : const Icon(IconlyLight.heart))
                       //   ],
                       // ),
                       Expanded(
                         child: Image(
                             image: NetworkImage(
-                                '$baseimageurl${productModel.mainImage}')),
+
+                                //'$baseimageurl${productModel.mainImage}'
+                                '$baseimageurl${mostViewedmodel.productDetail!.productDetailImage?[0].image}??'
+                                ' ')),
                       ),
                       const SizedBox(height: 20),
                       Row(
@@ -93,29 +82,37 @@ class BestSellingItem extends StatelessWidget {
                           Expanded(
                             child: Column(
                               children: [
-                                Text(productModel.nameInEnglish ?? '',
-                                    maxLines: 2,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: GoogleFonts.akayaKanadaka(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 14,
-                                    )),
-                                const SizedBox(height: 6),
-                                SizedBox(
-                                  height: 10,
+                                Text(
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                  //  productModel.nameInEnglish,
+                                  mostViewedmodel.productDetail!
+                                          .productNameInEnglish ??
+                                      '',
+                                  style: GoogleFonts.akayaKanadaka(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                  ),
                                 ),
+                                const SizedBox(height: 6),
+                                //     Text('\$${productModel.price}',
+                                //       style: const TextStyle(color: Colors.grey)),
                               ],
                             ),
                           ),
                           const Spacer(),
                           GestureDetector(
                             onTap: () {
-                              //context.push(
-                              //  DetailsPage(productModel: productModel));
-                              context.push(SubProductPage(
-                                productid: productModel.id,
-                                productname: productModel.nameInEnglish ?? '',
-                              ));
+                              // context.push(
+                              // DetailsPage(
+                              // productModel: productModel
+                              //));
+
+                              // context.push(SubProductPage(
+                              // productid: productModel.id,
+                              // productname: productModel.nameInEnglish,
+                              // )
+                              //);
                             },
                             child: Container(
                               height: 25,
@@ -125,6 +122,9 @@ class BestSellingItem extends StatelessWidget {
                             ),
                           )
                         ],
+                      ),
+                      SizedBox(
+                        height: 10,
                       ),
                     ],
                   ),

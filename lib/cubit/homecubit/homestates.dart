@@ -8,6 +8,12 @@ class GetSpecificCategorySuccsessState extends HomeStates {}
 
 class GetSpecificCategoryErrorState extends HomeStates {}
 
+class GetMostViewsLoadingState extends HomeStates {}
+
+class GetMostviewSuccsessState extends HomeStates {}
+
+class GetMostViewErrorState extends HomeStates {}
+
 class GetAllCategoryLoadingState extends HomeStates {}
 
 class GetAllCategorySuccsessState extends HomeStates {}

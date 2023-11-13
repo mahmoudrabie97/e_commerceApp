@@ -77,6 +77,7 @@ class ProductCategoryitem extends StatelessWidget {
 
                               context.push(SubProductPage(
                                 productid: dummyproduct[0].productid,
+                                productname: '',
                               ));
                             },
                             child: Container(

@@ -5,6 +5,7 @@ import 'package:e_commerce/models/product_detailspid.dart';
 import 'package:e_commerce/network/endpoints.dart';
 import 'package:e_commerce/pages/detailspage/widgets/addingtocartrow.dart';
 import 'package:e_commerce/pages/detailspage/widgets/detailspricerow.dart';
+import 'package:e_commerce/pages/detailspage/widgets/mostviewproductuser.dart';
 import 'package:e_commerce/pages/detailspage/widgets/subproductdetail.dart';
 import 'package:e_commerce/utilites/constants.dart';
 import 'package:e_commerce/utilites/custommethods.dart';
@@ -26,7 +27,11 @@ class DetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ProductCubit.get(context).getProductdetailsbyByProductDetailId;
+
     print('iddddddddddddddddd$productDetailId');
+    FavouriteCartcubit.get(context)
+        .addMostViewed(context: context, productdetailsid: productDetailId);
+    FavouriteCartcubit.get(context).getMostviewProductUser(context: context);
     double itemWidth = context.screenwidth * 0.4;
     double itemHeight = itemWidth / 0.8;
     //ProductCubit.get(context)
@@ -150,6 +155,54 @@ class DetailsPage extends StatelessWidget {
                             );
                           }),
                         ),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Container(
+                        padding: const EdgeInsets.all(10),
+                        // margin: EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          color: Colors.grey[200],
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: const CustomText(
+                          text: 'Most Viewed',
+                          color: Colors.black,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 250,
+                        child: FavouriteCartcubit.get(context)
+                                .getMostProductViewedList
+                                .isEmpty
+                            ? const Center(
+                                child: Text('nooo mostviewed visted yet '),
+                              )
+                            : GridView.count(
+                                crossAxisCount: 2,
+                                shrinkWrap: true,
+                                physics: const NeverScrollableScrollPhysics(),
+                                childAspectRatio: (itemWidth / itemHeight),
+                                mainAxisSpacing: 10,
+                                crossAxisSpacing: 10,
+                                padding: const EdgeInsets.all(10),
+                                children: List.generate(
+                                    FavouriteCartcubit.get(context)
+                                        .getMostProductViewedList
+                                        .length, (index) {
+                                  return MostVistedProductUserItem(
+                                    height: itemHeight - 30,
+                                    mostViewedmodel: HomeCubit.get(context)
+                                        .getMostViewedList[index],
+                                  );
+                                }),
+                              ),
+                      ),
+                      const SizedBox(
+                        height: 10,
                       ),
                     ],
                   ),

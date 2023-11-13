@@ -63,3 +63,21 @@ class DecreaseQuntityState extends FavouriteCartStates {}
 class MinusQuntityState extends FavouriteCartStates {}
 
 class PlusQuntityState extends FavouriteCartStates {}
+
+class CheckSetFavourite extends FavouriteCartStates {}
+
+class ShowLottileLoadingrState extends FavouriteCartStates {}
+
+class ShowLottileSucsessState extends FavouriteCartStates {}
+
+class AddMostViewedLoadingrState extends FavouriteCartStates {}
+
+class AddmostViewesSucsessState extends FavouriteCartStates {}
+
+class AddMostViewedErrorState extends FavouriteCartStates {}
+
+class GetMostViewedProductUserLoadingrState extends FavouriteCartStates {}
+
+class GetMostviewedProductUserSuccessState extends FavouriteCartStates {}
+
+class GetMostviewedProductUserErrorState extends FavouriteCartStates {}

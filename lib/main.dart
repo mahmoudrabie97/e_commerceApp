@@ -2,7 +2,6 @@ import 'package:e_commerce/cubit/homecubit/homecubit.dart';
 import 'package:e_commerce/cubit/productcubit/productcubit.dart';
 import 'package:e_commerce/cubit/favouritecartcubit/favouritecartcubit.dart';
 import 'package:e_commerce/network/local_network.dart';
-import 'package:e_commerce/pages/homepage/homepage.dart';
 import 'package:e_commerce/pages/welcomepage.dart';
 import 'package:e_commerce/simpleblocobserver.dart';
 import 'package:e_commerce/utilites/appcolors.dart';
@@ -15,7 +14,7 @@ void main() async {
   Bloc.observer = SimpleBlocObserver();
   await CachNetwork.cachinitilization();
   AppConstant.tokensharedpref = CachNetwork.getcacheData(key: 'token');
-  print('tokensh is${AppConstant.tokensharedpref} ');
+  print('tokensh is${AppConstant.tokensharedpref}');
 
   runApp(const EcommerceApp());
 }

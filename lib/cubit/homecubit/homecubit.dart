@@ -3,9 +3,11 @@
 import 'dart:convert';
 import 'package:e_commerce/cubit/homecubit/homestates.dart';
 import 'package:e_commerce/models/bestsellingmodel.dart';
+import 'package:e_commerce/models/mostviewed.dart';
 import 'package:e_commerce/models/product.dart';
 import 'package:e_commerce/network/api.dart';
 import 'package:e_commerce/network/endpoints.dart';
+import 'package:e_commerce/utilites/constants.dart';
 import 'package:e_commerce/utilites/custommethods.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,6 +20,7 @@ class HomeCubit extends Cubit<HomeStates> {
   List<CategoryModel> specificCategorylist = [];
   List<CategoryModel> allcatgorylist = [];
   List<Product> bestsellingitemList = [];
+  List<MostViewed> getMostViewedList = [];
   List<ProductHome> productList = [];
   List<ProductHome> getallproductList = [];
 
@@ -45,6 +48,40 @@ class HomeCubit extends Cubit<HomeStates> {
       ((error) {
         emit(GetSpecificCategoryErrorState());
       }),
+    );
+  }
+
+  void getMostviewList({
+    required BuildContext context,
+  }) {
+    emit(GetMostViewsLoadingState());
+    getMostViewedList = [];
+    CallApi.getData(
+      baseUrl: basehomeurl,
+      apiUrl: mostviewurl,
+      context: context,
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Authorization': 'Bearer ${AppConstant.token}'
+      },
+    ).then(
+      (value) {
+        print('mmmmmmmmmmmmmmmmmmmmmos$value');
+        final response = jsonDecode(value!.body);
+        print('ttttttttttttttttt$response');
+        for (var item in response) {
+          getMostViewedList.add(MostViewed.fromJson(item));
+        }
+        print('mmmmmmmmmmmmmmmmmmmmmos$getMostViewedList');
+        print('IIIIIIIIIIIII${getMostViewedList.length}');
+
+        emit(GetMostviewSuccsessState());
+      },
+    ).catchError(
+      (error) {
+        print('wwwwwwwwwwwwwwwwww${error.toString()}');
+        emit(GetMostViewErrorState());
+      },
     );
   }
 

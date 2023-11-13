@@ -26,83 +26,37 @@ class AddingToCartRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     print('beforeeeee${pmodel.quantity}');
-    return BlocConsumer<FavouriteCartcubit, FavouriteCartStates>(
-      listener: (BuildContext context, state) {},
-      builder: (BuildContext context, Object? state) {
-        return Row(
-          children: [
-            Customsquantityontainer(
-              height: 60,
-              width: 150,
-              color: const Color(0xffD5D5D5),
-              child: Row(
-                // crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Customsquantityontainer(
-                      height: 40,
-                      width: 40,
-                      color: Colors.white,
-                      child: GestureDetector(
-                          onTap: () {
-                            FavouriteCartcubit.get(context).minusquntity(
-                              productquntity: pmodel.quantity,
-                              productDetailsBypId: pmodel,
-                            );
+    return Row(
+      children: [
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.only(left: 25, right: 5),
+            child: BlocConsumer<FavouriteCartcubit, FavouriteCartStates>(
+              listener: (BuildContext context, state) {},
+              builder: (BuildContext context, Object? state) {
+                return state is AddToCartLoadingState
+                    ? const Center(
+                        child: CircularProgressIndicator(),
+                      )
+                    : Padding(
+                        padding: const EdgeInsets.only(right: 20, left: 20),
+                        child: CustomButton(
+                          buttonText: 'Add to cart',
+                          onPressed: () {
+                            print('afteeeer${pmodel.quantity}');
+                            FavouriteCartcubit.get(context).addToCart(
+                                context: context,
+                                productdetailId: productdetailId);
                           },
-                          child: const Center(
-                            child: Text('-',
-                                style: TextStyle(
-                                    fontSize: 20, fontWeight: FontWeight.bold)),
-                          ))),
-                  CustomText(text: pmodel.quantity.toString()),
-                  //cartModel.quantity.toString()),
-                  Customsquantityontainer(
-                      height: 40,
-                      width: 40,
-                      color: Colors.white,
-                      child: GestureDetector(
-                          onTap: () {
-                            FavouriteCartcubit.get(context).plusquntity(
-                                productquntity: pmodel.quantity,
-                                productDetailsBypId: pmodel);
-                          },
-                          child: const Icon(Icons.add))),
-                ],
-              ),
+                          buttonColor: AppColor.kmaincolor,
+                          borderRadius: 0,
+                        ),
+                      );
+              },
             ),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.only(left: 25, right: 5),
-                child: BlocConsumer<FavouriteCartcubit, FavouriteCartStates>(
-                  listener: (BuildContext context, state) {},
-                  builder: (BuildContext context, Object? state) {
-                    return state is AddToCartLoadingState
-                        ? const Center(
-                            child: CircularProgressIndicator(),
-                          )
-                        : CustomButton(
-                            buttonText: 'Add to cart',
-                            onPressed: () {
-                              FavouriteCartcubit.get(context)
-                                  .updateCartFromSubproduct(
-                                      context: context,
-                                      productDetailsBypId: pmodel);
-                              print('afteeeer${pmodel.quantity}');
-                              FavouriteCartcubit.get(context).addToCart(
-                                  context: context,
-                                  productdetailId: productdetailId);
-                            },
-                            buttonColor: AppColor.kmaincolor,
-                            borderRadius: 0,
-                          );
-                  },
-                ),
-              ),
-            ),
-          ],
-        );
-      },
+          ),
+        ),
+      ],
     );
   }
 }

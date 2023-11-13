@@ -1,6 +1,7 @@
 import 'package:e_commerce/pages/categorypage/productofcategory.dart';
 import 'package:e_commerce/utilites/extentionhelper.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class CategoryItem extends StatelessWidget {
   const CategoryItem({
@@ -48,12 +49,11 @@ class CategoryItem extends StatelessWidget {
           Expanded(
             child: SizedBox(
               width: 105,
-              child: Text(
-                categoryname,
-                style: const TextStyle(
-                  fontSize: 12,
-                ),
-              ),
+              child: Text(categoryname,
+                  style: GoogleFonts.akayaKanadaka(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 15,
+                  )),
             ),
           )
         ],

@@ -9,6 +9,7 @@ import 'package:e_commerce/utilites/constants.dart';
 import 'package:e_commerce/utilites/widgets/showdialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lottie/lottie.dart';
 
 class AuthCubit extends Cubit<AuthStates> {
   AuthCubit() : super(AuthInitialState());
@@ -19,6 +20,8 @@ class AuthCubit extends Cubit<AuthStates> {
   bool isSecurep = true;
   bool isSecurepc = true;
   UserModel? userModel;
+  bool showAnimation = false;
+  int animationDuration = 2;
 
   void changeSecurePassword() {
     if (isSecurep) {
@@ -48,7 +51,7 @@ class AuthCubit extends Cubit<AuthStates> {
   }) {
     Map<String, String> headers = {
       'Content-Type': 'application/x-www-form-urlencoded',
-      'Authorization': 'Bearer ${AppConstant.token}'
+      //'Authorization': 'Bearer ${AppConstant.token}'
     };
     emit(LoginLoadingState());
     CallApi.postData(
@@ -81,12 +84,9 @@ class AuthCubit extends Cubit<AuthStates> {
       } else if (value.statusCode == 500) {
         ShowMyDialog.showMsg(context, 'internal server error,');
         emit(LoginServerErrorState());
-      }
-      else{
-            ShowMyDialog.showMsg(context, 'unknown error,');
-             emit(LoginErrorState());
-
-
+      } else {
+        ShowMyDialog.showMsg(context, 'unknown error,');
+        emit(LoginErrorState());
       }
     }).catchError((error) {
       debugPrint('An error occurred: $error');
@@ -124,5 +124,32 @@ class AuthCubit extends Cubit<AuthStates> {
       // ShowMyDialog.showMsg(context, 'An error occurred: $error');
       emit(RegisterErrorState());
     });
+  }
+
+  void showDialoog(BuildContext context) {
+    showAnimation = true;
+    emit(ShowLottileLoadingrState());
+    Future.delayed(Duration(seconds: animationDuration), () {
+      showAnimation = false;
+      Navigator.pop(context);
+      emit(
+          ShowLottileSucsessState()); // إغلاق الـ Dialog بعد انقضاء المدة الزمنية
+    });
+    showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (context) => Dialog(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Lottie.asset('assets/images/ddone.json',
+                      repeat: false,
+                      height: 100,
+                      alignment: Alignment.center,
+                      fit: BoxFit.cover,
+                      animate: showAnimation),
+                ],
+              ),
+            ));
   }
 }

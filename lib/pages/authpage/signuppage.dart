@@ -163,6 +163,9 @@ class SignUpPage extends StatelessWidget {
                         validator: (value) {
                           if (value!.isEmpty) {
                             return 'please re enter your password';
+                          } else if (_passwordController.text !=
+                              _passwordconfirmationController.text) {
+                            return 'two passwords not agree';
                           }
 
                           return null;

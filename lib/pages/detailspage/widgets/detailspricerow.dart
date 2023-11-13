@@ -5,6 +5,7 @@ import 'package:e_commerce/utilites/widgets/customtext.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconly/iconly.dart';
+import 'package:like_button/like_button.dart';
 
 class DetailsPriceRow extends StatelessWidget {
   const DetailsPriceRow({
@@ -57,16 +58,26 @@ class DetailsPriceRow extends StatelessWidget {
           const Spacer(),
           Padding(
             padding: const EdgeInsets.only(right: 20),
-            child: IconButton(
-                color: isProductInWishlist ? Colors.red : Colors.grey,
-                onPressed: () {
+            child: LikeButton(
+                isLiked: isProductInWishlist,
+                onTap: (isLiked) {
                   print('itttttttttttt${productdetailsid.toString()}');
                   FavouriteCartcubit.get(context).checkProductInWishlist(
-                      context: context, productdetailsid: productdetailsid);
-                },
-                icon: isProductInWishlist
-                    ? Icon(Icons.favorite)
-                    : const Icon(IconlyBroken.heart)),
+                    context: context,
+                    productdetailsid: productdetailsid,
+                  );
+                  return Future.value(!isLiked);
+                }),
+            // child: IconButton(
+            //     color: isProductInWishlist ? Colors.red : Colors.grey,
+            //     onPressed: () {
+            //       print('itttttttttttt${productdetailsid.toString()}');
+            //       FavouriteCartcubit.get(context).checkProductInWishlist(
+            //           context: context, productdetailsid: productdetailsid);
+            //     },
+            //     icon: isProductInWishlist
+            //         ? Icon(Icons.favorite)
+            //         : const Icon(IconlyBroken.heart)),
           ),
         ]);
       },

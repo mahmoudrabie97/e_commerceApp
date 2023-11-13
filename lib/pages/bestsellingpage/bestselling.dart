@@ -1,3 +1,4 @@
+import 'package:e_commerce/cubit/homecubit/homecubit.dart';
 import 'package:e_commerce/pages/bestsellingpage/widget/bestsellingitem.dart';
 
 import 'package:e_commerce/utilites/dummydata.dart';
@@ -72,9 +73,12 @@ class BeststSellingProduct extends StatelessWidget {
                 mainAxisSpacing: 15,
                 crossAxisSpacing: 20,
                 padding: const EdgeInsets.all(10),
-                children: List.generate(dummyproduct.length, (index) {
+                children: List.generate(
+                    HomeCubit.get(context).bestsellingitemList.length, (index) {
                   return BestSellingitem(
                     height: itemHeight - 30,
+                    productModel:
+                        HomeCubit.get(context).bestsellingitemList[index],
                   );
                 }),
               ),
