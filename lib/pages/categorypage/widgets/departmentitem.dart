@@ -1,4 +1,5 @@
 import 'package:e_commerce/pages/categorypage/productofcategory.dart';
+import 'package:e_commerce/pages/categorypage/widgets/catofofdepartment.dart';
 import 'package:e_commerce/utilites/extentionhelper.dart';
 import 'package:flutter/material.dart';
 
@@ -7,15 +8,21 @@ class DepartmentItem extends StatelessWidget {
     Key? key,
     required this.categoryname,
     required this.categoryicon,
+    required this.departmentId,
   }) : super(key: key);
   final String categoryname;
   final String categoryicon;
+  final int departmentId;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        context.push(ProductOfCategory());
+        context.push(CategoriesOfDepartments(
+          departmentid: departmentId,
+        ));
+
+        ///هيحثل تغيير هنا لاني كل ديبرتمنت ليهكاتوجري مش برودكت
       },
       child: Column(
         children: [

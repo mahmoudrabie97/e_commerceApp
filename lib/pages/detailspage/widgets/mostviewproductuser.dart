@@ -1,5 +1,6 @@
 import 'package:e_commerce/models/mostviewed.dart';
 import 'package:e_commerce/network/endpoints.dart';
+import 'package:e_commerce/pages/detailspage/detailspage.dart';
 import 'package:e_commerce/utilites/appcolors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';

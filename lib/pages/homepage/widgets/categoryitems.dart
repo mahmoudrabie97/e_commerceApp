@@ -8,15 +8,21 @@ class CategoryItem extends StatelessWidget {
     Key? key,
     required this.categoryname,
     required this.categoryicon,
+    required this.categoryId,
   }) : super(key: key);
   final String categoryname;
   final String categoryicon;
+  final int categoryId;
 
   @override
   Widget build(BuildContext context) {
+    print('vvvvvvvvvvvvvvvvvv$categoryId');
     return GestureDetector(
       onTap: () {
-        context.push(ProductOfCategory());
+        context.push(ProductOfCategory(
+          catid: categoryId,
+          name: categoryname,
+        ));
       },
       child: Column(
         children: [

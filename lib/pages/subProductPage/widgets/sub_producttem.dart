@@ -9,7 +9,6 @@ import 'package:e_commerce/utilites/extentionhelper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:iconly/iconly.dart';
 import 'package:like_button/like_button.dart';
 
 class SubProductitem extends StatelessWidget {
@@ -133,7 +132,8 @@ class SubProductitem extends StatelessWidget {
                               context.push(DetailsPage(
                                 productDetailId: productDetailsBypId.id,
                                 index: index,
-                                pmodel: productDetailsBypId,
+                                productid: productDetailsBypId.productId,
+                                // pmodel: productDetailsBypId,
                               ));
                             },
                             child: Container(

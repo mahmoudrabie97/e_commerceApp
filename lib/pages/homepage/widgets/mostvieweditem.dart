@@ -1,21 +1,28 @@
 import 'package:e_commerce/models/mostviewed.dart';
 import 'package:e_commerce/network/endpoints.dart';
+import 'package:e_commerce/pages/detailspage/detailspage.dart';
+import 'package:e_commerce/pages/homepage/widgets/detailspmostview.dart';
 import 'package:e_commerce/utilites/appcolors.dart';
+import 'package:e_commerce/utilites/extentionhelper.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class MostVistedItem extends StatelessWidget {
   final double height;
   final MostViewed mostViewedmodel;
+  final int index;
 
   const MostVistedItem({
     Key? key,
     required this.height,
     required this.mostViewedmodel,
+    required this.index,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    print('hhhhhhhhhhhhhhhhhhhhhhhh${mostViewedmodel.id}');
+    print('index');
     return SizedBox(
       child: Row(
         children: [
@@ -103,10 +110,11 @@ class MostVistedItem extends StatelessWidget {
                           const Spacer(),
                           GestureDetector(
                             onTap: () {
-                              // context.push(
-                              // DetailsPage(
-                              // productModel: productModel
-                              //));
+                              context.push(DetailsPageMostviewed(
+                                mostViewedmodel: mostViewedmodel,
+                                index: index,
+                                height: 700,
+                              ));
 
                               // context.push(SubProductPage(
                               // productid: productModel.id,

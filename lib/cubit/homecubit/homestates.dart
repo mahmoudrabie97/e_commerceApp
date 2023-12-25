@@ -2,6 +2,20 @@ abstract class HomeStates {}
 
 class InitialHomeState extends HomeStates {}
 
+class GetDepartmentsLoadingState extends HomeStates {}
+
+class GetDepartmentsSuccsessState extends HomeStates {}
+
+class GetDepartmentsErrorState extends HomeStates {}
+
+class GetCategoriesOfDepartmentsLoadingState extends HomeStates {}
+
+class IsLoadingMoreState extends HomeStates {}
+
+class GetCategoriesOfDepartmentsSuccsessState extends HomeStates {}
+
+class GetCategoriesOfDepartmentsErrorState extends HomeStates {}
+
 class GetSpecificCategoryLoadingState extends HomeStates {}
 
 class GetSpecificCategorySuccsessState extends HomeStates {}
@@ -43,3 +57,9 @@ class FilterProductLoadingState extends HomeStates {}
 class FilterProductSuccessState extends HomeStates {}
 
 class FilterProductErrorState extends HomeStates {}
+
+class GetCategoriesOfDepartmentsLoadingPaginationState extends HomeStates {}
+
+class GetCategoriesOfDepartmentsSuccessState extends HomeStates {}
+
+class GetCategoriesOfDepartmentsLoadMoreSuccessState extends HomeStates {}

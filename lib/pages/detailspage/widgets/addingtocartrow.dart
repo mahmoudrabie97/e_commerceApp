@@ -11,21 +11,21 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AddingToCartRow extends StatelessWidget {
   final int productdetailId;
-  final ProductDetailsBypId pmodel;
+  //final ProductDetailsBypId pmodel;
 
   //final CartModel cartModel;
 
   const AddingToCartRow({
     super.key,
     required this.productdetailId,
-    required this.pmodel,
+    //required this.pmodel,
 
     //required this.cartModel, //Text(cartModel.quantity.toString()),
   });
 
   @override
   Widget build(BuildContext context) {
-    print('beforeeeee${pmodel.quantity}');
+    // print('beforeeeee${pmodel.quantity}');
     return Row(
       children: [
         Expanded(
@@ -43,7 +43,7 @@ class AddingToCartRow extends StatelessWidget {
                         child: CustomButton(
                           buttonText: 'Add to cart',
                           onPressed: () {
-                            print('afteeeer${pmodel.quantity}');
+                            //print('afteeeer${pmodel.quantity}');
                             FavouriteCartcubit.get(context).addToCart(
                                 context: context,
                                 productdetailId: productdetailId);

@@ -1,6 +1,7 @@
 import 'package:e_commerce/cubit/favouritecartcubit/favouritecartcubit.dart';
 import 'package:e_commerce/cubit/homecubit/homecubit.dart';
 import 'package:e_commerce/cubit/productcubit/productcubit.dart';
+import 'package:e_commerce/models/mostviewed.dart';
 import 'package:e_commerce/models/product_detailspid.dart';
 import 'package:e_commerce/network/endpoints.dart';
 import 'package:e_commerce/pages/detailspage/widgets/addingtocartrow.dart';
@@ -13,40 +14,26 @@ import 'package:e_commerce/utilites/extentionhelper.dart';
 import 'package:e_commerce/utilites/widgets/customtext.dart';
 import 'package:flutter/material.dart';
 
-class DetailsPage extends StatefulWidget {
-  const DetailsPage({
+class DetailsPageMostviewed extends StatelessWidget {
+  const DetailsPageMostviewed({
     Key? key,
-    required this.productDetailId,
     required this.index,
-    required this.productid,
+    required this.height,
+    required this.mostViewedmodel,
     // required this.pmodel,
   }) : super(key: key);
-  final int productDetailId;
-  //final ProductDetailsBypId pmodel;
+  final double height;
+  final MostViewed mostViewedmodel;
   final int index;
-  final int productid;
-
-  @override
-  State<DetailsPage> createState() => _DetailsPageState();
-}
-
-class _DetailsPageState extends State<DetailsPage> {
-  @override
-  void initState() {
-    ProductCubit.get(context).getSimilarProduct(
-        productDetailId: widget.productDetailId,
-        productId: widget.productid,
-        context: context);
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
-    ProductCubit.get(context).getProductdetailsbyByProductDetailId;
+    ProductCubit.get(context).getProductdetailsbyByProductDetailId(
+        productDetailId: mostViewedmodel.productDetailId ?? 0,
+        context: context);
 
-    print('iddddddddddddddddd${widget.productDetailId}');
     FavouriteCartcubit.get(context).addMostViewed(
-        context: context, productdetailsid: widget.productDetailId);
+        context: context, productdetailsid: mostViewedmodel.productDetailId);
     FavouriteCartcubit.get(context).getMostviewProductUser(context: context);
     double itemWidth = context.screenwidth * 0.4;
     double itemHeight = itemWidth / 0.8;
@@ -63,17 +50,18 @@ class _DetailsPageState extends State<DetailsPage> {
       ),
       body: FutureBuilder(
         future: ProductCubit.get(context).getProductdetailsbyByProductDetailId(
-            productDetailId: widget.productDetailId, context: context),
+            productDetailId: mostViewedmodel.productDetailId ?? 0,
+            context: context),
         builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
             return const Center(child: Text('Error'));
           } else {
-            //final List<ProductDetailsBypId> filteredList =
+            // final List<ProductDetailsBypId> filteredList =
             //  ProductCubit.get(context)
             //    .productdetailsbyidList
-            //  .where((item) => item.id != widget.productDetailId)
+            //  .where((item) => item.id != mostViewedmodel.productDetailId)
             //.toList();
             return ListView(
               children: [
@@ -87,7 +75,10 @@ class _DetailsPageState extends State<DetailsPage> {
                         child: Image(
                           width: 400,
                           image: NetworkImage(
-                              '$baseimageurl${ProductCubit.get(context).getProductDetailsByProductDetailIdList[0].productDetailImages[0].image}'),
+                              '$baseimageurl${mostViewedmodel.productDetail!.productDetailImage![0].image
+                              // ProductCubit.get(context).
+                              //getProductDetailsByProductDetailIdList[0].productDetailImages[0].image
+                              }'),
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -95,13 +86,17 @@ class _DetailsPageState extends State<DetailsPage> {
                         height: 20,
                       ),
                       DetailsPriceRow(
-                        productname: ProductCubit.get(context)
-                            .productdetailsbyidList[widget.index]
-                            .categoryName,
-                        price: ProductCubit.get(context)
-                            .productdetailsbyidList[widget.index]
-                            .price,
-                        productdetailsid: widget.productDetailId,
+                        productname: mostViewedmodel
+                                .productDetail!.productNameInEnglish ??
+                            '',
+                        //ProductCubit.get(context)
+                        //  .productdetailsbyidList[index]
+                        //.categoryName,
+                        price: mostViewedmodel.productDetail!.price ?? 0,
+                        //ProductCubit.get(context)
+                        //  .productdetailsbyidList[index]
+                        //.price,
+                        productdetailsid: mostViewedmodel.productDetailId ?? 0,
                       ),
                       const SizedBox(
                         height: 29,
@@ -129,7 +124,7 @@ class _DetailsPageState extends State<DetailsPage> {
                         height: 20,
                       ),
                       AddingToCartRow(
-                        productdetailId: widget.productDetailId,
+                        productdetailId: mostViewedmodel.productDetailId ?? 0,
 
                         // pmodel: pmodel,
                         // cartModel: FavouriteCartcubit.get(context)
@@ -138,46 +133,45 @@ class _DetailsPageState extends State<DetailsPage> {
                       const SizedBox(
                         height: 20,
                       ),
-                      Container(
-                        padding: const EdgeInsets.all(10),
-                        // margin: EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                          color: Colors.grey[200],
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: const CustomText(
-                          text: 'Browse similar products interesting',
-                          color: Colors.black,
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      SizedBox(
-                        height: 250,
-                        child: ListView.builder(
-                          shrinkWrap: true,
-                          scrollDirection: Axis.horizontal,
-                          itemCount: ProductCubit.get(context)
-                              .getSimilarProductList
-                              .length,
-                          itemExtent:
-                              itemHeight - 30, // تعديل ارتفاع العنصر الفرعي
-                          itemBuilder: (context, index) {
-                            return SubProductDetailItm(
-                              productDetailsBypId: ProductCubit.get(context)
-                                  .getSimilarProductList[index],
-                              index: index,
-                              height: 300,
-                            );
-                          },
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
+                      // Container(
+                      //   padding: const EdgeInsets.all(10),
+                      //   // margin: EdgeInsets.all(10),
+                      //   decoration: BoxDecoration(
+                      //     color: Colors.grey[200],
+                      //     borderRadius: BorderRadius.circular(10),
+                      //   ),
+                      //   child: const CustomText(
+                      //     text: 'Browse similar products interesting',
+                      //     color: Colors.black,
+                      //     fontSize: 18,
+                      //     fontWeight: FontWeight.bold,
+                      //   ),
+                      // ),
+                      // const SizedBox(
+                      //   height: 20,
+                      // ),
+                      // SizedBox(
+                      //   height: 200,
+                      //   child: GridView.count(
+                      //     scrollDirection: Axis.vertical,
+                      //     crossAxisCount: 2,
+                      //     shrinkWrap: true,
+                      //     childAspectRatio: .8,
+                      //     mainAxisSpacing: 15,
+                      //     crossAxisSpacing: 15,
+                      //     padding: const EdgeInsets.all(10),
+                      //     children: List.generate(filteredList.length, (index) {
+                      //       return SubProductDetailItm(
+                      //         productDetailsBypId: filteredList[index],
+                      //         height: itemHeight - 30,
+                      //         index: index,
+                      //       );
+                      //     }),
+                      //   ),
+                      // ),
+                      // const SizedBox(
+                      //   height: 20,
+                      // ),
                       Container(
                         padding: const EdgeInsets.all(10),
                         // margin: EdgeInsets.all(10),

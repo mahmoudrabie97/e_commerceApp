@@ -26,10 +26,14 @@ class EcommerceApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
+        BlocProvider(create: (BuildContext context) => HomeCubit()
+            //..getCategoriesOfDepartment(context: context, departmentId: 6),
+            //..getDeprtments(context: context),
+            ),
         BlocProvider(
-          create: (BuildContext context) => HomeCubit(),
-        ),
-        BlocProvider(create: (BuildContext context) => ProductCubit()),
+            create: (BuildContext context) => ProductCubit()
+              ..getSimilarProduct(
+                  productDetailId: 164, productId: 9, context: context)),
         BlocProvider(create: (BuildContext context) => FavouriteCartcubit()),
       ],
       child: MaterialApp(

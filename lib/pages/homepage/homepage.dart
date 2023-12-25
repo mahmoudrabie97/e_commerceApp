@@ -10,23 +10,35 @@ import 'package:e_commerce/pages/homepage/widgets/customhomeproductsrow.dart';
 import 'package:e_commerce/pages/homepage/widgets/staticcontcat.dart';
 import 'package:e_commerce/pages/productconfiguration/widget/customsearchinrow.dart';
 import 'package:e_commerce/pages/productpage/widgets/bestsellingitem.dart';
-import 'package:e_commerce/pages/productpage/widgets/mostvistedItem.dart';
+//import 'package:e_commerce/pages/productpage/widgets/mostvistedItem.dart';
 import 'package:e_commerce/pages/productpage/widgets/productitems.dart';
 import 'package:e_commerce/utilites/extentionhelper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../homepage/widgets/mostvieweditem.dart';
 
-class HomePge extends StatelessWidget {
+class HomePge extends StatefulWidget {
   HomePge({Key? key}) : super(key: key);
+
+  @override
+  State<HomePge> createState() => _HomePgeState();
+}
+
+class _HomePgeState extends State<HomePge> {
   final TextEditingController _searchController = TextEditingController();
   @override
-  Widget build(BuildContext context) {
+  void initState() {
     HomeCubit.get(context).getAllCategory(context: context);
     HomeCubit.get(context).getAllProduct(context: context);
     HomeCubit.get(context).getBestSelling(context: context);
     HomeCubit.get(context).getMostviewList(context: context);
 
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     double itemWidth = context.screenwidth * 0.4;
     double itemHeight = itemWidth / 0.8;
     return BlocConsumer<HomeCubit, HomeStates>(
@@ -98,6 +110,9 @@ class HomePge extends StatelessWidget {
                                               .nameInEnglish,
                                           categoryicon:
                                               '$baseimageurl${HomeCubit.get(context).specificCategorylist[index].icon ?? ''}',
+                                          categoryId: HomeCubit.get(context)
+                                              .specificCategorylist[index]
+                                              .id,
                                         );
                                       } else {
                                         return GestureDetector(
@@ -197,7 +212,7 @@ class HomePge extends StatelessWidget {
                           ),
                         ),
                         SizedBox(
-                          height: 800,
+                          height: 600,
                           child: HomeCubit.get(context)
                                   .getMostViewedList
                                   .isEmpty
@@ -212,14 +227,12 @@ class HomePge extends StatelessWidget {
                                   mainAxisSpacing: 10,
                                   crossAxisSpacing: 10,
                                   padding: const EdgeInsets.all(10),
-                                  children: List.generate(
-                                      HomeCubit.get(context)
-                                          .getMostViewedList
-                                          .length, (index) {
+                                  children: List.generate(4, (index) {
                                     return MostVistedItem(
                                       height: itemHeight - 30,
                                       mostViewedmodel: HomeCubit.get(context)
                                           .getMostViewedList[index],
+                                      index: index,
                                     );
                                   }),
                                 ),

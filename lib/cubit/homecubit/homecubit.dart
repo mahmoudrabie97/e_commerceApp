@@ -3,6 +3,8 @@
 import 'dart:convert';
 import 'package:e_commerce/cubit/homecubit/homestates.dart';
 import 'package:e_commerce/models/bestsellingmodel.dart';
+import 'package:e_commerce/models/categoriesofdepmodel.dart';
+import 'package:e_commerce/models/departmentmodel.dart';
 import 'package:e_commerce/models/mostviewed.dart';
 import 'package:e_commerce/models/product.dart';
 import 'package:e_commerce/network/api.dart';
@@ -23,7 +25,89 @@ class HomeCubit extends Cubit<HomeStates> {
   List<MostViewed> getMostViewedList = [];
   List<ProductHome> productList = [];
   List<ProductHome> getallproductList = [];
+  List<DepartmentModel> departmentsList = [];
+  List<CategoriesOfDepModel> categoriesofdepartmentsList = [];
+  int pageindex =
+      1; // ده كانه كل مره انت عايز اول مثلا 2 بعدها تاني اتنين وهكدا يعن علي حسب البيج سايز ده اول عدد من البيج سايز وهكدا
+  int pageSize = 3; // هنثبت دي بالعدد اللي احنا عايزينه في كل ريكوست
+  ScrollController?
+      scrollController; // ده اللي هنعمل بيه listen عشان نعرف ان الليست انتهت
+  bool isloadingmore = false;
+  ////////////get departments////////////
+  void getDeprtments({
+    required BuildContext context,
+  }) {
+    emit(GetDepartmentsLoadingState());
+    departmentsList = [];
+    CallApi.getData(
+        baseUrl: basehomeurl,
+        apiUrl: getDepartmentsUrl,
+        context: context,
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'}).then(
+      (value) {
+        //print(value!.body);
+        final responseBody = json.decode(value!.body);
+        for (var item in responseBody) {
+          departmentsList.add(DepartmentModel.fromJson(item));
+        }
+        //print(' ${specificCategorylist[2].id}');
+        print('DDDDDDDDDDDDDDDDDDDDDDDD${departmentsList[0]}');
+        print('ooooooooooooooooooooooooooo ${departmentsList[0].image}');
 
+        emit(GetDepartmentsSuccsessState());
+      },
+    ).catchError(
+      ((error) {
+        emit(GetDepartmentsErrorState());
+      }),
+    );
+  }
+
+  /////////////////////////////// Paginations/////////
+  void getCategoriesOfDepartment({
+    required BuildContext context,
+    required int departmentId,
+    bool fromloadingmore = false,
+  }) {
+    if (fromloadingmore) {
+      GetCategoriesOfDepartmentsLoadingPaginationState();
+    } else {
+      emit((GetCategoriesOfDepartmentsLoadingState()));
+    }
+
+    CallApi.getData(
+        baseUrl: basehomeurl,
+        // '$getHomeSimilarProductsUrl?productDetailsId=$productDetailId&productId=$productId',
+        apiUrl: '$getCategoriesOfDepartmentsUrl?departmentId=$departmentId&pageIndex=$pageindex&pageSize=$pageSize',
+        context: context,
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'}).then(
+      (value) {
+        categoriesofdepartmentsList = [];
+        //print(value!.body);
+        final responseBody = json.decode(value!.body);
+        if (responseBody.isNotEmpty) {
+          pageindex++;
+        }
+
+        for (var item in responseBody) {
+          categoriesofdepartmentsList.add(CategoriesOfDepModel.fromJson(item));
+        }
+        print('Paginatioooon ${categoriesofdepartmentsList[1].id}');
+        //print(' ${specificCategorylist[2].id}');
+        // print('DDDDDDDDDDDDDDDDDDDDDDDD${departmentsList[0]}');
+        // print('ooooooooooooooooooooooooooo ${departmentsList[0].image}');
+
+        emit(GetCategoriesOfDepartmentsSuccsessState());
+      },
+    ).catchError(
+      ((error) {
+        print('perror${error.toString()}');
+        emit(GetCategoriesOfDepartmentsErrorState());
+      }),
+    );
+  }
+
+//////////////////////////////////
   void getspecificCategoryHome({
     required BuildContext context,
   }) {
