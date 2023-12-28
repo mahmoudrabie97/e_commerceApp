@@ -63,3 +63,9 @@ class GetCategoriesOfDepartmentsLoadingPaginationState extends HomeStates {}
 class GetCategoriesOfDepartmentsSuccessState extends HomeStates {}
 
 class GetCategoriesOfDepartmentsLoadMoreSuccessState extends HomeStates {}
+
+class GetCategoriesOfDepartmentsPaginationFailedState extends HomeStates {
+  final String msg;
+
+  GetCategoriesOfDepartmentsPaginationFailedState(this.msg);
+}
