@@ -6,7 +6,7 @@ class ShowMyDialog {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text("Error"),
+          title: const Text(""),
           content: SingleChildScrollView(
             child: ListBody(
               children: <Widget>[

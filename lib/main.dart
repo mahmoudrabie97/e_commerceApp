@@ -1,3 +1,4 @@
+import 'package:e_commerce/cubit/accountcubit/accountcubit.dart';
 import 'package:e_commerce/cubit/homecubit/homecubit.dart';
 import 'package:e_commerce/cubit/productcubit/productcubit.dart';
 import 'package:e_commerce/cubit/favouritecartcubit/favouritecartcubit.dart';
@@ -35,6 +36,7 @@ class EcommerceApp extends StatelessWidget {
               ..getSimilarProduct(
                   productDetailId: 164, productId: 9, context: context)),
         BlocProvider(create: (BuildContext context) => FavouriteCartcubit()),
+        BlocProvider(create: (BuildContext context)=>AccountCubit()),
       ],
       child: MaterialApp(
           debugShowCheckedModeBanner: false,
