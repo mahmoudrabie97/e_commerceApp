@@ -1,6 +1,4 @@
-import 'package:e_commerce/cubit/favouritecartcubit/favouritecartcubit.dart';
 import 'package:e_commerce/models/cartmodel.dart';
-import 'package:e_commerce/models/productmodel.dart';
 import 'package:e_commerce/network/endpoints.dart';
 import 'package:e_commerce/utilites/widgets/customtext.dart';
 import 'package:flutter/material.dart';

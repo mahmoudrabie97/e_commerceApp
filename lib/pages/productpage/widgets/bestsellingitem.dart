@@ -1,13 +1,10 @@
-import 'package:e_commerce/cubit/favouritecartcubit/favouritecartcubit.dart';
-import 'package:e_commerce/cubit/favouritecartcubit/favouritecartstates.dart';
 import 'package:e_commerce/models/bestsellingmodel.dart';
 import 'package:e_commerce/network/endpoints.dart';
 import 'package:e_commerce/pages/subProductPage/sub_products.dart';
 import 'package:e_commerce/utilites/appcolors.dart';
 import 'package:e_commerce/utilites/extentionhelper.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:iconly/iconly.dart';
+
 import 'package:google_fonts/google_fonts.dart';
 
 class BestSellingItem extends StatelessWidget {

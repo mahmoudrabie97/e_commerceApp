@@ -1,6 +1,5 @@
 import 'package:e_commerce/models/mostviewed.dart';
 import 'package:e_commerce/network/endpoints.dart';
-import 'package:e_commerce/pages/detailspage/detailspage.dart';
 import 'package:e_commerce/pages/homepage/widgets/detailspmostview.dart';
 import 'package:e_commerce/utilites/appcolors.dart';
 import 'package:e_commerce/utilites/extentionhelper.dart';

@@ -1,8 +1,6 @@
-import 'package:e_commerce/cubit/homecubit/homestates.dart';
 import 'package:e_commerce/cubit/productcubit/productcubit.dart';
 import 'package:e_commerce/cubit/productcubit/productsates.dart';
 import 'package:e_commerce/pages/categorypage/widgets/productcategoryitem.dart';
-import 'package:e_commerce/utilites/dummydata.dart';
 import 'package:e_commerce/utilites/widgets/customtext.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

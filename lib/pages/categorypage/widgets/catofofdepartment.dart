@@ -29,18 +29,6 @@ class _CategoriesOfDepartmentsState extends State<CategoriesOfDepartments> {
     );
   }
 
-  @override
-  void didUpdateWidget(covariant CategoriesOfDepartments oldWidget) {
-    if (widget.departmentid != oldWidget.departmentid) {
-      HomeCubit.get(context).getCategoriesOfDepartment(
-        context: context,
-        departmentId: widget.departmentid,
-        fromloadingmore: false,
-      );
-    }
-    super.didUpdateWidget(oldWidget);
-  }
-
   final TextEditingController _searchController = TextEditingController();
 
   @override
@@ -48,8 +36,8 @@ class _CategoriesOfDepartmentsState extends State<CategoriesOfDepartments> {
     print('zzzzzzzzzzzzz${widget.departmentid}');
     double screenWidth = MediaQuery.of(context).size.width;
     double screenheight = MediaQuery.of(context).size.height;
-    double itemWidth = screenWidth * 0.4;
-    double itemHeight = itemWidth / 0.8;
+    // double itemWidth = screenWidth * 0.4;
+    //double itemHeight = itemWidth / 0.8;
 
     return Scaffold(
       backgroundColor: Colors.grey.shade100,

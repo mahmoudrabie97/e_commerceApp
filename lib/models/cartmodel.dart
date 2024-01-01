@@ -46,18 +46,18 @@ class ProductDetail {
   String? productNameInEnglish;
   String? productNameInArabic;
   int? productId;
-  Null? product;
-  Null? sKU;
-  Null? oldPrice;
+  dynamic product;
+  dynamic sKU;
+  dynamic oldPrice;
   num? price;
   num? repPercentage;
-  Null? barcode;
-  Null? barcodeImage;
+  dynamic barcode;
+  dynamic barcodeImage;
   int? quantity;
-  Null? addedById;
-  Null? addedDate;
-  Null? updatedById;
-  Null? updatedDate;
+  dynamic addedById;
+  dynamic addedDate;
+  dynamic updatedById;
+  dynamic updatedDate;
   bool? isDeleted;
   List<ProductDetailImage>? productDetailImage;
 
@@ -103,7 +103,7 @@ class ProductDetail {
     if (json['ProductDetailImage'] != null) {
       productDetailImage = <ProductDetailImage>[];
       json['ProductDetailImage'].forEach((v) {
-        productDetailImage!.add(new ProductDetailImage.fromJson(v));
+        productDetailImage!.add(ProductDetailImage.fromJson(v));
       });
     }
   }
@@ -139,18 +139,18 @@ class ProductDetail {
     String? productNameInEnglish,
     String? productNameInArabic,
     int? productId,
-    Null? product,
-    Null? sKU,
-    Null? oldPrice,
+    dynamic product,
+    dynamic sKU,
+    dynamic oldPrice,
     num? price,
     num? repPercentage,
-    Null? barcode,
-    Null? barcodeImage,
+    dynamic barcode,
+    dynamic barcodeImage,
     int? quantity,
-    Null? addedById,
-    Null? addedDate,
-    Null? updatedById,
-    Null? updatedDate,
+    dynamic addedById,
+    dynamic addedDate,
+    dynamic updatedById,
+    dynamic updatedDate,
     bool? isDeleted,
     List<ProductDetailImage>? productDetailImage,
   }) {
@@ -181,7 +181,7 @@ class ProductDetailImage {
   int? id;
   String? image;
   int? productDetailId;
-  Null? productDetail;
+  dynamic productDetail;
 
   ProductDetailImage({
     this.id,
@@ -210,7 +210,7 @@ class ProductDetailImage {
     int? id,
     String? image,
     int? productDetailId,
-    Null? productDetail,
+    dynamic productDetail,
   }) {
     return ProductDetailImage(
       id: id ?? this.id,

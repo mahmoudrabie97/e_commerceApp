@@ -50,7 +50,7 @@ class SimilarPModel {
     if (json['ProductDetailImages'] != null) {
       productDetailImages = <ProductDetailImages>[];
       json['ProductDetailImages'].forEach((v) {
-        productDetailImages!.add(new ProductDetailImages.fromJson(v));
+        productDetailImages!.add(ProductDetailImages.fromJson(v));
       });
     }
     detailBanner = json['DetailBanner'];
@@ -59,26 +59,26 @@ class SimilarPModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['Id'] = this.id;
-    data['ProductId'] = this.productId;
-    data['Product'] = this.product;
-    data['ProductName'] = this.productName;
-    data['OldPrice'] = this.oldPrice;
-    data['Price'] = this.price;
-    data['RepPercentage'] = this.repPercentage;
-    data['Quantity'] = this.quantity;
-    data['CompanyName'] = this.companyName;
-    data['CategoryId'] = this.categoryId;
-    data['CategoryName'] = this.categoryName;
-    data['Description'] = this.description;
-    if (this.productDetailImages != null) {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['Id'] = id;
+    data['ProductId'] = productId;
+    data['Product'] = product;
+    data['ProductName'] = productName;
+    data['OldPrice'] = oldPrice;
+    data['Price'] = price;
+    data['RepPercentage'] = repPercentage;
+    data['Quantity'] = quantity;
+    data['CompanyName'] = companyName;
+    data['CategoryId'] = categoryId;
+    data['CategoryName'] = categoryName;
+    data['Description'] = description;
+    if (productDetailImages != null) {
       data['ProductDetailImages'] =
-          this.productDetailImages!.map((v) => v.toJson()).toList();
+          productDetailImages!.map((v) => v.toJson()).toList();
     }
-    data['DetailBanner'] = this.detailBanner;
-    data['MainImage'] = this.mainImage;
-    data['Rate'] = this.rate;
+    data['DetailBanner'] = detailBanner;
+    data['MainImage'] = mainImage;
+    data['Rate'] = rate;
     return data;
   }
 }
@@ -87,7 +87,7 @@ class ProductDetailImages {
   int? id;
   String? image;
   int? productDetailId;
-  Null? productDetail;
+  dynamic productDetail;
 
   ProductDetailImages(
       {this.id, this.image, this.productDetailId, this.productDetail});
@@ -100,11 +100,11 @@ class ProductDetailImages {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['Id'] = this.id;
-    data['Image'] = this.image;
-    data['ProductDetailId'] = this.productDetailId;
-    data['ProductDetail'] = this.productDetail;
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['Id'] = id;
+    data['Image'] = image;
+    data['ProductDetailId'] = productDetailId;
+    data['ProductDetail'] = productDetail;
     return data;
   }
 }

@@ -72,6 +72,7 @@ class HomeCubit extends Cubit<HomeStates> {
       emit(GetCategoriesOfDepartmentsLoadingPaginationState());
     } else {
       emit(GetCategoriesOfDepartmentsLoadingState());
+      //// عشان لو هو في مرحله اللودنج العاديه يبدا يصفر  الدنيا خالص ويبدا من الاول عشان يكمل شغله ////
       categoriesofdepartmentsList = [];
       pageindex = 1;
     }
