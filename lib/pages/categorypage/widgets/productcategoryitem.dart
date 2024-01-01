@@ -2,7 +2,6 @@ import 'package:e_commerce/models/productsofcat.dart';
 import 'package:e_commerce/network/endpoints.dart';
 import 'package:e_commerce/pages/subProductPage/sub_products.dart';
 import 'package:e_commerce/utilites/appcolors.dart';
-import 'package:e_commerce/utilites/dummydata.dart';
 import 'package:e_commerce/utilites/extentionhelper.dart';
 import 'package:flutter/material.dart';
 
@@ -42,14 +41,8 @@ class ProductCategoryitem extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: Column(
                     children: [
-                      Row(
-                        children: [
-                          const Spacer(),
-                          IconButton(
-                            onPressed: () {},
-                            icon: Image.asset('assets/images/heart.png'),
-                          )
-                        ],
+                      const Row(
+                        children: [],
                       ),
                       Expanded(
                         child: Image(
@@ -81,8 +74,9 @@ class ProductCategoryitem extends StatelessWidget {
                               //));
 
                               context.push(SubProductPage(
-                                productid: dummyproduct[0].productid,
-                                productname: '',
+                                productid: productsofCatModel.id ?? 4,
+                                productname:
+                                    productsofCatModel.nameInEnglish ?? "",
                               ));
                             },
                             child: Container(

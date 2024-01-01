@@ -1,6 +1,5 @@
 import 'package:e_commerce/pages/bestsellingpage/bestselling.dart';
 import 'package:e_commerce/utilites/extentionhelper.dart';
-import 'package:e_commerce/utilites/widgets/customtext.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 

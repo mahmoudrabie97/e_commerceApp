@@ -1,4 +1,3 @@
-import 'package:e_commerce/models/product_detailspid.dart';
 import 'package:e_commerce/models/similarproduct.dart';
 import 'package:e_commerce/network/endpoints.dart';
 import 'package:e_commerce/pages/detailspage/detailspage.dart';

@@ -1,10 +1,8 @@
 import 'package:e_commerce/cubit/favouritecartcubit/favouritecartcubit.dart';
 import 'package:e_commerce/cubit/favouritecartcubit/favouritecartstates.dart';
-import 'package:e_commerce/pages/detailspage/widgets/customcircle.dart';
 import 'package:e_commerce/utilites/widgets/customtext.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:iconly/iconly.dart';
 import 'package:like_button/like_button.dart';
 
 class DetailsPriceRow extends StatelessWidget {

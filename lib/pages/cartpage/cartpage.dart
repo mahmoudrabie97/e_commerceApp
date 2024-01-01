@@ -3,7 +3,6 @@ import 'package:e_commerce/cubit/favouritecartcubit/favouritecartstates.dart';
 import 'package:e_commerce/models/cartmodel.dart';
 import 'package:e_commerce/pages/cartpage/orderdetailspage.dart';
 import 'package:e_commerce/pages/cartpage/widgets/cartitem.dart';
-import 'package:e_commerce/utilites/constants.dart';
 import 'package:e_commerce/utilites/custommethods.dart';
 import 'package:e_commerce/utilites/extentionhelper.dart';
 import 'package:e_commerce/utilites/widgets/custombutton.dart';
@@ -90,10 +89,10 @@ class CartPage extends StatelessWidget {
                                 ),
                               ),
                               const SizedBox(
-                                height: 15,
+                                height: 5,
                               ),
                               SizedBox(
-                                height: 45,
+                                height: 40,
                                 child: Padding(
                                   padding: const EdgeInsets.only(
                                       left: 50.0, right: 50.0),

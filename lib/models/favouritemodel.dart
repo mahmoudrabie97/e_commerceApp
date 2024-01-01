@@ -27,16 +27,16 @@ class FavouriteModel {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['Id'] = this.id;
-    data['ProductDetailId'] = this.productDetailId;
-    if (this.productDetail != null) {
-      data['ProductDetail'] = this.productDetail!.toJson();
+    data['Id'] = id;
+    data['ProductDetailId'] = productDetailId;
+    if (productDetail != null) {
+      data['ProductDetail'] = productDetail!.toJson();
     }
-    data['UserId'] = this.userId;
-    if (this.user != null) {
-      data['User'] = this.user!.toJson();
+    data['UserId'] = userId;
+    if (user != null) {
+      data['User'] = user!.toJson();
     }
-    data['Date'] = this.date;
+    data['Date'] = date;
     return data;
   }
 }
@@ -46,20 +46,20 @@ class ProductDetail {
   String? productNameInEnglish;
   String? productNameInArabic;
   int? productId;
-  Null? product;
+  dynamic product;
   String? descriptionInArabic;
   String? descriptionInEnglish;
-  Null? sKU;
-  Null? oldPrice;
+  dynamic sKU;
+  dynamic oldPrice;
   num? price;
   num? repPercentage;
-  Null? barcode;
-  Null? barcodeImage;
+  dynamic barcode;
+  dynamic barcodeImage;
   num? quantity;
-  Null? addedById;
-  Null? addedDate;
-  Null? updatedById;
-  Null? updatedDate;
+  dynamic addedById;
+  dynamic addedDate;
+  dynamic updatedById;
+  dynamic updatedDate;
   bool? isDeleted;
   List<ProductDetailImage>? productDetailImage;
 
@@ -115,28 +115,28 @@ class ProductDetail {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['Id'] = this.id;
-    data['ProductNameInEnglish'] = this.productNameInEnglish;
-    data['ProductNameInArabic'] = this.productNameInArabic;
-    data['ProductId'] = this.productId;
-    data['Product'] = this.product;
-    data['DescriptionInArabic'] = this.descriptionInArabic;
-    data['DescriptionInEnglish'] = this.descriptionInEnglish;
-    data['SKU'] = this.sKU;
-    data['OldPrice'] = this.oldPrice;
-    data['Price'] = this.price;
-    data['RepPercentage'] = this.repPercentage;
-    data['Barcode'] = this.barcode;
-    data['BarcodeImage'] = this.barcodeImage;
-    data['Quantity'] = this.quantity;
-    data['AddedById'] = this.addedById;
-    data['AddedDate'] = this.addedDate;
-    data['UpdatedById'] = this.updatedById;
-    data['UpdatedDate'] = this.updatedDate;
-    data['IsDeleted'] = this.isDeleted;
-    if (this.productDetailImage != null) {
+    data['Id'] = id;
+    data['ProductNameInEnglish'] = productNameInEnglish;
+    data['ProductNameInArabic'] = productNameInArabic;
+    data['ProductId'] = productId;
+    data['Product'] = product;
+    data['DescriptionInArabic'] = descriptionInArabic;
+    data['DescriptionInEnglish'] = descriptionInEnglish;
+    data['SKU'] = sKU;
+    data['OldPrice'] = oldPrice;
+    data['Price'] = price;
+    data['RepPercentage'] = repPercentage;
+    data['Barcode'] = barcode;
+    data['BarcodeImage'] = barcodeImage;
+    data['Quantity'] = quantity;
+    data['AddedById'] = addedById;
+    data['AddedDate'] = addedDate;
+    data['UpdatedById'] = updatedById;
+    data['UpdatedDate'] = updatedDate;
+    data['IsDeleted'] = isDeleted;
+    if (productDetailImage != null) {
       data['ProductDetailImage'] =
-          this.productDetailImage!.map((v) => v.toJson()).toList();
+          productDetailImage!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -146,7 +146,7 @@ class ProductDetailImage {
   int? id;
   String? image;
   int? productDetailId;
-  Null? productDetail;
+  dynamic productDetail;
 
   ProductDetailImage(
       {this.id, this.image, this.productDetailId, this.productDetail});
@@ -159,11 +159,11 @@ class ProductDetailImage {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['Id'] = this.id;
-    data['Image'] = this.image;
-    data['ProductDetailId'] = this.productDetailId;
-    data['ProductDetail'] = this.productDetail;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['Id'] = id;
+    data['Image'] = image;
+    data['ProductDetailId'] = productDetailId;
+    data['ProductDetail'] = productDetail;
     return data;
   }
 }
@@ -171,23 +171,23 @@ class ProductDetailImage {
 class User {
   String? id;
   String? name;
-  Null? phone;
-  Null? companyId;
-  Null? company;
-  Null? jobTitleId;
-  Null? jobTitle;
-  Null? groupId;
-  Null? group;
+  dynamic phone;
+  dynamic companyId;
+  dynamic company;
+  dynamic jobTitleId;
+  dynamic jobTitle;
+  dynamic groupId;
+  dynamic group;
   bool? isActive;
-  Null? addedDate;
-  Null? updatedDate;
+  dynamic addedDate;
+  dynamic updatedDate;
   String? email;
-  Null? address;
-  Null? roles;
-  Null? userRoles;
-  Null? rolesIds;
-  Null? phoneNumber;
-  Null? password;
+  dynamic address;
+  dynamic roles;
+  dynamic userRoles;
+  dynamic rolesIds;
+  dynamic phoneNumber;
+  dynamic password;
 
   User(
       {this.id,
@@ -234,25 +234,25 @@ class User {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['Id'] = this.id;
-    data['Name'] = this.name;
-    data['Phone'] = this.phone;
-    data['CompanyId'] = this.companyId;
-    data['Company'] = this.company;
-    data['JobTitleId'] = this.jobTitleId;
-    data['JobTitle'] = this.jobTitle;
-    data['GroupId'] = this.groupId;
-    data['Group'] = this.group;
-    data['IsActive'] = this.isActive;
-    data['AddedDate'] = this.addedDate;
-    data['UpdatedDate'] = this.updatedDate;
-    data['Email'] = this.email;
-    data['Address'] = this.address;
-    data['Roles'] = this.roles;
-    data['userRoles'] = this.userRoles;
-    data['RolesIds'] = this.rolesIds;
-    data['PhoneNumber'] = this.phoneNumber;
-    data['Password'] = this.password;
+    data['Id'] = id;
+    data['Name'] = name;
+    data['Phone'] = phone;
+    data['CompanyId'] = companyId;
+    data['Company'] = company;
+    data['JobTitleId'] = jobTitleId;
+    data['JobTitle'] = jobTitle;
+    data['GroupId'] = groupId;
+    data['Group'] = group;
+    data['IsActive'] = isActive;
+    data['AddedDate'] = addedDate;
+    data['UpdatedDate'] = updatedDate;
+    data['Email'] = email;
+    data['Address'] = address;
+    data['Roles'] = roles;
+    data['userRoles'] = userRoles;
+    data['RolesIds'] = rolesIds;
+    data['PhoneNumber'] = phoneNumber;
+    data['Password'] = password;
     return data;
   }
 }

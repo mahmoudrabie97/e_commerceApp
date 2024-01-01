@@ -1,9 +1,7 @@
 import 'package:e_commerce/cubit/favouritecartcubit/favouritecartcubit.dart';
-import 'package:e_commerce/models/cartmodel.dart';
 import 'package:e_commerce/pages/cartpage/confirmorderpage.dart';
 import 'package:e_commerce/pages/cartpage/widgets/orderdetailsitem.dart';
 import 'package:e_commerce/utilites/custommethods.dart';
-import 'package:e_commerce/utilites/dummydata.dart';
 import 'package:e_commerce/utilites/extentionhelper.dart';
 import 'package:e_commerce/utilites/widgets/custombutton.dart';
 import 'package:e_commerce/utilites/widgets/customtext.dart';

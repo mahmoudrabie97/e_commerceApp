@@ -1,4 +1,3 @@
-import 'package:e_commerce/pages/categorypage/productofcategory.dart';
 import 'package:e_commerce/pages/categorypage/widgets/catofofdepartment.dart';
 import 'package:e_commerce/utilites/extentionhelper.dart';
 import 'package:flutter/material.dart';

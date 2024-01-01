@@ -1,5 +1,3 @@
-import 'package:e_commerce/cubit/homecubit/homecubit.dart';
-import 'package:e_commerce/cubit/homecubit/homestates.dart';
 import 'package:e_commerce/models/categoriesofdepmodel.dart';
 import 'package:e_commerce/pages/subProductPage/sub_products.dart';
 import 'package:e_commerce/utilites/appcolors.dart';

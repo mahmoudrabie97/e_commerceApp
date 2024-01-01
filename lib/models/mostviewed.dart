@@ -3,7 +3,7 @@ class MostViewed {
   int? productDetailId;
   ProductDetail? productDetail;
   int? displayCounter;
-  Null? userId;
+  dynamic userId;
 
   MostViewed(
       {this.id,
@@ -16,21 +16,21 @@ class MostViewed {
     id = json['Id'];
     productDetailId = json['ProductDetailId'];
     productDetail = json['ProductDetail'] != null
-        ? new ProductDetail.fromJson(json['ProductDetail'])
+        ? ProductDetail.fromJson(json['ProductDetail'])
         : null;
     displayCounter = json['DisplayCounter'];
     userId = json['UserId'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['Id'] = this.id;
-    data['ProductDetailId'] = this.productDetailId;
-    if (this.productDetail != null) {
-      data['ProductDetail'] = this.productDetail!.toJson();
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['Id'] = id;
+    data['ProductDetailId'] = productDetailId;
+    if (productDetail != null) {
+      data['ProductDetail'] = productDetail!.toJson();
     }
-    data['DisplayCounter'] = this.displayCounter;
-    data['UserId'] = this.userId;
+    data['DisplayCounter'] = displayCounter;
+    data['UserId'] = userId;
     return data;
   }
 }
@@ -40,20 +40,20 @@ class ProductDetail {
   String? productNameInEnglish;
   String? productNameInArabic;
   int? productId;
-  Null? product;
-  Null? descriptionInArabic;
-  Null? descriptionInEnglish;
-  Null? sKU;
-  Null? oldPrice;
+  dynamic product;
+  dynamic descriptionInArabic;
+  dynamic descriptionInEnglish;
+  dynamic sKU;
+  dynamic oldPrice;
   num? price;
   num? repPercentage;
-  Null? barcode;
-  Null? barcodeImage;
+  dynamic barcode;
+  dynamic barcodeImage;
   int? quantity;
-  Null? addedById;
-  Null? addedDate;
-  Null? updatedById;
-  Null? updatedDate;
+  dynamic addedById;
+  dynamic addedDate;
+  dynamic updatedById;
+  dynamic updatedDate;
   bool? isDeleted;
   List<ProductDetailImage>? productDetailImage;
 
@@ -102,35 +102,35 @@ class ProductDetail {
     if (json['ProductDetailImage'] != null) {
       productDetailImage = <ProductDetailImage>[];
       json['ProductDetailImage'].forEach((v) {
-        productDetailImage!.add(new ProductDetailImage.fromJson(v));
+        productDetailImage!.add(ProductDetailImage.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['Id'] = this.id;
-    data['ProductNameInEnglish'] = this.productNameInEnglish;
-    data['ProductNameInArabic'] = this.productNameInArabic;
-    data['ProductId'] = this.productId;
-    data['Product'] = this.product;
-    data['DescriptionInArabic'] = this.descriptionInArabic;
-    data['DescriptionInEnglish'] = this.descriptionInEnglish;
-    data['SKU'] = this.sKU;
-    data['OldPrice'] = this.oldPrice;
-    data['Price'] = this.price;
-    data['RepPercentage'] = this.repPercentage;
-    data['Barcode'] = this.barcode;
-    data['BarcodeImage'] = this.barcodeImage;
-    data['Quantity'] = this.quantity;
-    data['AddedById'] = this.addedById;
-    data['AddedDate'] = this.addedDate;
-    data['UpdatedById'] = this.updatedById;
-    data['UpdatedDate'] = this.updatedDate;
-    data['IsDeleted'] = this.isDeleted;
-    if (this.productDetailImage != null) {
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['Id'] = id;
+    data['ProductNameInEnglish'] = productNameInEnglish;
+    data['ProductNameInArabic'] = productNameInArabic;
+    data['ProductId'] = productId;
+    data['Product'] = product;
+    data['DescriptionInArabic'] = descriptionInArabic;
+    data['DescriptionInEnglish'] = descriptionInEnglish;
+    data['SKU'] = sKU;
+    data['OldPrice'] = oldPrice;
+    data['Price'] = price;
+    data['RepPercentage'] = repPercentage;
+    data['Barcode'] = barcode;
+    data['BarcodeImage'] = barcodeImage;
+    data['Quantity'] = quantity;
+    data['AddedById'] = addedById;
+    data['AddedDate'] = addedDate;
+    data['UpdatedById'] = updatedById;
+    data['UpdatedDate'] = updatedDate;
+    data['IsDeleted'] = isDeleted;
+    if (productDetailImage != null) {
       data['ProductDetailImage'] =
-          this.productDetailImage!.map((v) => v.toJson()).toList();
+          productDetailImage!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -140,7 +140,7 @@ class ProductDetailImage {
   int? id;
   String? image;
   int? productDetailId;
-  Null? productDetail;
+  dynamic productDetail;
 
   ProductDetailImage(
       {this.id, this.image, this.productDetailId, this.productDetail});
@@ -153,11 +153,11 @@ class ProductDetailImage {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['Id'] = this.id;
-    data['Image'] = this.image;
-    data['ProductDetailId'] = this.productDetailId;
-    data['ProductDetail'] = this.productDetail;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['Id'] = id;
+    data['Image'] = image;
+    data['ProductDetailId'] = productDetailId;
+    data['ProductDetail'] = productDetail;
     return data;
   }
 }

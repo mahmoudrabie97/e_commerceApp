@@ -30,8 +30,7 @@ class HomeCubit extends Cubit<HomeStates> {
   int pageindex =
       1; // ده كانه كل مره انت عايز اول مثلا 2 بعدها تاني اتنين وهكدا يعن علي حسب البيج سايز ده اول عدد من البيج سايز وهكدا
   int pageSize = 3; // هنثبت دي بالعدد اللي احنا عايزينه في كل ريكوست
-  ScrollController?
-      scrollController; // ده اللي هنعمل بيه listen عشان نعرف ان الليست انتهت
+// ده اللي هنعمل بيه listen عشان نعرف ان الليست انتهت
   bool isloadingmore = false;
   ////////////get departments////////////
   void getDeprtments({
@@ -68,44 +67,114 @@ class HomeCubit extends Cubit<HomeStates> {
     required BuildContext context,
     required int departmentId,
     bool fromloadingmore = false,
-  }) {
+  }) async {
     if (fromloadingmore) {
-      GetCategoriesOfDepartmentsLoadingPaginationState();
+      emit(GetCategoriesOfDepartmentsLoadingPaginationState());
     } else {
-      emit((GetCategoriesOfDepartmentsLoadingState()));
+      emit(GetCategoriesOfDepartmentsLoadingState());
+      //// عشان لو هو في مرحله اللودنج العاديه يبدا يصفر  الدنيا خالص ويبدا من الاول عشان يكمل شغله ////
+      categoriesofdepartmentsList = [];
+      pageindex = 1;
     }
-
+    List<CategoriesOfDepModel> newCategories = [];
     CallApi.getData(
-        baseUrl: basehomeurl,
-        // '$getHomeSimilarProductsUrl?productDetailsId=$productDetailId&productId=$productId',
-        apiUrl: '$getCategoriesOfDepartmentsUrl?departmentId=$departmentId&pageIndex=$pageindex&pageSize=$pageSize',
-        context: context,
-        headers: {'Content-Type': 'application/x-www-form-urlencoded'}).then(
+      baseUrl: basehomeurl,
+      apiUrl:
+          '$getCategoriesOfDepartmentsUrl?departmentId=$departmentId&pageIndex=$pageindex&pageSize=$pageSize',
+      context: context,
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+    ).then(
       (value) {
-        categoriesofdepartmentsList = [];
-        //print(value!.body);
+        //categoriesofdepartmentsList = [];
+
         final responseBody = json.decode(value!.body);
+
         if (responseBody.isNotEmpty) {
+          for (var item in responseBody) {
+            newCategories.add(CategoriesOfDepModel.fromJson(item));
+          }
+
+          if (fromloadingmore) {
+            categoriesofdepartmentsList.addAll(newCategories);
+          } else {
+            categoriesofdepartmentsList = newCategories;
+          }
+
           pageindex++;
+          emit(GetCategoriesOfDepartmentsSuccsessState());
+        } else {
+          if (fromloadingmore) {
+            emit(GetCategoriesOfDepartmentsPaginationFailedState(
+                'No more data available'));
+          } else {
+            emit(GetCategoriesOfDepartmentsErrorState());
+          }
         }
-
-        for (var item in responseBody) {
-          categoriesofdepartmentsList.add(CategoriesOfDepModel.fromJson(item));
-        }
-        print('Paginatioooon ${categoriesofdepartmentsList[1].id}');
-        //print(' ${specificCategorylist[2].id}');
-        // print('DDDDDDDDDDDDDDDDDDDDDDDD${departmentsList[0]}');
-        // print('ooooooooooooooooooooooooooo ${departmentsList[0].image}');
-
-        emit(GetCategoriesOfDepartmentsSuccsessState());
       },
     ).catchError(
-      ((error) {
-        print('perror${error.toString()}');
-        emit(GetCategoriesOfDepartmentsErrorState());
-      }),
+      (error) {
+        if (fromloadingmore) {
+          emit(GetCategoriesOfDepartmentsPaginationFailedState(
+              error.toString()));
+          emit(InitialHomeState());
+        } else {
+          emit(GetCategoriesOfDepartmentsErrorState());
+        }
+      },
     );
   }
+  // void getCategoriesOfDepartment({
+  //   required BuildContext context,
+  //   required int departmentId,
+  //   bool fromloadingmore = false,
+  // }) async {
+  //   if (fromloadingmore) {
+  //     GetCategoriesOfDepartmentsLoadingPaginationState();
+  //   } else {
+  //     emit((GetCategoriesOfDepartmentsLoadingState()));
+  //   }
+
+  //   CallApi.getData(
+  //       baseUrl: basehomeurl,
+  //       // '$getHomeSimilarProductsUrl?productDetailsId=$productDetailId&productId=$productId',
+  //       apiUrl: '$getCategoriesOfDepartmentsUrl?departmentId=$departmentId&pageIndex=$pageindex&pageSize=$pageSize',
+  //       context: context,
+  //       headers: {'Content-Type': 'application/x-www-form-urlencoded'}).then(
+  //     (value) {
+  //       categoriesofdepartmentsList = [];
+  //       //print(value!.body);
+  //       final responseBody = json.decode(value!.body);
+
+  //       if (responseBody.isNotEmpty) {
+  //         pageindex++;
+
+  //         for (var item in responseBody) {
+  //           categoriesofdepartmentsList
+  //               .add(CategoriesOfDepModel.fromJson(item));
+  //         }
+  //       }
+  //         pageindex++;
+
+  //       //print('Paginatioooon ${categoriesofdepartmentsList[1].id}');
+  //       //print(' ${specificCategorylist[2].id}');
+  //       // print('DDDDDDDDDDDDDDDDDDDDDDDD${departmentsList[0]}');
+  //       // print('ooooooooooooooooooooooooooo ${departmentsList[0].image}');
+
+  //       emit(GetCategoriesOfDepartmentsSuccsessState());
+  //     },
+  //   ).catchError(
+  //     ((error) async {
+  //       if (fromloadingmore) {
+  //         emit(GetCategoriesOfDepartmentsPaginationFailedState(
+  //             error.toString()));
+  //         await Future.delayed(Duration(seconds: 1));
+  //         emit(InitialHomeState());
+  //       }
+  //       print('perror${error.toString()}');
+  //       emit(GetCategoriesOfDepartmentsErrorState());
+  //     }),
+  //   );
+  // }
 
 //////////////////////////////////
   void getspecificCategoryHome({

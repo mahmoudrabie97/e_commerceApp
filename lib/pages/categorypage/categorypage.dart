@@ -1,6 +1,5 @@
 import 'package:e_commerce/cubit/homecubit/homecubit.dart';
 import 'package:e_commerce/cubit/homecubit/homestates.dart';
-import 'package:e_commerce/network/endpoints.dart';
 import 'package:e_commerce/pages/categorypage/widgets/categoryitems.dart';
 import 'package:e_commerce/pages/categorypage/widgets/departmentitem.dart';
 import 'package:e_commerce/utilites/custommethods.dart';

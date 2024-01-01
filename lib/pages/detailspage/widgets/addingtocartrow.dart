@@ -1,11 +1,8 @@
 import 'package:e_commerce/cubit/favouritecartcubit/favouritecartcubit.dart';
 import 'package:e_commerce/cubit/favouritecartcubit/favouritecartstates.dart';
-import 'package:e_commerce/models/cartmodel.dart';
-import 'package:e_commerce/models/product_detailspid.dart';
-import 'package:e_commerce/pages/detailspage/widgets/customquntitycontainer.dart';
+
 import 'package:e_commerce/utilites/appcolors.dart';
 import 'package:e_commerce/utilites/widgets/custombutton.dart';
-import 'package:e_commerce/utilites/widgets/customtext.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

@@ -1,7 +1,6 @@
 import 'package:e_commerce/cubit/homecubit/homecubit.dart';
 import 'package:e_commerce/pages/bestsellingpage/widget/bestsellingitem.dart';
 
-import 'package:e_commerce/utilites/dummydata.dart';
 import 'package:e_commerce/utilites/widgets/customtext.dart';
 import 'package:flutter/material.dart';
 import '../productconfiguration/widget/customsearchinrow.dart';

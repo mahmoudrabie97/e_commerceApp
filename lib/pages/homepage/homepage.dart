@@ -19,7 +19,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../homepage/widgets/mostvieweditem.dart';
 
 class HomePge extends StatefulWidget {
-  HomePge({Key? key}) : super(key: key);
+  const HomePge({Key? key}) : super(key: key);
 
   @override
   State<HomePge> createState() => _HomePgeState();
@@ -117,7 +117,8 @@ class _HomePgeState extends State<HomePge> {
                                       } else {
                                         return GestureDetector(
                                             onTap: () {
-                                              context.push(Categorypage());
+                                              context
+                                                  .push(const Categorypage());
                                             },
                                             child: const StaticCategoryItem());
                                       }
