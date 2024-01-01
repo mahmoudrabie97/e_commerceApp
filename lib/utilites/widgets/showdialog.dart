@@ -26,4 +26,29 @@ class ShowMyDialog {
       },
     );
   }
+  static void widgetshowMsg(BuildContext context, Widget msg) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text(""),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                msg,
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Ok'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 }

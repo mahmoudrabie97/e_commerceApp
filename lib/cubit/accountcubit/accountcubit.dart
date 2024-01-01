@@ -16,7 +16,7 @@ class AccountCubit extends Cubit<AccountStates> {
   AccountCubit() : super(AccountInitialState());
 
   static AccountCubit get(context) => BlocProvider.of(context);
-
+  String ? responseBody;
 
   void changePassword({required Map userdata, required BuildContext context}) {
     Map<String, String> headers = {
@@ -31,17 +31,19 @@ class AccountCubit extends Cubit<AccountStates> {
       headers: headers,
       context: context,
     ).then((value) async {
+      print('lamiaaaaaaaaaaa${value!.statusCode}');
+      print('ttttttttttttttttttttt${AppConstant.token}');
       if (value!.statusCode == 200) {
+
         debugPrint(value.body);
-      final  responseBody = json.decode(value.body);
+        responseBody = json.decode(value.body);
         debugPrint('responseBody$responseBody');
-        ShowMyDialog.showMsg(context, responseBody);
 
 
         emit(AccountSuccessState());
       }
     }).catchError((error) {
-      debugPrint('lamiiiiiiiiiiiiiiiiiiii: $error');
+      debugPrint(': $error');
       // ShowMyDialog.showMsg(context, 'An error occurred: $error');
       emit(AccountFailureState());
     });
