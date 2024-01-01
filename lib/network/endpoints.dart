@@ -34,5 +34,5 @@ const String updatecartUrl = 'Home/UpdateCartItems';
 const String addMostViewedUrl = 'Home/AddMostViewed/';
 const String getMostProductUserViewUrl = 'Home/GetMostProductUserViewed';
 
-const String changepasswordurl = 'api/Account/ChangePassword';
+const String changepasswordurl = '/api/Account/ChangePassword';
 const String accountdetailsurl = 'api/Account/GetAccountDetails';

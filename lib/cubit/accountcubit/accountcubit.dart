@@ -16,7 +16,7 @@ class AccountCubit extends Cubit<AccountStates> {
   AccountCubit() : super(AccountInitialState());
 
   static AccountCubit get(context) => BlocProvider.of(context);
-  String ? responseBody;
+
 
   void changePassword({required Map userdata, required BuildContext context}) {
     Map<String, String> headers = {
@@ -33,8 +33,9 @@ class AccountCubit extends Cubit<AccountStates> {
     ).then((value) async {
       if (value!.statusCode == 200) {
         debugPrint(value.body);
-        responseBody = json.decode(value.body);
+      final  responseBody = json.decode(value.body);
         debugPrint('responseBody$responseBody');
+        ShowMyDialog.showMsg(context, responseBody);
 
 
         emit(AccountSuccessState());

@@ -18,6 +18,7 @@ class AccountDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AccountCubit.get(context).accountDetails( context: context);
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(onPressed: (){
@@ -29,11 +30,12 @@ class AccountDetailsPage extends StatelessWidget {
           text: 'Account Details',
         ),
       ),
+
       body:  BlocConsumer<AccountCubit,AccountStates>(
 
         listener: (context,index){},
         builder:(context,index){
-          AccountCubit.get(context).accountDetails( context: context);
+
           return AccountCubit.get(context).accountDetailsModel == null? Center(child: CircularProgressIndicator()):  Form(
             key: formkey,
             child: Padding(
@@ -91,14 +93,7 @@ class AccountDetailsPage extends StatelessWidget {
                         child: CustomButton(
                           borderRadius: 4,
                           buttonText: 'Save Changes',
-                          onPressed: () {
-                            if (formkey.currentState!.validate()) {
-
-
-
-                              AccountCubit.get(context).accountDetails( context: context);
-                            }
-                          },
+                          onPressed: () {}
                         ),
                       ),
                     ),
