@@ -36,7 +36,7 @@ class AccountDetailsPage extends StatelessWidget {
         listener: (context,index){},
         builder:(context,index){
 
-          return AccountCubit.get(context).accountDetailsModel == null? Center(child: CircularProgressIndicator()):  Form(
+          return State is AccountLoadingState? Center(child: CircularProgressIndicator()):  Form(
             key: formkey,
             child: Padding(
               padding: const EdgeInsets.all(15.0),
