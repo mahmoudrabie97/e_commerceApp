@@ -98,7 +98,7 @@ class ChangePasswordPage extends StatelessWidget {
                             AccountCubit.get(context).changePassword(
                                 userdata: data, context: context);
                           }
-                          ShowMyDialog.showMsg(context, '${AccountCubit.get(context).responseBody}');
+                        //  (context, '${AccountCubit.get(context).responseBody}');
 
 
                         },
