@@ -20,75 +20,77 @@ class AddressPage extends StatelessWidget {
           text: 'Address',
         ),
       ),
-      body:  Padding(
-        padding:  EdgeInsets.all(15.0),
-        child:  Column(
-         crossAxisAlignment: CrossAxisAlignment.start,
+      body:  SingleChildScrollView(
+        child: Padding(
+          padding:  EdgeInsets.all(15.0),
+          child:  Column(
+           crossAxisAlignment: CrossAxisAlignment.start,
 
-          children: [
-            CustomText(
-              text: 'Home Address',
-              color: Color(0xff5E9E23),
-              fontWeight: FontWeight.w700,
-            ),
-            SizedBox(
-              height: 15,
-            ),
+            children: [
+              CustomText(
+                text: 'Home Address',
+                color: Color(0xff5E9E23),
+                fontWeight: FontWeight.w700,
+              ),
+              SizedBox(
+                height: 15,
+              ),
 
-            CustomTextFormField(
-              validator: (e){
-                if(e!.isEmpty)
-                  {
-                    return " enter vaild";
-                  }
-              },
-
-
-              hintText: 'Gregory Cartwright936 Kiehn Route',
-
-              perfixicon: Icons.hourglass_empty_sharp,hinnntcolr: Color(0xff5E9E23),),
-            SizedBox(
-              height: 40,
-            ),
-            CustomText(
-              text: 'Work Address',
-              color: Color(0xff5E9E23),
-              fontWeight: FontWeight.w700,
-            ),
-            SizedBox(
-              height: 15,
-            ),
-            CustomTextFormField(
+              CustomTextFormField(
                 validator: (e){
                   if(e!.isEmpty)
-                  {
-                    return " enter vaild";
-                  }
+                    {
+                      return " enter vaild";
+                    }
                 },
-                hintText: 'Gregory Cartwright936 Kiehn Route',
-                perfixicon: Icons.shopping_bag_outlined),
-            SizedBox(
-              height: 40,
-            ),
-            CustomText(
-              text: 'Company Address',
-              color: Color(0xff5E9E23),
-              fontWeight: FontWeight.w700,
-            ),
-            SizedBox(
-              height: 15,
-            ),
-            CustomTextFormField(
-                validator: (e){
-                  if(e!.isEmpty)
-                  {
-                    return " enter vaild";
-                  }
-                },
-                hintText: 'Gregory Cartwright936 Kiehn Route',
-                perfixicon: Icons.home_work_rounded),
 
-          ],
+
+                hintText: 'Gregory Cartwright936 Kiehn Route',
+
+                perfixicon: Icons.hourglass_empty_sharp,hinnntcolr: Color(0xff5E9E23),),
+              SizedBox(
+                height: 40,
+              ),
+              CustomText(
+                text: 'Work Address',
+                color: Color(0xff5E9E23),
+                fontWeight: FontWeight.w700,
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              CustomTextFormField(
+                  validator: (e){
+                    if(e!.isEmpty)
+                    {
+                      return " enter vaild";
+                    }
+                  },
+                  hintText: 'Gregory Cartwright936 Kiehn Route',
+                  perfixicon: Icons.shopping_bag_outlined),
+              SizedBox(
+                height: 40,
+              ),
+              CustomText(
+                text: 'Company Address',
+                color: Color(0xff5E9E23),
+                fontWeight: FontWeight.w700,
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              CustomTextFormField(
+                  validator: (e){
+                    if(e!.isEmpty)
+                    {
+                      return " enter vaild";
+                    }
+                  },
+                  hintText: 'Gregory Cartwright936 Kiehn Route',
+                  perfixicon: Icons.home_work_rounded),
+
+            ],
+          ),
         ),
       ),
     );

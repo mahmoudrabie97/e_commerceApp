@@ -13,7 +13,20 @@ class CustomRowDetails extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
 
-       // Image.asset('assets/images/women.png'),
+        CircleAvatar(
+            minRadius: 40,
+            maxRadius: 40,
+            backgroundColor: Colors.cyan[100],
+            child: Container(
+                width: 80,
+                height: 80,
+                decoration: const BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: DecorationImage(
+                      image: NetworkImage(
+                          'https://www.befunky.com/images/prismic/5ddfea42-7377-4bef-9ac4-f3bd407d52ab_landing-photo-to-cartoon-img5.jpeg?auto=avif,webp&format=jpg&width=863'),
+                      fit: BoxFit.cover),
+                ))),
         const SizedBox(
           width: 15,
         ),

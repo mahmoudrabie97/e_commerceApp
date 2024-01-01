@@ -1,13 +1,20 @@
 
+import 'package:e_commerce/cubit/accountcubit/accountstates.dart';
 import 'package:e_commerce/pages/accountdetailspage/widgets/customrowdetails.dart';
 import 'package:e_commerce/utilites/widgets/customtext.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../cubit/accountcubit/accountcubit.dart';
 import '../../utilites/widgets/custombutton.dart';
 import '../../utilites/widgets/customtextformfield.dart';
 
 class AccountDetailsPage extends StatelessWidget {
-  const AccountDetailsPage({Key? key}) : super(key: key);
+   AccountDetailsPage({Key? key}) : super(key: key);
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController phoneNumberController = TextEditingController();
+  final formkey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -22,68 +29,86 @@ class AccountDetailsPage extends StatelessWidget {
           text: 'Account Details',
         ),
       ),
-      body:  Padding(
-        padding: const EdgeInsets.all(15.0),
-        child: SingleChildScrollView(
-          child: Column(
+      body:  BlocConsumer<AccountCubit,AccountStates>(
 
-            children: [
-              CustomRowDetails(),
-              SizedBox(
-                height: 60,
-              ),
-              CustomTextFormField(
-                hintText: 'Name',
+        listener: (context,index){},
+        builder:(context,index){
+          AccountCubit.get(context).accountDetails( context: context);
+          return AccountCubit.get(context).accountDetailsModel == null? Center(child: CircularProgressIndicator()):  Form(
+            key: formkey,
+            child: Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: SingleChildScrollView(
+                child: Column(
 
-                validator:(e){
-                  if(e!.isEmpty)
-                    {
-                      return'enter name';
-                    }
-                },
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              CustomTextFormField(
-                hintText: 'Email',
-                validator:(e){
-                  if(e!.isEmpty)
-                  {
-                    return'enter name';
-                  }
-                },
+                  children: [
+                    CustomRowDetails(),
+                    SizedBox(
+                      height: 60,
+                    ),
+                    CustomTextFormField(
+                      hintText: '${AccountCubit.get(context).accountDetailsModel?.name}',
 
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              CustomTextFormField(
-                hintText: 'Phone Number',
-                validator:(e){
-                  if(e!.isEmpty)
-                  {
-                    return'enter name';
-                  }
-                },
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 230),
-                child:   SizedBox(
-                  width: 150,
-                  child: CustomButton(
-                    borderRadius: 4,
-                    buttonText: 'Upload Photo',
-                    onPressed: () {},
-                  ),
+                      validator:(e){
+                        if(e!.isEmpty)
+                        {
+                          return'enter name';
+                        }
+                      },
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    CustomTextFormField(
+                      hintText: '${AccountCubit.get(context).accountDetailsModel?.email}',
+                      validator:(e){
+                        if(e!.isEmpty)
+                        {
+                          return'enter name';
+                        }
+                      },
+
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    CustomTextFormField(
+                      hintText: '${AccountCubit.get(context).accountDetailsModel?.name}',
+                      validator:(e){
+                        if(e!.isEmpty)
+                        {
+                          return'enter name';
+                        }
+                      },
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 230),
+                      child:   SizedBox(
+                        width: 150,
+                        child: CustomButton(
+                          borderRadius: 4,
+                          buttonText: 'Save Changes',
+                          onPressed: () {
+                            if (formkey.currentState!.validate()) {
+
+
+
+                              AccountCubit.get(context).accountDetails( context: context);
+                            }
+                          },
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
-            ],
-          ),
-        ),
+            ),
+          );
+        } ,
+
       ),
     );
   }
