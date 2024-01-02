@@ -10,20 +10,21 @@ import '../../network/api.dart';
 import '../../network/endpoints.dart';
 import '../../network/local_network.dart';
 import '../../utilites/constants.dart';
+import '../../utilites/custommethods.dart';
 import '../../utilites/widgets/showdialog.dart';
 
 class AccountCubit extends Cubit<AccountStates> {
   AccountCubit() : super(AccountInitialState());
 
   static AccountCubit get(context) => BlocProvider.of(context);
-  String ? responseBody;
+  String  message='';
 
   void changePassword({required Map userdata, required BuildContext context}) {
     Map<String, String> headers = {
       'Content-Type': 'application/x-www-form-urlencoded',
       'Authorization': 'Bearer ${AppConstant.token}'
     };
-    emit(AccountLoadingState());
+    emit(ChangePassloadingState());
     CallApi.postData(
       data: userdata,
       baseUrl: basehomeurl,
@@ -31,21 +32,36 @@ class AccountCubit extends Cubit<AccountStates> {
       headers: headers,
       context: context,
     ).then((value) async {
-      print('lamiaaaaaaaaaaa${value!.statusCode}');
-      print('ttttttttttttttttttttt${AppConstant.token}');
-      if (value!.statusCode == 200) {
 
-        debugPrint(value.body);
-        responseBody = json.decode(value.body);
+     if (value!.statusCode == 200) {
+
+        //debugPrint(value.body);
+       final responseBody = json.decode(value.body);
+       message=responseBody;
         debugPrint('responseBody$responseBody');
 
+       showmessageToast(message:   '${responseBody
+           }', backgroundcolor: Colors.blue);
+       Navigator.pop(context);
 
-        emit(AccountSuccessState());
+
+        emit(ChsngePasswSuccessState());
       }
+      else if (value!.statusCode == 400 )
+        {
+        final responseBody = json.decode(value.body);
+          message = responseBody['Message'];
+        showmessageToast(message:   '${responseBody['Message']
+        }', backgroundcolor: Colors.red);
+         emit(ChsngePasswlFailureState());
+        }
+
+
+
     }).catchError((error) {
       debugPrint(': $error');
       // ShowMyDialog.showMsg(context, 'An error occurred: $error');
-      emit(AccountFailureState());
+      emit(ChsngePasswlFailureState());
     });
   }
 
@@ -66,7 +82,7 @@ class AccountCubit extends Cubit<AccountStates> {
         debugPrint('mmmmmmmmmmmmmmmmmmmmmmmmm${value.body}');
         Map<String, dynamic> data = json.decode(value.body);
         accountDetailsModel = AccountDetailsModel.fromJson(data);
-        debugPrint('data ${accountDetailsModel?.email}');
+        debugPrint('passsssssssssss ${accountDetailsModel?.password}');
 
 
         emit(AccountSuccessState());
