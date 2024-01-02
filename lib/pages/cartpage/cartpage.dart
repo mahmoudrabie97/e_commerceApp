@@ -1,5 +1,6 @@
 import 'package:e_commerce/cubit/favouritecartcubit/favouritecartcubit.dart';
 import 'package:e_commerce/cubit/favouritecartcubit/favouritecartstates.dart';
+import 'package:e_commerce/models/cartmodel.dart';
 import 'package:e_commerce/pages/cartpage/orderdetailspage.dart';
 import 'package:e_commerce/pages/cartpage/widgets/cartitem.dart';
 import 'package:e_commerce/utilites/custommethods.dart';
@@ -11,6 +12,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CartPage extends StatelessWidget {
   const CartPage({Key? key}) : super(key: key);
+  double calculateTotalPrice({required BuildContext context}) {
+    double totalPrice = 0.0;
+    List<CartModel> cartItems =
+        FavouriteCartcubit.get(context).showcartItemsList;
+    for (CartModel cartItem in cartItems) {
+      totalPrice += (cartItem.quantity! * cartItem.productDetail!.price!);
+    }
+    return totalPrice;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -65,21 +75,24 @@ class CartPage extends StatelessWidget {
                         Expanded(
                           child: Column(
                             children: [
-                              const Padding(
-                                padding: EdgeInsets.only(left: 10, right: 10),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.only(left: 10, right: 10),
                                 child: Row(
                                   children: [
-                                    CustomText(text: 'Totals'),
-                                    Spacer(),
-                                    CustomText(text: '\$ 2499,99')
+                                    const CustomText(text: 'Totals'),
+                                    const Spacer(),
+                                    CustomText(
+                                        text:
+                                            '\$${calculateTotalPrice(context: context).toString()}')
                                   ],
                                 ),
                               ),
                               const SizedBox(
-                                height: 15,
+                                height: 5,
                               ),
                               SizedBox(
-                                height: 45,
+                                height: 40,
                                 child: Padding(
                                   padding: const EdgeInsets.only(
                                       left: 50.0, right: 50.0),
@@ -87,7 +100,12 @@ class CartPage extends StatelessWidget {
                                       borderRadius: 0,
                                       buttonText: 'Continue for payments',
                                       onPressed: () {
-                                        context.push(const OrderDetailsPage());
+                                        //FavouriteCartcubit.get(context).updateCart(context: context, cartModel: )
+
+                                        context.push(OrderDetailsPage(
+                                          totalprice: calculateTotalPrice(
+                                              context: context),
+                                        ));
                                       }),
                                 ),
                               )

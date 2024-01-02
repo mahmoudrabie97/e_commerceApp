@@ -25,6 +25,20 @@ class CartModel {
     data['Quantity'] = quantity;
     return data;
   }
+
+  CartModel copyWith({
+    int? id,
+    int? productDetailId,
+    ProductDetail? productDetail,
+    int? quantity,
+  }) {
+    return CartModel(
+      id: id ?? this.id,
+      productDetailId: productDetailId ?? this.productDetailId,
+      productDetail: productDetail ?? this.productDetail,
+      quantity: quantity ?? this.quantity,
+    );
+  }
 }
 
 class ProductDetail {
@@ -32,40 +46,41 @@ class ProductDetail {
   String? productNameInEnglish;
   String? productNameInArabic;
   int? productId;
-  Null? product;
-  Null? sKU;
-  Null? oldPrice;
+  dynamic product;
+  dynamic sKU;
+  dynamic oldPrice;
   num? price;
   num? repPercentage;
-  Null? barcode;
-  Null? barcodeImage;
+  dynamic barcode;
+  dynamic barcodeImage;
   int? quantity;
-  Null? addedById;
-  Null? addedDate;
-  Null? updatedById;
-  Null? updatedDate;
+  dynamic addedById;
+  dynamic addedDate;
+  dynamic updatedById;
+  dynamic updatedDate;
   bool? isDeleted;
   List<ProductDetailImage>? productDetailImage;
 
-  ProductDetail(
-      {this.id,
-      this.productNameInEnglish,
-      this.productNameInArabic,
-      this.productId,
-      this.product,
-      this.sKU,
-      this.oldPrice,
-      this.price,
-      this.repPercentage,
-      this.barcode,
-      this.barcodeImage,
-      this.quantity,
-      this.addedById,
-      this.addedDate,
-      this.updatedById,
-      this.updatedDate,
-      this.isDeleted,
-      this.productDetailImage});
+  ProductDetail({
+    this.id,
+    this.productNameInEnglish,
+    this.productNameInArabic,
+    this.productId,
+    this.product,
+    this.sKU,
+    this.oldPrice,
+    this.price,
+    this.repPercentage,
+    this.barcode,
+    this.barcodeImage,
+    this.quantity,
+    this.addedById,
+    this.addedDate,
+    this.updatedById,
+    this.updatedDate,
+    this.isDeleted,
+    this.productDetailImage,
+  });
 
   ProductDetail.fromJson(Map<String, dynamic> json) {
     id = json['Id'];
@@ -88,7 +103,7 @@ class ProductDetail {
     if (json['ProductDetailImage'] != null) {
       productDetailImage = <ProductDetailImage>[];
       json['ProductDetailImage'].forEach((v) {
-        productDetailImage!.add(new ProductDetailImage.fromJson(v));
+        productDetailImage!.add(ProductDetailImage.fromJson(v));
       });
     }
   }
@@ -118,16 +133,62 @@ class ProductDetail {
     }
     return data;
   }
+
+  ProductDetail copyWith({
+    int? id,
+    String? productNameInEnglish,
+    String? productNameInArabic,
+    int? productId,
+    dynamic product,
+    dynamic sKU,
+    dynamic oldPrice,
+    num? price,
+    num? repPercentage,
+    dynamic barcode,
+    dynamic barcodeImage,
+    int? quantity,
+    dynamic addedById,
+    dynamic addedDate,
+    dynamic updatedById,
+    dynamic updatedDate,
+    bool? isDeleted,
+    List<ProductDetailImage>? productDetailImage,
+  }) {
+    return ProductDetail(
+      id: id ?? this.id,
+      productNameInEnglish: productNameInEnglish ?? this.productNameInEnglish,
+      productNameInArabic: productNameInArabic ?? this.productNameInArabic,
+      productId: productId ?? this.productId,
+      product: product ?? this.product,
+      sKU: sKU ?? this.sKU,
+      oldPrice: oldPrice ?? this.oldPrice,
+      price: price ?? this.price,
+      repPercentage: repPercentage ?? this.repPercentage,
+      barcode: barcode ?? this.barcode,
+      barcodeImage: barcodeImage ?? this.barcodeImage,
+      quantity: quantity ?? this.quantity,
+      addedById: addedById ?? this.addedById,
+      addedDate: addedDate ?? this.addedDate,
+      updatedById: updatedById ?? this.updatedById,
+      updatedDate: updatedDate ?? this.updatedDate,
+      isDeleted: isDeleted ?? this.isDeleted,
+      productDetailImage: productDetailImage ?? this.productDetailImage,
+    );
+  }
 }
 
 class ProductDetailImage {
   int? id;
   String? image;
   int? productDetailId;
-  Null productDetail;
+  dynamic productDetail;
 
-  ProductDetailImage(
-      {this.id, this.image, this.productDetailId, this.productDetail});
+  ProductDetailImage({
+    this.id,
+    this.image,
+    this.productDetailId,
+    this.productDetail,
+  });
 
   ProductDetailImage.fromJson(Map<String, dynamic> json) {
     id = json['Id'];
@@ -143,5 +204,19 @@ class ProductDetailImage {
     data['ProductDetailId'] = productDetailId;
     data['ProductDetail'] = productDetail;
     return data;
+  }
+
+  ProductDetailImage copyWith({
+    int? id,
+    String? image,
+    int? productDetailId,
+    dynamic productDetail,
+  }) {
+    return ProductDetailImage(
+      id: id ?? this.id,
+      image: image ?? this.image,
+      productDetailId: productDetailId ?? this.productDetailId,
+      productDetail: productDetail ?? this.productDetail,
+    );
   }
 }

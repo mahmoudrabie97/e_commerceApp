@@ -1,4 +1,7 @@
+import 'package:e_commerce/pages/accountdetailspage/accountdetailspage.dart';
+import 'package:e_commerce/pages/addresspage/addresspage.dart';
 import 'package:e_commerce/pages/cartpage/myorderspage.dart';
+import 'package:e_commerce/pages/changepasswordpage/changepasswordpage.dart';
 import 'package:e_commerce/pages/wishlistpage/wishlistpage.dart';
 import 'package:e_commerce/utilites/appcolors.dart';
 import 'package:e_commerce/utilites/extentionhelper.dart';
@@ -53,13 +56,23 @@ class ProfilePage extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-            buildlisttile(
-                const Icon(Icons.person, color: AppColor.kmaincolor, size: 29),
-                'Account Details'),
-            buildlisttile(
-                const Icon(Icons.add_location_alt,
-                    color: AppColor.kmaincolor, size: 29),
-                'Address'),
+            GestureDetector(
+              onTap: (){
+                context.push(AccountDetailsPage());
+              },
+              child: buildlisttile(
+                  const Icon(Icons.person, color: AppColor.kmaincolor, size: 29),
+                  'Account Details'),
+            ),
+            GestureDetector(
+              onTap: (){
+                context.push(AddressPage());
+              },
+              child: buildlisttile(
+                  const Icon(Icons.add_location_alt,
+                      color: AppColor.kmaincolor, size: 29),
+                  'Address'),
+            ),
             GestureDetector(
               onTap: () {
                 context.push(const MyOrdersPage());
@@ -69,7 +82,9 @@ class ProfilePage extends StatelessWidget {
                   'Orders'),
             ),
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+                context.push(ChangePasswordPage());
+              },
               child: buildlisttile(
                   const Icon(Icons.shopping_bag_outlined,
                       color: AppColor.kmaincolor, size: 29),

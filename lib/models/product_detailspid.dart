@@ -37,7 +37,7 @@ class ProductDetailsBypId {
   final String productName;
   final num oldPrice;
   final num price;
-  final num quantity;
+  num quantity;
   final String companyName;
   final String categoryName;
   final List<ProductDetailImages> productDetailImages;

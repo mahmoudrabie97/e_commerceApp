@@ -1,6 +1,7 @@
+import 'package:e_commerce/models/productsofcat.dart';
+import 'package:e_commerce/network/endpoints.dart';
 import 'package:e_commerce/pages/subProductPage/sub_products.dart';
 import 'package:e_commerce/utilites/appcolors.dart';
-import 'package:e_commerce/utilites/dummydata.dart';
 import 'package:e_commerce/utilites/extentionhelper.dart';
 import 'package:flutter/material.dart';
 
@@ -8,9 +9,11 @@ class ProductCategoryitem extends StatelessWidget {
   const ProductCategoryitem({
     Key? key,
     required this.height,
+    required this.productsofCatModel,
   }) : super(key: key);
 
   final double height;
+  final ProductsofCatModel productsofCatModel;
 
   @override
   Widget build(BuildContext context) {
@@ -38,18 +41,13 @@ class ProductCategoryitem extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: Column(
                     children: [
-                      Row(
-                        children: [
-                          const Spacer(),
-                          IconButton(
-                            onPressed: () {},
-                            icon: Image.asset('assets/images/heart.png'),
-                          )
-                        ],
+                      const Row(
+                        children: [],
                       ),
                       Expanded(
                         child: Image(
-                            image: AssetImage(dummyproduct[0].productimage)),
+                            image: NetworkImage(
+                                '$baseimageurl${productsofCatModel.mainImage}')),
                       ),
                       const SizedBox(height: 20),
                       Row(
@@ -57,12 +55,12 @@ class ProductCategoryitem extends StatelessWidget {
                           Expanded(
                             child: Column(
                               children: [
-                                Text(dummyproduct[0].producttitle,
+                                Text(productsofCatModel.nameInEnglish ?? '',
                                     style: const TextStyle(
                                       fontSize: 12,
                                     )),
                                 const SizedBox(height: 6),
-                                Text('\$55',
+                                Text('\$${productsofCatModel.price ?? 0}',
                                     style: const TextStyle(color: Colors.grey)),
                               ],
                             ),
@@ -76,7 +74,9 @@ class ProductCategoryitem extends StatelessWidget {
                               //));
 
                               context.push(SubProductPage(
-                                productid: dummyproduct[0].productid,
+                                productid: productsofCatModel.id ?? 4,
+                                productname:
+                                    productsofCatModel.nameInEnglish ?? "",
                               ));
                             },
                             child: Container(

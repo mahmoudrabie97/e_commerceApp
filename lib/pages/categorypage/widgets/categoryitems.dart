@@ -20,7 +20,10 @@ class CategoryItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        context.push(ProductOfCategory());
+        context.push(ProductOfCategory(
+          catid: categoryModel.id,
+          name: categoryModel.descriptionInEnglish,
+        ));
       },
       child: SizedBox(
         height: height,

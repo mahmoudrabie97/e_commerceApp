@@ -9,12 +9,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class Categorypage extends StatelessWidget {
-  Categorypage({Key? key}) : super(key: key);
-  final List<String> texts = ['Devices', 'Tools', 'New Dep', 'Men Clothes'];
+  const Categorypage({Key? key}) : super(key: key);
+  // final List<String> texts = ['Devices', 'Tools', 'New Dep', 'Men Clothes'];
 
   @override
   Widget build(BuildContext context) {
     double itemWidth = context.screenwidth * 0.4;
+    HomeCubit.get(context).getDeprtments(context: context);
     double itemHeight = itemWidth / 0.8;
     return BlocConsumer<HomeCubit, HomeStates>(
       listener: (BuildContext context, state) {},
@@ -33,7 +34,8 @@ class Categorypage extends StatelessWidget {
                       child: ListView.separated(
                         shrinkWrap: true,
                         scrollDirection: Axis.horizontal,
-                        itemCount: 4,
+                        itemCount:
+                            HomeCubit.get(context).departmentsList.length,
                         separatorBuilder: (BuildContext context, int index) {
                           return const SizedBox(
                             width: 10,
@@ -41,9 +43,18 @@ class Categorypage extends StatelessWidget {
                         },
                         itemBuilder: (BuildContext context, int index) {
                           return DepartmentItem(
-                              categoryname: texts[index],
-                              categoryicon:
-                                  'https://www.shutterstock.com/shutterstock/photos/1006041130/display_1500/stock-photo-business-woman-drawing-global-structure-networking-and-data-exchanges-customer-connection-on-dark-1006041130.jpg');
+                            categoryname: HomeCubit.get(context)
+                                    .departmentsList[index]
+                                    .nameInEnglish ??
+                                '',
+                            categoryicon:
+                                //'$baseimageurl${HomeCubit.get(context).departmentsList[index].image ?? 'https://www.shutterstock.com/image-photo/business-woman-drawing-global-structure-260nw-1006041130.jpg '}');
+                                'https://www.shutterstock.com/image-photo/business-woman-drawing-global-structure-260nw-1006041130.jpg',
+                            departmentId: HomeCubit.get(context)
+                                    .departmentsList[index]
+                                    .id ??
+                                0,
+                          );
                         },
                       ),
                     ),

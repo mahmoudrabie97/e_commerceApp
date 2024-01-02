@@ -1,4 +1,4 @@
-import 'package:e_commerce/models/product_detailspid.dart';
+import 'package:e_commerce/models/similarproduct.dart';
 import 'package:e_commerce/network/endpoints.dart';
 import 'package:e_commerce/pages/detailspage/detailspage.dart';
 import 'package:e_commerce/utilites/appcolors.dart';
@@ -14,11 +14,13 @@ class SubProductDetailItm extends StatelessWidget {
   }) : super(key: key);
 
   final double height;
-  final ProductDetailsBypId productDetailsBypId;
+  final SimilarPModel productDetailsBypId;
   final int index;
 
   @override
   Widget build(BuildContext context) {
+    print('pppppppppppppp${productDetailsBypId.id}');
+    print('iiiiiiiiiiiiiiiiiii$index');
     return SizedBox(
       child: Row(
         children: [
@@ -26,7 +28,8 @@ class SubProductDetailItm extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.only(right: 5, left: 5),
               child: Container(
-                width: 300,
+                width: 250,
+                height: 250,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(10),
@@ -55,7 +58,7 @@ class SubProductDetailItm extends StatelessWidget {
                       Expanded(
                         child: Image(
                             image: NetworkImage(
-                                '$baseimageurl${productDetailsBypId.productDetailImages[0].image}')),
+                                '$baseimageurl${productDetailsBypId.productDetailImages![0].image}')),
                       ),
                       const SizedBox(height: 20),
                       Expanded(
@@ -64,9 +67,9 @@ class SubProductDetailItm extends StatelessWidget {
                             Expanded(
                               child: Column(
                                 children: [
-                                  Text(productDetailsBypId.productName,
+                                  Text(productDetailsBypId.productName ?? '',
                                       style: const TextStyle(
-                                          fontSize: 6,
+                                          fontSize: 10,
                                           fontWeight: FontWeight.bold)),
                                   const SizedBox(height: 6),
                                   Text('\$ ${productDetailsBypId.price}',
@@ -79,8 +82,11 @@ class SubProductDetailItm extends StatelessWidget {
                             GestureDetector(
                               onTap: () {
                                 context.push(DetailsPage(
-                                    productDetailId: productDetailsBypId.id,
-                                    index: index));
+                                  productDetailId: productDetailsBypId.id ?? 0,
+                                  index: index,
+                                  productid: productDetailsBypId.productId ?? 0,
+                                  // pmodel: productDetailsBypId,
+                                ));
                               },
                               child: Container(
                                 height: 25,

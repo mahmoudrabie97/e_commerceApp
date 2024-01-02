@@ -1,14 +1,22 @@
+import 'package:e_commerce/cubit/accountcubit/accountcubit.dart';
 import 'package:e_commerce/cubit/homecubit/homecubit.dart';
 import 'package:e_commerce/cubit/productcubit/productcubit.dart';
 import 'package:e_commerce/cubit/favouritecartcubit/favouritecartcubit.dart';
+import 'package:e_commerce/network/local_network.dart';
 import 'package:e_commerce/pages/welcomepage.dart';
 import 'package:e_commerce/simpleblocobserver.dart';
 import 'package:e_commerce/utilites/appcolors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import './utilites/constants.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = SimpleBlocObserver();
+  await CachNetwork.cachinitilization();
+  AppConstant.tokensharedpref = CachNetwork.getcacheData(key: 'token');
+  print('tokensh is${AppConstant.tokensharedpref}');
+
   runApp(const EcommerceApp());
 }
 
@@ -19,20 +27,30 @@ class EcommerceApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
+        BlocProvider(create: (BuildContext context) => HomeCubit()
+            //..getCategoriesOfDepartment(context: context, departmentId: 6),
+            //..getDeprtments(context: context),
+            ),
         BlocProvider(
-          create: (BuildContext context) => HomeCubit(),
-        ),
-        BlocProvider(create: (BuildContext context) => ProductCubit()),
+            create: (BuildContext context) => ProductCubit()
+              ..getSimilarProduct(
+                  productDetailId: 164, productId: 9, context: context)),
         BlocProvider(create: (BuildContext context) => FavouriteCartcubit()),
+        BlocProvider(create: (BuildContext context)=>AccountCubit()),
       ],
       child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          scaffoldBackgroundColor: AppColor.appBgColor,
-          primaryColor: AppColor.primary,
-        ),
-        home: const WelcomePage(),
-      ),
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            scaffoldBackgroundColor: AppColor.appBgColor,
+            primaryColor: AppColor.primary,
+          ),
+          home: const WelcomePage()
+
+          //AppConstant.tokensharedpref != null &&
+          //      AppConstant.tokensharedpref != ''
+          //  ? HomePge()
+          //  : const WelcomePage(),
+          ),
     );
   }
 }

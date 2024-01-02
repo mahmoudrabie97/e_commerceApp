@@ -47,19 +47,32 @@ class CartItemWidget extends StatelessWidget {
                         Row(
                           children: [
                             Container(
-                              padding: const EdgeInsets.only(bottom: 20),
                               child: IconButton(
                                 color: Colors.grey,
                                 padding: EdgeInsets.zero,
-                                onPressed: () {},
-                                icon: const Icon(Icons.minimize),
+                                onPressed: () {
+                                  FavouriteCartcubit.get(context)
+                                      .decreasequntity(
+                                          productquntity: cartModel.quantity,
+                                          cartModel: cartModel);
+                                  FavouriteCartcubit.get(context).updateCart(
+                                      context: context, cartModel: cartModel);
+                                },
+                                icon: const Icon(Icons.remove),
                               ),
                             ),
-                            const Text('2'),
+                            Text(cartModel.quantity.toString()),
                             IconButton(
                               color: Colors.grey,
                               padding: EdgeInsets.zero,
-                              onPressed: () {},
+                              onPressed: () {
+                                print('peress');
+                                FavouriteCartcubit.get(context).increasequntity(
+                                    productquntity: cartModel.quantity,
+                                    cartModel: cartModel);
+                                FavouriteCartcubit.get(context).updateCart(
+                                    context: context, cartModel: cartModel);
+                              },
                               icon: const Icon(Icons.add),
                             ),
                             IconButton(
@@ -69,6 +82,8 @@ class CartItemWidget extends StatelessWidget {
                                 FavouriteCartcubit.get(context).removeFromCart(
                                     context: context,
                                     productdetailId: cartModel.id);
+                                FavouriteCartcubit.get(context).updateCart(
+                                    context: context, cartModel: cartModel);
                               },
                               icon: const Icon(Icons.delete_outline),
                             )

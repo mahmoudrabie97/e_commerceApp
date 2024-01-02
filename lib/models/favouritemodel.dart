@@ -1,35 +1,36 @@
 class FavouriteModel {
   int? id;
-  int? productId;
-  Product? product;
+  int? productDetailId;
+  ProductDetail? productDetail;
   String? userId;
   User? user;
   String? date;
 
   FavouriteModel(
       {this.id,
-      this.productId,
-      this.product,
+      this.productDetailId,
+      this.productDetail,
       this.userId,
       this.user,
       this.date});
 
   FavouriteModel.fromJson(Map<String, dynamic> json) {
     id = json['Id'];
-    productId = json['ProductId'];
-    product =
-        json['Product'] != null ? Product.fromJson(json['Product']) : null;
+    productDetailId = json['ProductDetailId'];
+    productDetail = json['ProductDetail'] != null
+        ? new ProductDetail.fromJson(json['ProductDetail'])
+        : null;
     userId = json['UserId'];
-    user = json['User'] != null ? User.fromJson(json['User']) : null;
+    user = json['User'] != null ? new User.fromJson(json['User']) : null;
     date = json['Date'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
+    final Map<String, dynamic> data = new Map<String, dynamic>();
     data['Id'] = id;
-    data['ProductId'] = productId;
-    if (product != null) {
-      data['Product'] = product!.toJson();
+    data['ProductDetailId'] = productDetailId;
+    if (productDetail != null) {
+      data['ProductDetail'] = productDetail!.toJson();
     }
     data['UserId'] = userId;
     if (user != null) {
@@ -40,119 +41,129 @@ class FavouriteModel {
   }
 }
 
-class Product {
+class ProductDetail {
   int? id;
-  String? nameInArabic;
-  String? nameInEnglish;
+  String? productNameInEnglish;
+  String? productNameInArabic;
+  int? productId;
+  dynamic product;
   String? descriptionInArabic;
   String? descriptionInEnglish;
-  int? categoryId;
-  Null? category;
-  num? brandId;
-  Null? brand;
-  Null? companyId;
-  Null? company;
-  bool? isReturnAllowed;
-  Null? barcode;
-  bool? autoBarcode;
-  String? mainImage;
-  num? oldPrice;
+  dynamic sKU;
+  dynamic oldPrice;
   num? price;
-  Null? productTaxes;
-  Null? addedById;
-  Null? addedDate;
-  Null? updatedById;
-  Null? updatedDate;
+  num? repPercentage;
+  dynamic barcode;
+  dynamic barcodeImage;
+  num? quantity;
+  dynamic addedById;
+  dynamic addedDate;
+  dynamic updatedById;
+  dynamic updatedDate;
   bool? isDeleted;
-  bool? showInHomeProductsSection;
-  bool? showInBestSellingSection;
-  bool? showInFeaturedProductsSection;
+  List<ProductDetailImage>? productDetailImage;
 
-  Product(
+  ProductDetail(
       {this.id,
-      this.nameInArabic,
-      this.nameInEnglish,
+      this.productNameInEnglish,
+      this.productNameInArabic,
+      this.productId,
+      this.product,
       this.descriptionInArabic,
       this.descriptionInEnglish,
-      this.categoryId,
-      this.category,
-      this.brandId,
-      this.brand,
-      this.companyId,
-      this.company,
-      this.isReturnAllowed,
-      this.barcode,
-      this.autoBarcode,
-      this.mainImage,
+      this.sKU,
       this.oldPrice,
       this.price,
-      this.productTaxes,
+      this.repPercentage,
+      this.barcode,
+      this.barcodeImage,
+      this.quantity,
       this.addedById,
       this.addedDate,
       this.updatedById,
       this.updatedDate,
       this.isDeleted,
-      this.showInHomeProductsSection,
-      this.showInBestSellingSection,
-      this.showInFeaturedProductsSection});
+      this.productDetailImage});
 
-  Product.fromJson(Map<String, dynamic> json) {
+  ProductDetail.fromJson(Map<String, dynamic> json) {
     id = json['Id'];
-    nameInArabic = json['NameInArabic'];
-    nameInEnglish = json['NameInEnglish'];
+    productNameInEnglish = json['ProductNameInEnglish'];
+    productNameInArabic = json['ProductNameInArabic'];
+    productId = json['ProductId'];
+    product = json['Product'];
     descriptionInArabic = json['DescriptionInArabic'];
     descriptionInEnglish = json['DescriptionInEnglish'];
-    categoryId = json['CategoryId'];
-    category = json['Category'];
-    brandId = json['BrandId'];
-    brand = json['Brand'];
-    companyId = json['CompanyId'];
-    company = json['Company'];
-    isReturnAllowed = json['IsReturnAllowed'];
-    barcode = json['Barcode'];
-    autoBarcode = json['AutoBarcode'];
-    mainImage = json['MainImage'];
+    sKU = json['SKU'];
     oldPrice = json['OldPrice'];
     price = json['Price'];
-    productTaxes = json['ProductTaxes'];
+    repPercentage = json['RepPercentage'];
+    barcode = json['Barcode'];
+    barcodeImage = json['BarcodeImage'];
+    quantity = json['Quantity'];
     addedById = json['AddedById'];
     addedDate = json['AddedDate'];
     updatedById = json['UpdatedById'];
     updatedDate = json['UpdatedDate'];
     isDeleted = json['IsDeleted'];
-    showInHomeProductsSection = json['ShowInHomeProductsSection'];
-    showInBestSellingSection = json['ShowInBestSellingSection'];
-    showInFeaturedProductsSection = json['ShowInFeaturedProductsSection'];
+    if (json['ProductDetailImage'] != null) {
+      productDetailImage = <ProductDetailImage>[];
+      json['ProductDetailImage'].forEach((v) {
+        productDetailImage!.add(new ProductDetailImage.fromJson(v));
+      });
+    }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
+    final Map<String, dynamic> data = new Map<String, dynamic>();
     data['Id'] = id;
-    data['NameInArabic'] = nameInArabic;
-    data['NameInEnglish'] = nameInEnglish;
+    data['ProductNameInEnglish'] = productNameInEnglish;
+    data['ProductNameInArabic'] = productNameInArabic;
+    data['ProductId'] = productId;
+    data['Product'] = product;
     data['DescriptionInArabic'] = descriptionInArabic;
     data['DescriptionInEnglish'] = descriptionInEnglish;
-    data['CategoryId'] = categoryId;
-    data['Category'] = category;
-    data['BrandId'] = brandId;
-    data['Brand'] = brand;
-    data['CompanyId'] = companyId;
-    data['Company'] = company;
-    data['IsReturnAllowed'] = isReturnAllowed;
-    data['Barcode'] = barcode;
-    data['AutoBarcode'] = autoBarcode;
-    data['MainImage'] = mainImage;
+    data['SKU'] = sKU;
     data['OldPrice'] = oldPrice;
     data['Price'] = price;
-    data['ProductTaxes'] = productTaxes;
+    data['RepPercentage'] = repPercentage;
+    data['Barcode'] = barcode;
+    data['BarcodeImage'] = barcodeImage;
+    data['Quantity'] = quantity;
     data['AddedById'] = addedById;
     data['AddedDate'] = addedDate;
     data['UpdatedById'] = updatedById;
     data['UpdatedDate'] = updatedDate;
     data['IsDeleted'] = isDeleted;
-    data['ShowInHomeProductsSection'] = showInHomeProductsSection;
-    data['ShowInBestSellingSection'] = showInBestSellingSection;
-    data['ShowInFeaturedProductsSection'] = showInFeaturedProductsSection;
+    if (productDetailImage != null) {
+      data['ProductDetailImage'] =
+          productDetailImage!.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
+}
+
+class ProductDetailImage {
+  int? id;
+  String? image;
+  int? productDetailId;
+  dynamic productDetail;
+
+  ProductDetailImage(
+      {this.id, this.image, this.productDetailId, this.productDetail});
+
+  ProductDetailImage.fromJson(Map<String, dynamic> json) {
+    id = json['Id'];
+    image = json['Image'];
+    productDetailId = json['ProductDetailId'];
+    productDetail = json['ProductDetail'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['Id'] = id;
+    data['Image'] = image;
+    data['ProductDetailId'] = productDetailId;
+    data['ProductDetail'] = productDetail;
     return data;
   }
 }
@@ -160,23 +171,23 @@ class Product {
 class User {
   String? id;
   String? name;
-  Null? phone;
-  Null? companyId;
-  Null? company;
-  Null? jobTitleId;
-  Null? jobTitle;
-  Null? groupId;
-  Null? group;
+  dynamic phone;
+  dynamic companyId;
+  dynamic company;
+  dynamic jobTitleId;
+  dynamic jobTitle;
+  dynamic groupId;
+  dynamic group;
   bool? isActive;
-  Null? addedDate;
-  Null? updatedDate;
+  dynamic addedDate;
+  dynamic updatedDate;
   String? email;
-  Null? address;
-  Null? roles;
-  Null? userRoles;
-  Null? rolesIds;
-  Null? phoneNumber;
-  Null? password;
+  dynamic address;
+  dynamic roles;
+  dynamic userRoles;
+  dynamic rolesIds;
+  dynamic phoneNumber;
+  dynamic password;
 
   User(
       {this.id,
@@ -222,7 +233,7 @@ class User {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
+    final Map<String, dynamic> data = new Map<String, dynamic>();
     data['Id'] = id;
     data['Name'] = name;
     data['Phone'] = phone;

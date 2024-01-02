@@ -4,10 +4,12 @@ import 'package:e_commerce/cubit/authcubit/authstates.dart';
 import 'package:e_commerce/models/user_model.dart';
 import 'package:e_commerce/network/api.dart';
 import 'package:e_commerce/network/endpoints.dart';
+import 'package:e_commerce/network/local_network.dart';
 import 'package:e_commerce/utilites/constants.dart';
 import 'package:e_commerce/utilites/widgets/showdialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lottie/lottie.dart';
 
 class AuthCubit extends Cubit<AuthStates> {
   AuthCubit() : super(AuthInitialState());
@@ -18,6 +20,8 @@ class AuthCubit extends Cubit<AuthStates> {
   bool isSecurep = true;
   bool isSecurepc = true;
   UserModel? userModel;
+  bool showAnimation = false;
+  int animationDuration = 2;
 
   void changeSecurePassword() {
     if (isSecurep) {
@@ -47,7 +51,7 @@ class AuthCubit extends Cubit<AuthStates> {
   }) {
     Map<String, String> headers = {
       'Content-Type': 'application/x-www-form-urlencoded',
-      'Authorization': 'Bearer ${AppConstant.token}'
+      //'Authorization': 'Bearer ${AppConstant.token}'
     };
     emit(LoginLoadingState());
     CallApi.postData(
@@ -56,13 +60,15 @@ class AuthCubit extends Cubit<AuthStates> {
       apiUrl: loginurl,
       headers: headers,
       context: context,
-    ).then((value) {
+    ).then((value) async {
       if (value!.statusCode == 200) {
         debugPrint(value.body);
         final responseBody = json.decode(value.body);
         userModel = UserModel.fromJson(responseBody);
 
         AppConstant.token = userModel!.accessToken;
+        await CachNetwork.insertTocache(
+            key: 'token', value: userModel!.accessToken ?? '');
         debugPrint('token=${AppConstant.token}');
         debugPrint('usrId= ${userModel!.userId}');
 
@@ -75,6 +81,12 @@ class AuthCubit extends Cubit<AuthStates> {
         print(value.body);
 
         emit(LoginErrorEmailorpasswordState());
+      } else if (value.statusCode == 500) {
+        ShowMyDialog.showMsg(context, 'internal server error,');
+        emit(LoginServerErrorState());
+      } else {
+        ShowMyDialog.showMsg(context, 'unknown error,');
+        emit(LoginErrorState());
       }
     }).catchError((error) {
       debugPrint('An error occurred: $error');
@@ -100,7 +112,7 @@ class AuthCubit extends Cubit<AuthStates> {
       context: context,
     ).then((value) {
       if (value!.statusCode == 200) {
-                emit(RegisterSucsessState());
+        emit(RegisterSucsessState());
       } else if (value.statusCode == 500) {
         final responseBody = json.decode(value.body);
         debugPrint(responseBody['Message']);
@@ -112,5 +124,32 @@ class AuthCubit extends Cubit<AuthStates> {
       // ShowMyDialog.showMsg(context, 'An error occurred: $error');
       emit(RegisterErrorState());
     });
+  }
+
+  void showDialoog(BuildContext context) {
+    showAnimation = true;
+    emit(ShowLottileLoadingrState());
+    Future.delayed(Duration(seconds: animationDuration), () {
+      showAnimation = false;
+      Navigator.pop(context);
+      emit(
+          ShowLottileSucsessState()); // إغلاق الـ Dialog بعد انقضاء المدة الزمنية
+    });
+    showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (context) => Dialog(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Lottie.asset('assets/images/ddone.json',
+                      repeat: false,
+                      height: 100,
+                      alignment: Alignment.center,
+                      fit: BoxFit.cover,
+                      animate: showAnimation),
+                ],
+              ),
+            ));
   }
 }

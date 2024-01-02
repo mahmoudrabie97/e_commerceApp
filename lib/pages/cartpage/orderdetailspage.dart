@@ -1,14 +1,18 @@
+import 'package:e_commerce/cubit/favouritecartcubit/favouritecartcubit.dart';
 import 'package:e_commerce/pages/cartpage/confirmorderpage.dart';
 import 'package:e_commerce/pages/cartpage/widgets/orderdetailsitem.dart';
 import 'package:e_commerce/utilites/custommethods.dart';
-import 'package:e_commerce/utilites/dummydata.dart';
 import 'package:e_commerce/utilites/extentionhelper.dart';
 import 'package:e_commerce/utilites/widgets/custombutton.dart';
 import 'package:e_commerce/utilites/widgets/customtext.dart';
 import 'package:flutter/material.dart';
 
 class OrderDetailsPage extends StatelessWidget {
-  const OrderDetailsPage({Key? key}) : super(key: key);
+  final double totalprice;
+  const OrderDetailsPage({
+    Key? key,
+    required this.totalprice,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,13 +29,15 @@ class OrderDetailsPage extends StatelessWidget {
           SizedBox(
             height: context.screenheight - 350,
             child: ListView.separated(
-              itemCount: 3,
+              itemCount:
+                  FavouriteCartcubit.get(context).showcartItemsList.length,
               separatorBuilder: (BuildContext context, int index) {
                 return const SizedBox(height: 19);
               },
               itemBuilder: (BuildContext context, int index) {
                 return OrderDetailsItem(
-                  productModel: dummyproduct[index],
+                  cartModel:
+                      FavouriteCartcubit.get(context).showcartItemsList[index],
                 );
               },
             ),
@@ -40,13 +46,13 @@ class OrderDetailsPage extends StatelessWidget {
           Expanded(
             child: Column(
               children: [
-                const Padding(
+                Padding(
                   padding: EdgeInsets.only(left: 10, right: 10),
                   child: Row(
                     children: [
                       CustomText(text: 'Totals'),
                       Spacer(),
-                      CustomText(text: '\$ 2499,99')
+                      CustomText(text: '\$${totalprice.toString()}')
                     ],
                   ),
                 ),

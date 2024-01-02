@@ -1,12 +1,14 @@
-import 'package:e_commerce/models/productmodel.dart';
+import 'package:e_commerce/models/cartmodel.dart';
+import 'package:e_commerce/network/endpoints.dart';
 import 'package:e_commerce/utilites/widgets/customtext.dart';
 import 'package:flutter/material.dart';
 
 class OrderDetailsItem extends StatelessWidget {
-  final ProductModel productModel;
+  final CartModel cartModel;
+
   const OrderDetailsItem({
     super.key,
-    required this.productModel,
+    required this.cartModel,
   });
 
   @override
@@ -15,21 +17,31 @@ class OrderDetailsItem extends StatelessWidget {
       height: 140,
       child: Row(
         children: [
-          Image.asset(
-            productModel.productimage,
+          Image.network(
+            '$baseimageurl${cartModel.productDetail!.productDetailImage![0].image ?? 'https://t3.ftcdn.net/jpg/04/62/93/66/360_F_462936689_BpEEcxfgMuYPfTaIAOC1tCDurmsno7Sp.jpg'}',
             fit: BoxFit.fill,
             width: 140,
           ),
-          const Expanded(
+          Expanded(
             child: Padding(
-              padding: EdgeInsets.only(top: 20, right: 5),
+              padding: const EdgeInsets.only(top: 20, right: 5),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  CustomText(text: 'Air pods max by Apple'),
-                  CustomText(text: 'Price: \$200', color: Colors.grey),
-                  CustomText(text: 'Qty: 4', color: Colors.grey),
-                  CustomText(text: 'Total: \$ 800', color: Colors.grey),
+                  CustomText(
+                      text:
+                          cartModel.productDetail!.productNameInEnglish ?? ''),
+                  CustomText(
+                      text:
+                          'Price: \$${cartModel.productDetail!.price.toString()}}',
+                      color: Colors.grey),
+                  CustomText(
+                      text: 'Qty:${cartModel.quantity.toString()} ',
+                      color: Colors.grey),
+                  CustomText(
+                      text:
+                          'Total: \$ ${cartModel.quantity! * (cartModel.productDetail!.price)!}',
+                      color: Colors.grey),
                 ],
               ),
             ),

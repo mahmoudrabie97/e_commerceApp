@@ -10,21 +10,35 @@ import 'package:e_commerce/pages/homepage/widgets/customhomeproductsrow.dart';
 import 'package:e_commerce/pages/homepage/widgets/staticcontcat.dart';
 import 'package:e_commerce/pages/productconfiguration/widget/customsearchinrow.dart';
 import 'package:e_commerce/pages/productpage/widgets/bestsellingitem.dart';
+//import 'package:e_commerce/pages/productpage/widgets/mostvistedItem.dart';
 import 'package:e_commerce/pages/productpage/widgets/productitems.dart';
 import 'package:e_commerce/utilites/extentionhelper.dart';
-import 'package:e_commerce/utilites/widgets/customtext.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
+import '../homepage/widgets/mostvieweditem.dart';
 
-class HomePge extends StatelessWidget {
-  HomePge({Key? key}) : super(key: key);
+class HomePge extends StatefulWidget {
+  const HomePge({Key? key}) : super(key: key);
+
+  @override
+  State<HomePge> createState() => _HomePgeState();
+}
+
+class _HomePgeState extends State<HomePge> {
   final TextEditingController _searchController = TextEditingController();
   @override
-  Widget build(BuildContext context) {
+  void initState() {
     HomeCubit.get(context).getAllCategory(context: context);
     HomeCubit.get(context).getAllProduct(context: context);
     HomeCubit.get(context).getBestSelling(context: context);
+    HomeCubit.get(context).getMostviewList(context: context);
 
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     double itemWidth = context.screenwidth * 0.4;
     double itemHeight = itemWidth / 0.8;
     return BlocConsumer<HomeCubit, HomeStates>(
@@ -57,9 +71,12 @@ class HomePge extends StatelessWidget {
                         Padding(
                             padding: EdgeInsets.only(
                                 left: context.screenwidth * 0.05, top: 4),
-                            child: const CustomText(
-                              text: 'Category',
-                              fontWeight: FontWeight.w500,
+                            child: Text(
+                              'Category',
+                              style: GoogleFonts.akayaKanadaka(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20,
+                              ),
                             )),
                         const SizedBox(
                           height: 5,
@@ -93,11 +110,15 @@ class HomePge extends StatelessWidget {
                                               .nameInEnglish,
                                           categoryicon:
                                               '$baseimageurl${HomeCubit.get(context).specificCategorylist[index].icon ?? ''}',
+                                          categoryId: HomeCubit.get(context)
+                                              .specificCategorylist[index]
+                                              .id,
                                         );
                                       } else {
                                         return GestureDetector(
                                             onTap: () {
-                                              context.push(Categorypage());
+                                              context
+                                                  .push(const Categorypage());
                                             },
                                             child: const StaticCategoryItem());
                                       }
@@ -136,10 +157,7 @@ class HomePge extends StatelessWidget {
                                   mainAxisSpacing: 10,
                                   crossAxisSpacing: 10,
                                   padding: const EdgeInsets.all(10),
-                                  children: List.generate(
-                                      HomeCubit.get(context)
-                                          .bestsellingitemList
-                                          .length, (index) {
+                                  children: List.generate(2, (index) {
                                     return BestSellingItem(
                                       productModel: HomeCubit.get(context)
                                           .bestsellingitemList[index],
@@ -183,7 +201,46 @@ class HomePge extends StatelessWidget {
                         ),
                         const SizedBox(
                           height: 10,
-                        )
+                        ),
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(
+                              context.screenwidth * 0.05,
+                              0,
+                              context.screenwidth * 0.05,
+                              0),
+                          child: const CustomhomeProductsRow(
+                            text: 'Most Visted',
+                          ),
+                        ),
+                        SizedBox(
+                          height: 600,
+                          child: HomeCubit.get(context)
+                                  .getMostViewedList
+                                  .isEmpty
+                              ? const Center(
+                                  child: CircularProgressIndicator(),
+                                )
+                              : GridView.count(
+                                  crossAxisCount: 2,
+                                  shrinkWrap: true,
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  childAspectRatio: (itemWidth / itemHeight),
+                                  mainAxisSpacing: 10,
+                                  crossAxisSpacing: 10,
+                                  padding: const EdgeInsets.all(10),
+                                  children: List.generate(4, (index) {
+                                    return MostVistedItem(
+                                      height: itemHeight - 30,
+                                      mostViewedmodel: HomeCubit.get(context)
+                                          .getMostViewedList[index],
+                                      index: index,
+                                    );
+                                  }),
+                                ),
+                        ),
+                        const SizedBox(
+                          height: 15,
+                        ),
                       ],
                     );
                   },

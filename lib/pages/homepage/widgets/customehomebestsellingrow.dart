@@ -1,7 +1,7 @@
 import 'package:e_commerce/pages/bestsellingpage/bestselling.dart';
 import 'package:e_commerce/utilites/extentionhelper.dart';
-import 'package:e_commerce/utilites/widgets/customtext.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class CustomhomeBestSellingRow extends StatelessWidget {
   const CustomhomeBestSellingRow({
@@ -14,9 +14,12 @@ class CustomhomeBestSellingRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        CustomText(
-          text: text,
-          fontWeight: FontWeight.w500,
+        Text(
+          text,
+          style: GoogleFonts.akayaKanadaka(
+            fontWeight: FontWeight.w900,
+            fontSize: 20,
+          ),
         ),
         const Spacer(),
         Padding(

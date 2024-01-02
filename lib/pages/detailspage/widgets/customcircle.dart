@@ -17,7 +17,7 @@ class CustomCircle extends StatelessWidget {
         horizontal: 15,
       ),
       decoration: const BoxDecoration(
-          color: Color(0xffECFCFF),
+          color: Colors.red,
           shape: BoxShape.circle,
           boxShadow: [
             BoxShadow(color: Color(0xffECFCFF), blurRadius: 4, spreadRadius: 2)

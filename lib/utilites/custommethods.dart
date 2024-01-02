@@ -1,3 +1,4 @@
+import 'package:e_commerce/pages/cartpage/cartpage.dart';
 import 'package:e_commerce/utilites/extentionhelper.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -33,10 +34,15 @@ AppBar detailspageappbar(
     actions: [
       Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Image(
-          image: const AssetImage('assets/images/Buy1.png'),
-          width: context.screenwidth * 0.08,
-          height: context.screenwidth * 0.08,
+        child: InkWell(
+          onTap: () {
+            context.pushrepacement(CartPage());
+          },
+          child: Image(
+            image: const AssetImage('assets/images/Buy1.png'),
+            width: context.screenwidth * 0.08,
+            height: context.screenwidth * 0.08,
+          ),
         ),
       )
     ],
