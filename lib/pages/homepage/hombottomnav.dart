@@ -1,4 +1,5 @@
 import 'package:e_commerce/utilites/appcolors.dart';
+import 'package:e_commerce/utilites/custommethods.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../cartpage/cartpage.dart';
@@ -17,18 +18,24 @@ class HomeBottomNav extends StatefulWidget {
 class _HomeBottomNavState extends State<HomeBottomNav> {
   int currentindex = 0;
   final List<Widget> pages = <Widget>[
-    HomePge(),
+    const HomePge(),
     SearchPage(),
     const CartPage(),
-    Categorypage(),
+    const Categorypage(),
     const ProfilePage(),
   ];
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.grey.shade100,
-      body: pages[currentindex],
-      bottomNavigationBar: buildBottomNavBar(),
+    return WillPopScope(
+      onWillPop: () async {
+        bool? shouldExit = await showExitConfirmationDialog(context: context);
+        return shouldExit ?? false;
+      },
+      child: Scaffold(
+        backgroundColor: Colors.grey.shade100,
+        body: pages[currentindex],
+        bottomNavigationBar: buildBottomNavBar(),
+      ),
     );
   }
 

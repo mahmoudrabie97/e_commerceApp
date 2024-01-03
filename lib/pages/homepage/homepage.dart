@@ -33,6 +33,8 @@ class _HomePgeState extends State<HomePge> {
     HomeCubit.get(context).getAllProduct(context: context);
     HomeCubit.get(context).getBestSelling(context: context);
     HomeCubit.get(context).getMostviewList(context: context);
+    HomeCubit.get(context).getspecificCategoryHome(context: context);
+    HomeCubit.get(context).getspecificProduct(context: context);
 
     super.initState();
   }

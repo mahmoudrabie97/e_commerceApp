@@ -27,11 +27,9 @@ class LoginPage extends StatelessWidget {
       child: BlocConsumer<AuthCubit, AuthStates>(
         listener: (BuildContext context, Object? state) {
           if (state is LoginSucsessState) {
-            HomeCubit.get(context).getspecificCategoryHome(context: context);
-            HomeCubit.get(context).getspecificProduct(context: context);
             //HomeCubit.get(context).getBestSelling(context: context);
 
-            context.pushrepacement(const HomeBottomNav());
+            context.pushreremove(const HomeBottomNav());
 
             // في حاله sucess
             //اللي هي دي داخل cubit

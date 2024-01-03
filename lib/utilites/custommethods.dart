@@ -48,3 +48,31 @@ AppBar detailspageappbar(
     ],
   );
 }
+
+Future<bool?> showExitConfirmationDialog(
+    {required BuildContext context}) async {
+  return showDialog<bool>(
+    context: context,
+    barrierDismissible: false,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: const Text(''),
+        content: const Text('Are You Want to exit?'),
+        actions: <Widget>[
+          TextButton(
+            child: const Text('Yes'),
+            onPressed: () {
+              Navigator.of(context).pop(true); // تأكيد الخروج
+            },
+          ),
+          TextButton(
+            child: const Text('No'),
+            onPressed: () {
+              Navigator.of(context).pop(false); // إلغاء الخروج
+            },
+          ),
+        ],
+      );
+    },
+  );
+}
