@@ -11,6 +11,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
 
+import '../../sharedPerference/cash_helper.dart';
+
 class AuthCubit extends Cubit<AuthStates> {
   AuthCubit() : super(AuthInitialState());
   static AuthCubit get(context) => BlocProvider.of(context);
@@ -67,10 +69,7 @@ class AuthCubit extends Cubit<AuthStates> {
         userModel = UserModel.fromJson(responseBody);
 
         AppConstant.token = userModel!.accessToken;
-        await CachNetwork.insertTocache(
-            key: 'token', value: userModel!.accessToken ?? '');
-        debugPrint('token=${AppConstant.token}');
-        debugPrint('usrId= ${userModel!.userId}');
+        CashDate.setDate(key: 'token', value: userModel?.accessToken);
 
         emit(LoginSucsessState());
       } else if (value.statusCode == 400) {
