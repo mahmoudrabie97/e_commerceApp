@@ -1,7 +1,11 @@
+import 'package:e_commerce/cubit/favouritecartcubit/favouritecartcubit.dart';
+import 'package:e_commerce/cubit/favouritecartcubit/favouritecartstates.dart';
 import 'package:e_commerce/pages/cartpage/cartpage.dart';
 import 'package:e_commerce/utilites/extentionhelper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:iconly/iconly.dart';
 
 bool isEmailValid(String email) {
   final emailRegex = RegExp(r'^[\w-]+(.[\w-]+)*@([\w-]+.)+[a-zA-Z]{2,7}$');
@@ -36,17 +40,57 @@ AppBar detailspageappbar(
         padding: const EdgeInsets.all(8.0),
         child: InkWell(
           onTap: () {
-            context.pushrepacement(CartPage());
+            context.pushrepacement(const CartPage());
           },
-          child: Image(
-            image: const AssetImage('assets/images/Buy1.png'),
-            width: context.screenwidth * 0.08,
-            height: context.screenwidth * 0.08,
-          ),
+          child: const Cartcount(),
         ),
       )
     ],
   );
+}
+
+class Cartcount extends StatelessWidget {
+  const Cartcount({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocConsumer<FavouriteCartcubit, FavouriteCartStates>(
+      listener: (context, state) {
+        // TODO: implement listener
+      },
+      builder: (context, state) {
+        return Stack(
+          children: [
+            Icon(Icons.shopping_cart_outlined, size: 40),
+            Positioned(
+                child: Container(
+              height: 20,
+              width: 20,
+              padding: const EdgeInsets.all(2),
+              decoration: const BoxDecoration(
+                color: Colors.red,
+                shape: BoxShape.circle,
+              ),
+              child: Center(
+                child: Text(
+                  FavouriteCartcubit.get(context)
+                      .showcartItemsList
+                      .length
+                      .toString(), // عدد العناصر في الـ Cart
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 12,
+                  ),
+                ),
+              ),
+            ))
+          ],
+        );
+      },
+    );
+  }
 }
 
 Future<bool?> showExitConfirmationDialog(

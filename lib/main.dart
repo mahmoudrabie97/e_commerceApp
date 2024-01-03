@@ -36,7 +36,7 @@ class EcommerceApp extends StatelessWidget {
               ..getSimilarProduct(
                   productDetailId: 164, productId: 9, context: context)),
         BlocProvider(create: (BuildContext context) => FavouriteCartcubit()),
-        BlocProvider(create: (BuildContext context)=>AccountCubit()),
+        BlocProvider(create: (BuildContext context) => AccountCubit()),
       ],
       child: MaterialApp(
           debugShowCheckedModeBanner: false,

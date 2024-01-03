@@ -1,3 +1,4 @@
+import 'package:e_commerce/cubit/favouritecartcubit/favouritecartcubit.dart';
 import 'package:e_commerce/cubit/homecubit/homecubit.dart';
 import 'package:e_commerce/cubit/homecubit/homestates.dart';
 import 'package:e_commerce/cubit/productcubit/productcubit.dart';
@@ -35,6 +36,7 @@ class _HomePgeState extends State<HomePge> {
     HomeCubit.get(context).getMostviewList(context: context);
     HomeCubit.get(context).getspecificCategoryHome(context: context);
     HomeCubit.get(context).getspecificProduct(context: context);
+    FavouriteCartcubit.get(context).showCartItem(context: context);
 
     super.initState();
   }
