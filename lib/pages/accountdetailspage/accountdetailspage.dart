@@ -33,8 +33,8 @@ class AccountDetailsPage extends StatelessWidget {
 
       body:  BlocConsumer<AccountCubit,AccountStates>(
 
-        listener: (context,index){},
-        builder:(context,index){
+        listener: (context,state){},
+        builder:(context,state){
 
           return State is AccountLoadingState? Center(child: CircularProgressIndicator()):  Form(
             key: formkey,
@@ -49,7 +49,8 @@ class AccountDetailsPage extends StatelessWidget {
                       height: 60,
                     ),
                     CustomTextFormField(
-                      hintText: '${AccountCubit.get(context).accountDetailsModel?.name}',
+
+                      hintText:  AccountCubit.get(context).accountDetailsModel?.name == null ? 'Loading...':'${AccountCubit.get(context).accountDetailsModel?.name}',
 
                       validator:(e){
                         if(e!.isEmpty)
@@ -62,7 +63,7 @@ class AccountDetailsPage extends StatelessWidget {
                       height: 20,
                     ),
                     CustomTextFormField(
-                      hintText: '${AccountCubit.get(context).accountDetailsModel?.email}',
+                      hintText:  AccountCubit.get(context).accountDetailsModel?.email == null ? 'Loading...':'${AccountCubit.get(context).accountDetailsModel?.email}',
                       validator:(e){
                         if(e!.isEmpty)
                         {
@@ -75,7 +76,7 @@ class AccountDetailsPage extends StatelessWidget {
                       height: 20,
                     ),
                     CustomTextFormField(
-                      hintText: '${AccountCubit.get(context).accountDetailsModel?.name}',
+                      hintText: AccountCubit.get(context).accountDetailsModel?.name == null ? 'Loading...': '${AccountCubit.get(context).accountDetailsModel?.name}',
                       validator:(e){
                         if(e!.isEmpty)
                         {

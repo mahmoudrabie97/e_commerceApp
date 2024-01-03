@@ -87,6 +87,7 @@ class AccountCubit extends Cubit<AccountStates> {
 
         emit(AccountSuccessState());
       }
+
     }).catchError((error) {
       debugPrint('lamiiiiiiiiiiiiiiiiiiii: $error');
       // ShowMyDialog.showMsg(context, 'An error occurred: $error');
