@@ -1,22 +1,22 @@
 class AccountDetailsModel {
   String? id;
   String? name;
-  Null? phone;
-  Null? companyId;
-  Null? company;
-  Null? jobTitleId;
-  Null? jobTitle;
-  Null? groupId;
-  Null? group;
+  dynamic phone;
+  dynamic companyId;
+  dynamic company;
+  dynamic jobTitleId;
+  dynamic jobTitle;
+  dynamic groupId;
+  dynamic group;
   bool? isActive;
   String? addedDate;
   String? updatedDate;
   String? email;
-  Null? address;
+  dynamic address;
   List<Roles>? roles;
   List<String>? userRoles;
   List<String>? rolesIds;
-  Null? phoneNumber;
+  dynamic phoneNumber;
   String? password;
 
   AccountDetailsModel(
