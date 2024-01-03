@@ -1,5 +1,6 @@
 import 'package:e_commerce/pages/accountdetailspage/accountdetailspage.dart';
 import 'package:e_commerce/pages/addresspage/addresspage.dart';
+import 'package:e_commerce/pages/authpage/loginpage.dart';
 import 'package:e_commerce/pages/cartpage/myorderspage.dart';
 import 'package:e_commerce/pages/changepasswordpage/changepasswordpage.dart';
 import 'package:e_commerce/pages/wishlistpage/wishlistpage.dart';
@@ -7,6 +8,9 @@ import 'package:e_commerce/utilites/appcolors.dart';
 import 'package:e_commerce/utilites/extentionhelper.dart';
 import 'package:e_commerce/utilites/widgets/customtext.dart';
 import 'package:flutter/material.dart';
+
+import '../../network/local_network.dart';
+import '../../sharedPerference/cash_helper.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -99,7 +103,21 @@ class ProfilePage extends StatelessWidget {
                       color: AppColor.kmaincolor, size: 29),
                   'Wishlists'),
             ),
-            buildlisttile(const Icon(Icons.logout, size: 29), 'Logout'),
+            GestureDetector(
+                onTap: () async{
+                  await CashDate.deletData(key:  'token');
+                  context.push(LoginPage());
+                  print('tttttttttttttttttoken');
+
+
+                  // Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //         builder: (context) => RegisterScreen()));
+                  // print('log out $token');
+                },
+
+                child: buildlisttile(const Icon(Icons.logout, size: 29), 'Logout')),
           ],
         ),
       ),
