@@ -16,8 +16,11 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = SimpleBlocObserver();
   await CashDate.cashInitialization();
+
+=======
   AppConstant.tokensharedpref = CashDate.getData(key: 'token');
   print('tokensh is${AppConstant.tokensharedpref}');
+
 
   runApp(const EcommerceApp());
 }
