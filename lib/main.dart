@@ -4,7 +4,6 @@ import 'package:e_commerce/cubit/productcubit/productcubit.dart';
 import 'package:e_commerce/cubit/favouritecartcubit/favouritecartcubit.dart';
 import 'package:e_commerce/network/local_network.dart';
 import 'package:e_commerce/pages/homepage/hombottomnav.dart';
-import 'package:e_commerce/pages/homepage/homepage.dart';
 import 'package:e_commerce/pages/welcomepage.dart';
 import 'package:e_commerce/sharedPerference/cash_helper.dart';
 import 'package:e_commerce/simpleblocobserver.dart';
@@ -13,10 +12,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import './utilites/constants.dart';
 
-Future <void> main() async {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  Bloc.observer = SimpleBlocObserver();
   await CashDate.cashInitialization();
-  AppConstant.sharedToken =  await CashDate.getData(key: 'token');
+  AppConstant.tokensharedpref = CashDate.getData(key: 'token');
+  print('tokensh is${AppConstant.tokensharedpref}');
 
   runApp(const EcommerceApp());
 }
@@ -40,18 +41,18 @@ class EcommerceApp extends StatelessWidget {
         BlocProvider(create: (BuildContext context) => AccountCubit()),
       ],
       child: MaterialApp(
-          debugShowCheckedModeBanner: false,
-          theme: ThemeData(
-            scaffoldBackgroundColor: AppColor.appBgColor,
-            primaryColor: AppColor.primary,
-          ),
-          home:
-          AppConstant.sharedToken != null
-              ? HomeBottomNav()
-              : WelcomePage(),
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          scaffoldBackgroundColor: AppColor.appBgColor,
+          primaryColor: AppColor.primary,
+        ),
+        home: WelcomePage(),
 
-
-          ),
+        //AppConstant.tokensharedpref != null &&
+        //      AppConstant.tokensharedpref != ''
+        // ? HomeBottomNav()
+        // : const WelcomePage(),
+      ),
     );
   }
 }
