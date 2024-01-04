@@ -5,6 +5,7 @@ import 'package:e_commerce/pages/cartpage/myorderspage.dart';
 import 'package:e_commerce/pages/changepasswordpage/changepasswordpage.dart';
 import 'package:e_commerce/pages/wishlistpage/wishlistpage.dart';
 import 'package:e_commerce/utilites/appcolors.dart';
+import 'package:e_commerce/utilites/constants.dart';
 import 'package:e_commerce/utilites/extentionhelper.dart';
 import 'package:e_commerce/utilites/widgets/customtext.dart';
 import 'package:flutter/material.dart';
@@ -61,15 +62,16 @@ class ProfilePage extends StatelessWidget {
               height: 10,
             ),
             GestureDetector(
-              onTap: (){
+              onTap: () {
                 context.push(AccountDetailsPage());
               },
               child: buildlisttile(
-                  const Icon(Icons.person, color: AppColor.kmaincolor, size: 29),
+                  const Icon(Icons.person,
+                      color: AppColor.kmaincolor, size: 29),
                   'Account Details'),
             ),
             GestureDetector(
-              onTap: (){
+              onTap: () {
                 context.push(AddressPage());
               },
               child: buildlisttile(
@@ -104,11 +106,10 @@ class ProfilePage extends StatelessWidget {
                   'Wishlists'),
             ),
             GestureDetector(
-                onTap: () async{
-                  await CashDate.deletData(key:  'token');
+                onTap: () async {
+                  await CashDate.deletData(key: 'token');
                   context.push(LoginPage());
-                  print('tttttttttttttttttoken');
-
+                  print('tttttttttttttttttoken${AppConstant.tokensharedpref}');
 
                   // Navigator.push(
                   //     context,
@@ -116,8 +117,8 @@ class ProfilePage extends StatelessWidget {
                   //         builder: (context) => RegisterScreen()));
                   // print('log out $token');
                 },
-
-                child: buildlisttile(const Icon(Icons.logout, size: 29), 'Logout')),
+                child: buildlisttile(
+                    const Icon(Icons.logout, size: 29), 'Logout')),
           ],
         ),
       ),

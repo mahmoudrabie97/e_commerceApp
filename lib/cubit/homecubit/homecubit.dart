@@ -215,7 +215,7 @@ class HomeCubit extends Cubit<HomeStates> {
       context: context,
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
-        'Authorization': 'Bearer ${AppConstant.token}'
+        'Authorization': 'Bearer ${AppConstant.tokensharedpref}'
       },
     ).then(
       (value) {

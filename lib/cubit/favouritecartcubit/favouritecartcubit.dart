@@ -39,7 +39,7 @@ class FavouriteCartcubit extends Cubit<FavouriteCartStates> {
   Future getwishlistsitms({required BuildContext context}) {
     Map<String, String> headers = {
       // 'Content-Type': 'application/x-www-form-urlencoded',
-      'Authorization': 'Bearer ${AppConstant.token}'
+      'Authorization': 'Bearer ${AppConstant.tokensharedpref}'
     };
 
     emit(GetWishListsLoadingState());
@@ -86,7 +86,7 @@ class FavouriteCartcubit extends Cubit<FavouriteCartStates> {
       {required BuildContext context, required int? productdetailsid}) async {
     Map<String, String> headers = {
       // 'Content-Type': 'application/x-www-form-urlencoded',
-      'Authorization': 'Bearer ${AppConstant.token}'
+      'Authorization': 'Bearer ${AppConstant.tokensharedpref}'
     };
     emit(AddWishListsLoadingState());
     CallApi.postData(
@@ -134,7 +134,7 @@ class FavouriteCartcubit extends Cubit<FavouriteCartStates> {
       {required BuildContext context, required int? productdetailsid}) {
     Map<String, String> headers = {
       'Content-Type': 'application/x-www-form-urlencoded',
-      'Authorization': 'Bearer ${AppConstant.token}'
+      'Authorization': 'Bearer ${AppConstant.tokensharedpref}'
     };
     emit(RemoveWishListsLoadingState());
     CallApi.postData(
@@ -194,7 +194,7 @@ class FavouriteCartcubit extends Cubit<FavouriteCartStates> {
   Future showCartItem({required BuildContext context}) {
     Map<String, String> headers = {
       // 'Content-Type': 'application/x-www-form-urlencoded',
-      'Authorization': 'Bearer ${AppConstant.token}'
+      'Authorization': 'Bearer ${AppConstant.tokensharedpref}'
     };
 
     emit(ShowCartLoadingState());
@@ -238,7 +238,7 @@ class FavouriteCartcubit extends Cubit<FavouriteCartStates> {
       {required BuildContext context, required int? productdetailId}) {
     Map<String, String> headers = {
       'Content-Type': 'application/x-www-form-urlencoded',
-      'Authorization': 'Bearer ${AppConstant.token}'
+      'Authorization': 'Bearer ${AppConstant.tokensharedpref}'
     };
     emit(AddToCartLoadingState());
     CallApi.postData(
@@ -311,7 +311,7 @@ class FavouriteCartcubit extends Cubit<FavouriteCartStates> {
       {required BuildContext context, required CartModel cartModel}) {
     Map<String, String> headers = {
       'Content-Type': 'application/x-www-form-urlencoded',
-      'Authorization': 'Bearer ${AppConstant.token}'
+      'Authorization': 'Bearer ${AppConstant.tokensharedpref}'
     };
     emit(UpdateCartLoadingState());
     CallApi.postData(
@@ -387,7 +387,7 @@ class FavouriteCartcubit extends Cubit<FavouriteCartStates> {
       ProductDetailsBypId? productDetailsBypId}) {
     Map<String, String> headers = {
       'Content-Type': 'application/x-www-form-urlencoded',
-      'Authorization': 'Bearer ${AppConstant.token}'
+      'Authorization': 'Bearer ${AppConstant.tokensharedpref}'
     };
     emit(UpdateCartLoadingState());
     CallApi.postData(
@@ -498,7 +498,7 @@ class FavouriteCartcubit extends Cubit<FavouriteCartStates> {
       context: context,
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
-        'Authorization': 'Bearer ${AppConstant.token}'
+        'Authorization': 'Bearer ${AppConstant.tokensharedpref}'
       },
     ).then(
       (value) {

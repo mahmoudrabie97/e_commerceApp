@@ -17,10 +17,9 @@ void main() async {
   Bloc.observer = SimpleBlocObserver();
   await CashDate.cashInitialization();
 
-=======
   AppConstant.tokensharedpref = CashDate.getData(key: 'token');
   print('tokensh is${AppConstant.tokensharedpref}');
-
+  print('oooooooooooooo${AppConstant.token}');
 
   runApp(const EcommerceApp());
 }
@@ -49,12 +48,10 @@ class EcommerceApp extends StatelessWidget {
           scaffoldBackgroundColor: AppColor.appBgColor,
           primaryColor: AppColor.primary,
         ),
-        home: WelcomePage(),
-
-        //AppConstant.tokensharedpref != null &&
-        //      AppConstant.tokensharedpref != ''
-        // ? HomeBottomNav()
-        // : const WelcomePage(),
+        home: AppConstant.tokensharedpref == null ||
+                AppConstant.tokensharedpref == ''
+            ? WelcomePage()
+            : HomeBottomNav(),
       ),
     );
   }
