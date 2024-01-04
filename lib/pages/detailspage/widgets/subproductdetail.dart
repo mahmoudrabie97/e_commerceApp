@@ -4,6 +4,9 @@ import 'package:e_commerce/pages/detailspage/detailspage.dart';
 import 'package:e_commerce/utilites/appcolors.dart';
 import 'package:e_commerce/utilites/extentionhelper.dart';
 import 'package:flutter/material.dart';
+import 'package:like_button/like_button.dart';
+
+import '../../../cubit/favouritecartcubit/favouritecartcubit.dart';
 
 class SubProductDetailItm extends StatelessWidget {
   const SubProductDetailItm({
@@ -17,8 +20,12 @@ class SubProductDetailItm extends StatelessWidget {
   final SimilarPModel productDetailsBypId;
   final int index;
 
+
   @override
   Widget build(BuildContext context) {
+    final isProductInWishlist = FavouriteCartcubit.get(context)
+        .favouritesId
+        .contains(productDetailsBypId.id.toString());
     print('pppppppppppppp${productDetailsBypId.id}');
     print('iiiiiiiiiiiiiiiiiii$index');
     return SizedBox(
@@ -49,9 +56,28 @@ class SubProductDetailItm extends StatelessWidget {
                       Row(
                         children: [
                           const Spacer(),
-                          IconButton(
-                            onPressed: () {},
-                            icon: Image.asset('assets/images/heart.png'),
+                          LikeButton(
+                            isLiked: isProductInWishlist,
+                            onTap: (isLiked) async {
+                              print('itttttttttttt${productDetailsBypId.id}');
+                              await FavouriteCartcubit.get(context)
+                                  .checkProductInWishlist(
+                                context: context,
+                                productdetailsid: productDetailsBypId.id,
+                              );
+
+                              return Future.value(!isLiked);
+                            },
+                            // likeBuilder: (isLiked) {
+                            // return Icon(
+                            //   isLiked
+                            //       ? Icons.favorite
+                            //       : Icons.favorite_border,
+                            //   color: isLiked
+                            //       ? Color(0xFFFF9800)
+                            //       : Colors.grey,
+                            // );
+                            // },
                           )
                         ],
                       ),
