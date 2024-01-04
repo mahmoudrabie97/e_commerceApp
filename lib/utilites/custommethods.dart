@@ -28,6 +28,26 @@ AppBar detailspageappbar(
     backgroundColor: Colors.white,
     elevation: 0,
     title: widget,
+    actions: [
+      Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: InkWell(
+          onTap: () {
+            context.pushrepacement(const CartPage());
+          },
+          child: const Cartcount(),
+        ),
+      )
+    ],
+  );
+}
+
+AppBar cartAppbar(BuildContext context, Widget widget, bool ceneredtitle) {
+  return AppBar(
+    centerTitle: ceneredtitle,
+    backgroundColor: Colors.white,
+    elevation: 0,
+    title: widget,
     leading: IconButton(
       onPressed: () {
         Navigator.pop(context);

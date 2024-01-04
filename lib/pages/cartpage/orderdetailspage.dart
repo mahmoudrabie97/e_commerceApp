@@ -17,7 +17,7 @@ class OrderDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: detailspageappbar(
+      appBar: cartAppbar(
         context,
         const Text(' Order Details',
             style: TextStyle(color: Colors.black, fontSize: 14)),
