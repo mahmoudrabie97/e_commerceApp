@@ -32,6 +32,7 @@ class FavouriteCartcubit extends Cubit<FavouriteCartStates> {
 
   // هستخدم فكره ال set عشان مفيهاش تكرار (هاخد كل الاي دي الي في الفيفروت واحفظهم في الست )
   Set<String> favouritesId = {};
+  int countercart = 0;
 
 ////////////////.... Wishlists Functions.../////////////////////
 
@@ -167,6 +168,7 @@ class FavouriteCartcubit extends Cubit<FavouriteCartStates> {
       showmessageToast(
           backgroundcolor: Colors.red,
           message: ' un known error please try again later....... ');
+
       emit(RemoveWishlistsErrorState());
     });
   }
@@ -214,8 +216,8 @@ class FavouriteCartcubit extends Cubit<FavouriteCartStates> {
           for (var item in responseBody) {
             showcartItemsList.add(CartModel.fromJson(item));
           }
-          print(getWishlistItemsList.length);
 
+          countercart = showcartItemsList.length;
           emit(ShowCartSuccessState());
         } else if (value.statusCode == 401) {
           print(value.body);
@@ -248,6 +250,9 @@ class FavouriteCartcubit extends Cubit<FavouriteCartStates> {
         .then((value) {
       if (value!.statusCode == 200) {
         showAddedCartAnimation(context);
+
+        countercart = showcartItemsList.length;
+        showCartItem(context: context);
 
         emit(AddToCartSuccessState());
       } else if (value.statusCode == 400) {
@@ -290,6 +295,7 @@ class FavouriteCartcubit extends Cubit<FavouriteCartStates> {
         showmessageToast(
             backgroundcolor: Colors.red,
             message: 'ann error occured, try later');
+        countercart = showcartItemsList.length;
         emit(RemoveFromCartcartnotfound());
       } else {
         print('errrrror');
