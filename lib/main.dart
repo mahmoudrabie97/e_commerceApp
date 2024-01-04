@@ -17,6 +17,7 @@ Future <void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await CashDate.cashInitialization();
   AppConstant.sharedToken =  await CashDate.getData(key: 'token');
+  print(' mainnnnntoken${AppConstant.token}');
 
   runApp(const EcommerceApp());
 }
