@@ -71,7 +71,7 @@ class AccountCubit extends Cubit<AccountStates> {
   void accountDetails({ required BuildContext context}) {
     Map<String, String> headers = {
       'Content-Type': 'application/x-www-form-urlencoded',
-      'Authorization': 'Bearer ${AppConstant.token}'
+      'Authorization': 'Bearer ${AppConstant.tokensharedpref}'
     };
     emit(AccountLoadingState());
     CallApi.getData(baseUrl: basehomeurl,
