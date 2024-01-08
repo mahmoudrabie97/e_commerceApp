@@ -6,9 +6,28 @@ import 'package:e_commerce/utilites/extentionhelper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class WishListsPage extends StatelessWidget {
-  const WishListsPage({Key? key}) : super(key: key);
+import '../../cubit/productcubit/productcubit.dart';
 
+class WishListsPage extends StatefulWidget {
+  const WishListsPage({Key? key, required this.productDetailId, required this.productid}) : super(key: key);
+  final int productDetailId;
+  final int productid;
+
+  @override
+  State<WishListsPage> createState() => _WishListsPageState();
+
+}
+
+class _WishListsPageState extends State<WishListsPage> {
+  @override
+  void initState() {
+    ProductCubit.get(context).getSimilarProduct(
+        productDetailId: widget.productDetailId,
+        productId: widget.productid,
+        context: context);
+
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     FavouriteCartcubit.get(context).getwishlistsitms(context: context);
@@ -58,7 +77,7 @@ class WishListsPage extends StatelessWidget {
                             itemBuilder: (BuildContext context, int index) {
                               return WishListItem(
                                 favouritemodel: FavouriteCartcubit.get(context)
-                                    .getWishlistItemsList[index],
+                                    .getWishlistItemsList[index], productdetailId: widget.productDetailId,
                               );
                             },
                           ),

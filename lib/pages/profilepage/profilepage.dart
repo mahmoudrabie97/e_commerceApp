@@ -10,11 +10,16 @@ import 'package:e_commerce/utilites/extentionhelper.dart';
 import 'package:e_commerce/utilites/widgets/customtext.dart';
 import 'package:flutter/material.dart';
 
+import '../../models/product_detailspid.dart';
 import '../../network/local_network.dart';
 import '../../sharedPerference/cash_helper.dart';
 
 class ProfilePage extends StatelessWidget {
-  const ProfilePage({Key? key}) : super(key: key);
+  const ProfilePage(
+      {Key? key, required this.productDetailsBypId,  this.index = 0})
+      : super(key: key);
+  final ProductDetailsBypId ? productDetailsBypId;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
@@ -98,7 +103,9 @@ class ProfilePage extends StatelessWidget {
             ),
             GestureDetector(
               onTap: () {
-                context.push(const WishListsPage());
+                context.push(WishListsPage(
+                  productDetailId: productDetailsBypId!.id,  productid: productDetailsBypId!.productId,
+                ));
               },
               child: buildlisttile(
                   const Icon(Icons.favorite,
