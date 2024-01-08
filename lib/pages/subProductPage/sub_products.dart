@@ -1,3 +1,4 @@
+import 'package:e_commerce/cubit/favouritecartcubit/favouritecartcubit.dart';
 import 'package:e_commerce/cubit/productcubit/productcubit.dart';
 import 'package:e_commerce/pages/subProductPage/widgets/sub_producttem.dart';
 import 'package:e_commerce/utilites/custommethods.dart';
@@ -17,6 +18,7 @@ class SubProductPage extends StatelessWidget {
   Widget build(BuildContext context) {
     double itemWidth = context.screenwidth * 0.4;
     double itemHeight = itemWidth / 0.8;
+    FavouriteCartcubit.get(context).getwishlistsitms(context: context);
 
     return Scaffold(
       appBar: detailspageappbar(

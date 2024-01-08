@@ -1,4 +1,5 @@
 import 'package:e_commerce/models/categoriesofdepmodel.dart';
+import 'package:e_commerce/network/endpoints.dart';
 import 'package:e_commerce/pages/subProductPage/sub_products.dart';
 import 'package:e_commerce/utilites/appcolors.dart';
 import 'package:e_commerce/utilites/dummydata.dart';
@@ -41,7 +42,9 @@ class CatofDitem extends StatelessWidget {
                 )
               ],
             ),
-            const Image(image: AssetImage('assets/images/fashion3.png')),
+            Image(
+                image:
+                    NetworkImage('$baseimageurl${categoriesOfDepModel.image}')),
             Row(
               children: [
                 Padding(

@@ -1,5 +1,6 @@
 import 'package:e_commerce/cubit/homecubit/homecubit.dart';
 import 'package:e_commerce/cubit/homecubit/homestates.dart';
+import 'package:e_commerce/network/endpoints.dart';
 import 'package:e_commerce/pages/categorypage/widgets/categoryitems.dart';
 import 'package:e_commerce/pages/categorypage/widgets/departmentitem.dart';
 import 'package:e_commerce/utilites/custommethods.dart';
@@ -49,7 +50,7 @@ class Categorypage extends StatelessWidget {
                                 '',
                             categoryicon:
                                 //'$baseimageurl${HomeCubit.get(context).departmentsList[index].image ?? 'https://www.shutterstock.com/image-photo/business-woman-drawing-global-structure-260nw-1006041130.jpg '}');
-                                'https://www.shutterstock.com/image-photo/business-woman-drawing-global-structure-260nw-1006041130.jpg',
+                                '$baseimageurl${HomeCubit.get(context).departmentsList[index].image}',
                             departmentId: HomeCubit.get(context)
                                     .departmentsList[index]
                                     .id ??
