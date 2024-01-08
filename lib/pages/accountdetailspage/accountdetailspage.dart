@@ -63,7 +63,7 @@ class AccountDetailsPage extends StatelessWidget {
                               }
                             },
                           ),
-                          SizedBox(
+                         const SizedBox(
                             height: 20,
                           ),
                           CustomTextFormField(
@@ -95,7 +95,7 @@ class AccountDetailsPage extends StatelessWidget {
                               }
                             },
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
                           Padding(
@@ -104,7 +104,9 @@ class AccountDetailsPage extends StatelessWidget {
                               width: 150,
                               child: CustomButton(
                                   borderRadius: 4,
-                                  buttonText: 'Save Changes',
+                                  buttonText: 'Conform',
+
+
                                   onPressed: () {}),
                             ),
                           ),
