@@ -24,7 +24,7 @@ class _HomeBottomNavState extends State<HomeBottomNav> {
     SearchPage(),
     const CartPage(),
     const Categorypage(),
-    const ProfilePage(productDetailsBypId: null,),
+    const ProfilePage(),
   ];
   @override
   Widget build(BuildContext context) {
