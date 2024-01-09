@@ -7,10 +7,10 @@ import 'package:flutter/material.dart';
 
 class WishListItem extends StatelessWidget {
   final FavouriteModel favouritemodel;
-  final int productdetailId;
+
   const WishListItem({
     super.key,
-    required this.favouritemodel, required this.productdetailId,
+    required this.favouritemodel,
   });
 
   @override
@@ -77,7 +77,7 @@ class WishListItem extends StatelessWidget {
                             onTap: (){
                               FavouriteCartcubit.get(context).addToCart(
                                   context: context,
-                                  productdetailId: productdetailId);
+                                  productdetailId: favouritemodel.productDetailId);
                             },
                             child: Image.asset(
                                 'assets/images/add-to-cart (5) 2.png'),

@@ -16,9 +16,9 @@ import '../../sharedPerference/cash_helper.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage(
-      {Key? key, required this.productDetailsBypId,  this.index = 0})
+      {Key? key,   this.index = 0})
       : super(key: key);
-  final ProductDetailsBypId ? productDetailsBypId;
+
   final int index;
 
   @override
@@ -104,7 +104,7 @@ class ProfilePage extends StatelessWidget {
             GestureDetector(
               onTap: () {
                 context.push(WishListsPage(
-                  productDetailId: productDetailsBypId!.id,  productid: productDetailsBypId!.productId,
+
                 ));
               },
               child: buildlisttile(
