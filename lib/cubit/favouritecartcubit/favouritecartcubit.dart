@@ -189,6 +189,18 @@ class FavouriteCartcubit extends Cubit<FavouriteCartStates> {
           context: context, productdetailsid: productdetailsid);
     }
   }
+  
+  
+  /////new check productWishList
+  
+  void checkProduct({required int idCheck,required BuildContext context})
+  {
+    Map<String, String> headers = {
+      // 'Content-Type': 'application/x-www-form-urlencoded',
+      'Authorization': 'Bearer ${AppConstant.tokensharedpref}'
+    };
+    CallApi.getData(baseUrl: basehomeurl, apiUrl: '$checkWishList$idCheck', context: context, headers: headers);
+  }
 
   ////////////////////////////////// Cart Functions //////////////////
   Future showCartItem({required BuildContext context}) {
