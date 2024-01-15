@@ -244,7 +244,7 @@ class FavouriteCartcubit extends Cubit<FavouriteCartStates> {
     CallApi.postData(
             data: {},
             baseUrl: basehomeurl,
-            apiUrl: '$addingitemtoCart$productdetailId',
+            apiUrl: '$addingitemtoCart$productdetailId?quantity=1',
             headers: headers,
             context: context)
         .then((value) {
