@@ -18,7 +18,7 @@ void main() async {
   await CashDate.cashInitialization();
 
   AppConstant.tokensharedpref = CashDate.getData(key: 'token');
-  print('tokensh is${AppConstant.tokensharedpref}');
+
   print('oooooooooooooo${AppConstant.token}');
 
   runApp(const EcommerceApp());

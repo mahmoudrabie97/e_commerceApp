@@ -23,6 +23,8 @@ const String getfilterproductUrl = 'Home/GetFilterProducts';
 const String getProductDetailsByProductDetailIdUrl =
     'Home/GetProductDetailsByProductDetailId';
 const String getwishlistsitemurl = 'Home/GetWishlistItems';
+const String checkwishlistsitemurl = 'Home/CheckProductInWishlist/';
+
 const String removeWishlisturl = 'Home/RemoveFromWishlist/';
 const String showcrtitemurl = 'Home/ShowCartItems';
 const String additemtoWishlist = 'Home/AddItemToWishlist/';
@@ -30,6 +32,7 @@ const String additemtoWishlist = 'Home/AddItemToWishlist/';
 const String addingitemtoCart = 'Home/AddToCart/';
 const String removeitemfromCart = 'Home/RemoveCartItems/';
 const String updatecartUrl = 'Home/UpdateCartItems';
+const String checkproductcartUrl = 'Home/CheckProductInCart';
 
 const String addMostViewedUrl = 'Home/AddMostViewed/';
 const String getMostProductUserViewUrl = 'Home/GetMostProductUserViewed';

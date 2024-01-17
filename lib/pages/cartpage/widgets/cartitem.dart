@@ -54,7 +54,8 @@ class CartItemWidget extends StatelessWidget {
                                   FavouriteCartcubit.get(context)
                                       .decreasequntity(
                                           productquntity: cartModel.quantity,
-                                          cartModel: cartModel);
+                                          cartModel: cartModel,
+                                          context: context);
                                   FavouriteCartcubit.get(context).updateCart(
                                       context: context, cartModel: cartModel);
                                 },
@@ -69,7 +70,8 @@ class CartItemWidget extends StatelessWidget {
                                 print('peress');
                                 FavouriteCartcubit.get(context).increasequntity(
                                     productquntity: cartModel.quantity,
-                                    cartModel: cartModel);
+                                    cartModel: cartModel,
+                                    context: context);
                                 FavouriteCartcubit.get(context).updateCart(
                                     context: context, cartModel: cartModel);
                               },

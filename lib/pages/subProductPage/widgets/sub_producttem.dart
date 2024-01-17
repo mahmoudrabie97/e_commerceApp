@@ -1,5 +1,6 @@
 import 'package:e_commerce/cubit/favouritecartcubit/favouritecartcubit.dart';
 import 'package:e_commerce/cubit/favouritecartcubit/favouritecartstates.dart';
+import 'package:e_commerce/models/checkedcartmodel.dart';
 import 'package:e_commerce/models/product_detailspid.dart';
 import 'package:e_commerce/network/endpoints.dart';
 import 'package:e_commerce/pages/detailspage/detailspage.dart';
@@ -132,6 +133,7 @@ class SubProductitem extends StatelessWidget {
                                 productDetailId: productDetailsBypId.id,
                                 index: index,
                                 productid: productDetailsBypId.productId,
+
                                 // pmodel: productDetailsBypId,
                               ));
                             },

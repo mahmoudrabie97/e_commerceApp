@@ -43,6 +43,8 @@ class _HomePgeState extends State<HomePge> {
 
   @override
   Widget build(BuildContext context) {
+    print(
+        'tcount ${FavouriteCartcubit.get(context).calculateTotallyquantity().toString()}');
     double itemWidth = context.screenwidth * 0.4;
     double itemHeight = itemWidth / 0.8;
     return BlocConsumer<HomeCubit, HomeStates>(

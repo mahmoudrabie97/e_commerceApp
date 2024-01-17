@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:e_commerce/cubit/favouritecartcubit/favouritecartstates.dart';
 import 'package:e_commerce/models/cartmodel.dart';
+import 'package:e_commerce/models/checkedcartmodel.dart';
 import 'package:e_commerce/models/mostviewed.dart';
 import 'package:e_commerce/models/product_detailspid.dart';
 
@@ -23,6 +24,7 @@ class FavouriteCartcubit extends Cubit<FavouriteCartStates> {
 
   List<FavouriteModel> getWishlistItemsList = [];
   List<CartModel> showcartItemsList = [];
+  List<CheckedCartModel> checkcartlist = [];
   List<MostViewed> getMostProductViewedList = [];
   IconData icon = IconlyLight.heart;
   bool isFavouriteproduct = false;
@@ -33,6 +35,9 @@ class FavouriteCartcubit extends Cubit<FavouriteCartStates> {
   // هستخدم فكره ال set عشان مفيهاش تكرار (هاخد كل الاي دي الي في الفيفروت واحفظهم في الست )
   Set<String> favouritesId = {};
   int countercart = 0;
+  int totalquantity = 0;
+  int tesalltqunty = 0;
+  num allquntity = 0;
 
 ////////////////.... Wishlists Functions.../////////////////////
 
@@ -173,6 +178,53 @@ class FavouriteCartcubit extends Cubit<FavouriteCartStates> {
     });
   }
 
+  bool isinfavoiurite = false;
+
+  Future checkProductinwishlistApi(
+      {required BuildContext context, required int productdetailid}) {
+    Map<String, String> headers = {
+      // 'Content-Type': 'application/x-www-form-urlencoded',
+      'Authorization': 'Bearer ${AppConstant.tokensharedpref}'
+    };
+
+    emit(CheckWishListsLoadingState());
+
+    return CallApi.getData(
+      baseUrl: basehomeurl,
+      apiUrl: '$checkwishlistsitemurl$productdetailid',
+      context: context,
+      headers: headers,
+    ).then(
+      (value) {
+        if (value!.statusCode == 200) {
+          final responseBody = json.decode(value.body);
+          if (responseBody == true) {
+            isinfavoiurite = true;
+            removeItemFromWishlist(
+                context: context, productdetailsid: productdetailid);
+          } else if (responseBody == false) {
+            isinfavoiurite = false;
+            addproductTowishlist(
+                context: context, productdetailsid: productdetailid);
+          }
+          print('checkapi $responseBody');
+          // log('${AppConstant.token}');
+
+          emit((CheckWishlistsSuccessState()));
+        } else if (value.statusCode == 401) {
+          print(value.body);
+          final responseBody = json.decode(value.body);
+          print(responseBody);
+        }
+      },
+    ).catchError(
+      ((error) {
+        print('errorrr $error');
+        emit(CheckWishlistsErrorState());
+      }),
+    );
+  }
+
   Future<void> checkProductInWishlist(
       {required int? productdetailsid, required BuildContext context}) async {
     bool isProductInWishlist = false;
@@ -189,17 +241,19 @@ class FavouriteCartcubit extends Cubit<FavouriteCartStates> {
           context: context, productdetailsid: productdetailsid);
     }
   }
-  
-  
+
   /////new check productWishList
-  
-  void checkProduct({required int idCheck,required BuildContext context})
-  {
+
+  void checkProduct({required int idCheck, required BuildContext context}) {
     Map<String, String> headers = {
       // 'Content-Type': 'application/x-www-form-urlencoded',
       'Authorization': 'Bearer ${AppConstant.tokensharedpref}'
     };
-    CallApi.getData(baseUrl: basehomeurl, apiUrl: '$checkWishList$idCheck', context: context, headers: headers);
+    CallApi.getData(
+        baseUrl: basehomeurl,
+        apiUrl: '$checkWishList$idCheck',
+        context: context,
+        headers: headers);
   }
 
   ////////////////////////////////// Cart Functions //////////////////
@@ -227,9 +281,12 @@ class FavouriteCartcubit extends Cubit<FavouriteCartStates> {
 
           for (var item in responseBody) {
             showcartItemsList.add(CartModel.fromJson(item));
+            // allquntity += item.quantity;
           }
 
           countercart = showcartItemsList.length;
+          calculateTotallyquantity();
+
           emit(ShowCartSuccessState());
         } else if (value.statusCode == 401) {
           print(value.body);
@@ -261,9 +318,13 @@ class FavouriteCartcubit extends Cubit<FavouriteCartStates> {
             context: context)
         .then((value) {
       if (value!.statusCode == 200) {
+        checkproductincart(
+            context: context, productsetailid: productdetailId ?? 0);
         showAddedCartAnimation(context);
 
         countercart = showcartItemsList.length;
+        totalquantity += showcartItemsList.length;
+        tesalltqunty++;
         showCartItem(context: context);
 
         emit(AddToCartSuccessState());
@@ -301,6 +362,7 @@ class FavouriteCartcubit extends Cubit<FavouriteCartStates> {
         showmessageToast(
             backgroundcolor: Colors.green,
             message: 'item removed from cart succefully');
+        tesalltqunty--;
         showCartItem(context: context);
       } else if (value.statusCode == 400) {
         print('no item in wishlist');
@@ -308,6 +370,7 @@ class FavouriteCartcubit extends Cubit<FavouriteCartStates> {
             backgroundcolor: Colors.red,
             message: 'ann error occured, try later');
         countercart = showcartItemsList.length;
+        totalquantity += showcartItemsList.length;
         emit(RemoveFromCartcartnotfound());
       } else {
         print('errrrror');
@@ -318,6 +381,51 @@ class FavouriteCartcubit extends Cubit<FavouriteCartStates> {
       emit(RemoveFromcartErrorState());
     });
   }
+
+  ////////check product in cart//////////
+  Future checkproductincart(
+      {required BuildContext context, required int productsetailid}) {
+    Map<String, String> headers = {
+      // 'Content-Type': 'application/x-www-form-urlencoded',
+      'Authorization': 'Bearer ${AppConstant.tokensharedpref}'
+    };
+
+    emit((CheckingCartLoadingState()));
+
+    return CallApi.getData(
+      baseUrl: basehomeurl,
+      apiUrl: '$checkproductcartUrl?productDetailId=$productsetailid',
+      context: context,
+      headers: headers,
+    ).then(
+      (value) {
+        checkcartlist = [];
+        if (value!.statusCode == 200) {
+          print(value.body);
+          final responseBody = json.decode(value.body);
+          print('chhhhhhhhhhhhhhhhhhh $responseBody');
+
+          for (var item in responseBody) {
+            checkcartlist.add(CheckedCartModel.fromJson(item));
+            print('yyyyyyyyyyyyyyyyyyyyyyyyyyyyyy $item');
+          }
+
+          emit(CheckingCartSuccessState());
+        } else if (value.statusCode == 401) {
+          print(value.body);
+          final responseBody = json.decode(value.body);
+
+          print('no authrization $responseBody');
+        }
+      },
+    ).catchError(
+      ((error) {
+        print('errorrr $error');
+        emit(CheckingCartnotfound());
+      }),
+    );
+  }
+////////////////
 
   void updateCart(
       {required BuildContext context, required CartModel cartModel}) {
@@ -349,25 +457,101 @@ class FavouriteCartcubit extends Cubit<FavouriteCartStates> {
       showmessageToast(backgroundcolor: Colors.red, message: error.toString());
       emit(UpdateCartSuccessState());
     });
-  }
+  } ////////
+
+  void updateCartbyCheckModel(
+      {required BuildContext context,
+      required CheckedCartModel checkedCartModel}) {
+    Map<String, String> headers = {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Authorization': 'Bearer ${AppConstant.tokensharedpref}'
+    };
+    emit(UpdateCartLoadingState());
+    CallApi.postData(
+            data: {
+          'Id': checkedCartModel.id.toString(),
+          'ProductDetailId': checkedCartModel.productDetailId.toString(),
+          'Quantity': checkedCartModel.quantity.toString(),
+        },
+            baseUrl: basehomeurl,
+            apiUrl: updatecartUrl,
+            headers: headers,
+            context: context)
+        .then((value) {
+      if (value!.statusCode == 200) {
+        emit(UpdateCartSuccessState());
+      } else if (value.statusCode == 400) {
+        emit(UpdatecartErrorState());
+      } else {
+        print('errrrror');
+      }
+    }).catchError((error) {
+      print(error.toString());
+      showmessageToast(backgroundcolor: Colors.red, message: error.toString());
+      emit(UpdateCartSuccessState());
+    });
+  } ////////
 
   void increasequntity(
-      {required int? productquntity, required CartModel? cartModel}) {
+      {required int? productquntity,
+      required CartModel? cartModel,
+      required BuildContext context}) {
     productquntity = productquntity! + 1;
     cartModel!.quantity = productquntity;
 
+    showCartItem(context: context);
     emit(IncreaseQuntityState());
   }
 
   void decreasequntity(
-      {required int? productquntity, required CartModel? cartModel}) {
+      {required int? productquntity,
+      required CartModel? cartModel,
+      required BuildContext context}) {
     if (productquntity! > 1) {
       productquntity = productquntity - 1;
       cartModel!.quantity = productquntity;
+      totalquantity--;
+      tesalltqunty--;
+      calculateTotallyquantity();
+      showCartItem(context: context);
 
       emit(DecreaseQuntityState());
     } else {
       print('nooo');
+    }
+  }
+
+  void increasequntitybyCheck({
+    required int? productquntity,
+    required CheckedCartModel? checkedCartModel,
+    required BuildContext context,
+  }) {
+    productquntity = productquntity! + 1;
+    checkedCartModel!.quantity = productquntity;
+    totalquantity++;
+    tesalltqunty++;
+    calculateTotallyquantity();
+    showCartItem(context: context);
+
+    emit(IncreaseQuntityState());
+  }
+
+  void decreasequntitybycheck(
+      {required int? productquntity,
+      required BuildContext context,
+      required int productdetailsid,
+      required CheckedCartModel? checkedCartModel}) {
+    if (productquntity! > 1) {
+      productquntity = productquntity - 1;
+      checkedCartModel!.quantity = productquntity;
+      totalquantity--;
+      tesalltqunty--;
+      calculateTotallyquantity();
+      showCartItem(context: context);
+
+      emit(DecreaseQuntityState());
+    } else {
+      removeFromCart(context: context, productdetailId: productdetailsid);
     }
   }
 
@@ -532,5 +716,21 @@ class FavouriteCartcubit extends Cubit<FavouriteCartStates> {
     );
   }
 
+  // double calculateTotalPrice({required BuildContext context}) {
+  //   double totalPrice = 0.0;
+  //   List<CartModel> cartItems =
+  //       FavouriteCartcubit.get(context).showcartItemsList;
+  //   for (CartModel cartItem in cartItems) {
+  //     totalPrice += (cartItem.quantity! * cartItem.productDetail!.price!);
+  //   }
+  //   return totalPrice;
+  // }
+  int calculateTotallyquantity() {
+    int totaly = 0;
+    for (CartModel cartitem in showcartItemsList) {
+      totaly += cartitem.quantity!;
+    }
+    return totaly;
+  }
   ///////////////////////////////////////////////
 }

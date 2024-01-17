@@ -1,5 +1,6 @@
 import 'package:e_commerce/cubit/favouritecartcubit/favouritecartcubit.dart';
 import 'package:e_commerce/cubit/favouritecartcubit/favouritecartstates.dart';
+import 'package:e_commerce/models/cartmodel.dart';
 import 'package:e_commerce/pages/cartpage/cartpage.dart';
 import 'package:e_commerce/utilites/extentionhelper.dart';
 import 'package:flutter/material.dart';
@@ -76,6 +77,18 @@ class Cartcount extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    int calculatetotalquantity({required BuildContext context}) {
+      int totaquantity = 0;
+      List<CartModel> showcart =
+          FavouriteCartcubit.get(context).showcartItemsList;
+
+      for (CartModel cartitem in showcart) {
+        totaquantity += cartitem.quantity ?? 0;
+        print('zzzzzzzzzzzzzzzzz$totaquantity');
+      }
+      return totaquantity;
+    }
+
     return BlocConsumer<FavouriteCartcubit, FavouriteCartStates>(
       listener: (context, state) {
         // TODO: implement listener
@@ -96,8 +109,7 @@ class Cartcount extends StatelessWidget {
               child: Center(
                 child: Text(
                   FavouriteCartcubit.get(context)
-                      .showcartItemsList
-                      .length
+                      .calculateTotallyquantity()
                       .toString(), // عدد العناصر في الـ Cart
                   style: TextStyle(
                     color: Colors.white,

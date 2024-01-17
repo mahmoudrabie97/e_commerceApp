@@ -8,6 +8,12 @@ class GetWishlistsSuccessState extends FavouriteCartStates {}
 
 class GetWishlistsErrorState extends FavouriteCartStates {}
 
+class CheckWishListsLoadingState extends FavouriteCartStates {}
+
+class CheckWishlistsSuccessState extends FavouriteCartStates {}
+
+class CheckWishlistsErrorState extends FavouriteCartStates {}
+
 class RemoveWishListsLoadingState extends FavouriteCartStates {}
 
 class RemoveWishlistsSuccessState extends FavouriteCartStates {}
@@ -21,6 +27,12 @@ class ShowCartLoadingState extends FavouriteCartStates {}
 class ShowCartSuccessState extends FavouriteCartStates {}
 
 class ShowCartnotfound extends FavouriteCartStates {}
+
+class CheckingCartLoadingState extends FavouriteCartStates {}
+
+class CheckingCartSuccessState extends FavouriteCartStates {}
+
+class CheckingCartnotfound extends FavouriteCartStates {}
 
 class ShowCartErrorState extends FavouriteCartStates {}
 

@@ -20,7 +20,6 @@ class SubProductDetailItm extends StatelessWidget {
   final SimilarPModel productDetailsBypId;
   final int index;
 
-
   @override
   Widget build(BuildContext context) {
     final isProductInWishlist = FavouriteCartcubit.get(context)
@@ -63,7 +62,7 @@ class SubProductDetailItm extends StatelessWidget {
                               await FavouriteCartcubit.get(context)
                                   .checkProductInWishlist(
                                 context: context,
-                                productdetailsid: productDetailsBypId.id,
+                                productdetailsid: productDetailsBypId.id ?? 0,
                               );
 
                               return Future.value(!isLiked);

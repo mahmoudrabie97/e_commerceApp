@@ -124,7 +124,6 @@ class _CategoriesOfDepartmentsState extends State<CategoriesOfDepartments> {
                                         departmentId: widget.departmentid,
                                         fromloadingmore: true,
                                       );
-                                      // يمكنك تنفيذ الإجراءات المطلوبة هنا بناءً على التمرير
                                     }
                                     return true;
                                   },
