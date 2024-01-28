@@ -14,15 +14,13 @@ class ChangePasswordPage extends StatelessWidget {
   final TextEditingController oldPasswordController = TextEditingController();
   final TextEditingController newPasswordController = TextEditingController();
   final TextEditingController conformPasswordController =
-  TextEditingController();
+      TextEditingController();
   final formkey = GlobalKey<FormState>();
-
 
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AccountCubit, AccountStates>(
-      listener: (context, state) {
-      },
+      listener: (context, state) {},
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
@@ -87,39 +85,38 @@ class ChangePasswordPage extends StatelessWidget {
                     SizedBox(
                       height: 15,
                     ),
-                    State is ChangePassloadingState ? CircularProgressIndicator():  Padding(
-                      padding: const EdgeInsets.only(left: 190),
-                      child: SizedBox(
-                        width: 150,
-                        child:
-                        CustomButton(
-                          borderRadius: 4,
-                          buttonText: 'Save Changes',
-                          onPressed: () {
-                            if (formkey.currentState!.validate()) {
-                              Map data = {
-                                'OldPassword': oldPasswordController.text,
-                                'NewPassword': newPasswordController.text,
-                                'ConfirmPassword': conformPasswordController
-                                    .text,
-                              };
-                              //print('emmmmmmmm${newPasswordController.text}');
+                    State is ChangePassloadingState
+                        ? CircularProgressIndicator()
+                        : Padding(
+                            padding: const EdgeInsets.only(left: 190),
+                            child: SizedBox(
+                              width: 150,
+                              child: CustomButton(
+                                borderRadius: 4,
+                                buttonText: 'Save Changes',
+                                onPressed: () {
+                                  if (formkey.currentState!.validate()) {
+                                    Map data = {
+                                      'OldPassword': oldPasswordController.text,
+                                      'NewPassword': newPasswordController.text,
+                                      'ConfirmPassword':
+                                          conformPasswordController.text,
+                                    };
+                                    //print('emmmmmmmm${newPasswordController.text}');
 
-                              AccountCubit.get(context).changePassword(
-                                  userdata: data, context: context);
-                              // ShowMyDialog.widgetshowMsg(
-                              //     context,
-                              //     AccountCubit.get(context).responseBody == null
-                              //         ?  snackBar
-                              //         : Text(
-                              //         '${AccountCubit.get(context).responseBody}'));
-
-
-                            }
-                          },
-                        ),
-                      ),
-                    ),
+                                    AccountCubit.get(context).changePassword(
+                                        userdata: data, context: context);
+                                    // ShowMyDialog.widgetshowMsg(
+                                    //     context,
+                                    //     AccountCubit.get(context).responseBody == null
+                                    //         ?  snackBar
+                                    //         : Text(
+                                    //         '${AccountCubit.get(context).responseBody}'));
+                                  }
+                                },
+                              ),
+                            ),
+                          ),
                   ],
                 ),
               ),

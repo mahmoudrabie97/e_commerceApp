@@ -93,3 +93,5 @@ class GetMostViewedProductUserLoadingrState extends FavouriteCartStates {}
 class GetMostviewedProductUserSuccessState extends FavouriteCartStates {}
 
 class GetMostviewedProductUserErrorState extends FavouriteCartStates {}
+
+class CalculateQuantityState extends FavouriteCartStates {}

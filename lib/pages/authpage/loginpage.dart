@@ -29,7 +29,7 @@ class LoginPage extends StatelessWidget {
           if (state is LoginSucsessState) {
             //HomeCubit.get(context).getBestSelling(context: context);
 
-            context.pushreremove( HomeBottomNav());
+            context.pushreremove(HomeBottomNav());
 
             // في حاله sucess
             //اللي هي دي داخل cubit

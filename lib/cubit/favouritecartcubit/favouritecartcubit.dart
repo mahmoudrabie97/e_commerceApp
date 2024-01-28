@@ -35,9 +35,6 @@ class FavouriteCartcubit extends Cubit<FavouriteCartStates> {
   // هستخدم فكره ال set عشان مفيهاش تكرار (هاخد كل الاي دي الي في الفيفروت واحفظهم في الست )
   Set<String> favouritesId = {};
   int countercart = 0;
-  int totalquantity = 0;
-  int tesalltqunty = 0;
-  num allquntity = 0;
 
 ////////////////.... Wishlists Functions.../////////////////////
 
@@ -323,8 +320,8 @@ class FavouriteCartcubit extends Cubit<FavouriteCartStates> {
         showAddedCartAnimation(context);
 
         countercart = showcartItemsList.length;
-        totalquantity += showcartItemsList.length;
-        tesalltqunty++;
+        // totalquantity += showcartItemsList.length;
+        // tesalltqunty++;
         showCartItem(context: context);
 
         emit(AddToCartSuccessState());
@@ -362,7 +359,7 @@ class FavouriteCartcubit extends Cubit<FavouriteCartStates> {
         showmessageToast(
             backgroundcolor: Colors.green,
             message: 'item removed from cart succefully');
-        tesalltqunty--;
+        //tesalltqunty--;
         showCartItem(context: context);
       } else if (value.statusCode == 400) {
         print('no item in wishlist');
@@ -370,7 +367,7 @@ class FavouriteCartcubit extends Cubit<FavouriteCartStates> {
             backgroundcolor: Colors.red,
             message: 'ann error occured, try later');
         countercart = showcartItemsList.length;
-        totalquantity += showcartItemsList.length;
+        // totalquantity += showcartItemsList.length;
         emit(RemoveFromCartcartnotfound());
       } else {
         print('errrrror');
@@ -510,8 +507,8 @@ class FavouriteCartcubit extends Cubit<FavouriteCartStates> {
     if (productquntity! > 1) {
       productquntity = productquntity - 1;
       cartModel!.quantity = productquntity;
-      totalquantity--;
-      tesalltqunty--;
+      //totalquantity--;
+      //tesalltqunty--;
       calculateTotallyquantity();
       showCartItem(context: context);
 
@@ -528,8 +525,11 @@ class FavouriteCartcubit extends Cubit<FavouriteCartStates> {
   }) {
     productquntity = productquntity! + 1;
     checkedCartModel!.quantity = productquntity;
-    totalquantity++;
-    tesalltqunty++;
+    updateCartbyCheckModel(
+        context: context, checkedCartModel: checkedCartModel);
+
+    //totalquantity++;
+    //tesalltqunty++;
     calculateTotallyquantity();
     showCartItem(context: context);
 
@@ -544,8 +544,10 @@ class FavouriteCartcubit extends Cubit<FavouriteCartStates> {
     if (productquntity! > 1) {
       productquntity = productquntity - 1;
       checkedCartModel!.quantity = productquntity;
-      totalquantity--;
-      tesalltqunty--;
+      updateCartbyCheckModel(
+          context: context, checkedCartModel: checkedCartModel);
+      //totalquantity--;
+      // tesalltqunty--;
       calculateTotallyquantity();
       showCartItem(context: context);
 
@@ -556,27 +558,6 @@ class FavouriteCartcubit extends Cubit<FavouriteCartStates> {
   }
 
   ////////////////////////
-  void plusquntity(
-      {required num? productquntity,
-      required ProductDetailsBypId? productDetailsBypId}) {
-    productquntity = productquntity! + 1;
-    productDetailsBypId!.quantity = productquntity;
-
-    emit(PlusQuntityState());
-  }
-
-  void minusquntity(
-      {required num? productquntity,
-      required ProductDetailsBypId? productDetailsBypId}) {
-    if (productquntity! > 1) {
-      productquntity = productquntity - 1;
-      productDetailsBypId!.quantity = productquntity;
-
-      emit((MinusQuntityState()));
-    } else {
-      print('nooo');
-    }
-  }
 
   void updateCartFromSubproduct(
       {required BuildContext context,
@@ -639,15 +620,6 @@ class FavouriteCartcubit extends Cubit<FavouriteCartStates> {
               ),
             ));
   }
-
-  // bool checksetfavourite(
-  //     {required productDetailsBypId, required BuildContext context}) {
-  //   bool succ = FavouriteCartcubit.get(context)
-  //       .favouritesId
-  //       .contains(productDetailsBypId.id.toString());
-  //   emit(CheckSetFavourite());
-  //   return succ;
-  // }
 
 //////////////////// ADD MOSTViewed///////////////////
   Future<void> addMostViewed(
@@ -716,15 +688,6 @@ class FavouriteCartcubit extends Cubit<FavouriteCartStates> {
     );
   }
 
-  // double calculateTotalPrice({required BuildContext context}) {
-  //   double totalPrice = 0.0;
-  //   List<CartModel> cartItems =
-  //       FavouriteCartcubit.get(context).showcartItemsList;
-  //   for (CartModel cartItem in cartItems) {
-  //     totalPrice += (cartItem.quantity! * cartItem.productDetail!.price!);
-  //   }
-  //   return totalPrice;
-  // }
   int calculateTotallyquantity() {
     int totaly = 0;
     for (CartModel cartitem in showcartItemsList) {

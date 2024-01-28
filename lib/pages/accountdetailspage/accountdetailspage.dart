@@ -63,7 +63,7 @@ class AccountDetailsPage extends StatelessWidget {
                               }
                             },
                           ),
-                         const SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
                           CustomTextFormField(
@@ -105,8 +105,6 @@ class AccountDetailsPage extends StatelessWidget {
                               child: CustomButton(
                                   borderRadius: 4,
                                   buttonText: 'Conform',
-
-
                                   onPressed: () {}),
                             ),
                           ),

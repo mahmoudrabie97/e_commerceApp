@@ -3,16 +3,14 @@ import 'package:flutter/material.dart';
 import '../../../utilites/widgets/custombutton.dart';
 import '../../../utilites/widgets/customtext.dart';
 
-
 class CustomRowDetails extends StatelessWidget {
   const CustomRowDetails({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return   Row(
+    return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-
         CircleAvatar(
             minRadius: 40,
             maxRadius: 40,
@@ -53,8 +51,6 @@ class CustomRowDetails extends StatelessWidget {
           ),
         ),
       ],
-
     );
-
   }
 }

@@ -8,8 +8,9 @@ import 'package:e_commerce/utilites/extentionhelper.dart';
 import 'package:e_commerce/utilites/widgets/custombutton.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
 
-class AddingToCartRow extends StatelessWidget {
+class AddingToCartRow extends StatefulWidget {
   final int productdetailId;
 
   //final ProductDetailsBypId pmodel;
@@ -25,9 +26,14 @@ class AddingToCartRow extends StatelessWidget {
   });
 
   @override
+  State<AddingToCartRow> createState() => _AddingToCartRowState();
+}
+
+class _AddingToCartRowState extends State<AddingToCartRow> {
+  @override
   Widget build(BuildContext context) {
-    FavouriteCartcubit.get(context)
-        .checkproductincart(context: context, productsetailid: productdetailId);
+    FavouriteCartcubit.get(context).checkproductincart(
+        context: context, productsetailid: widget.productdetailId);
     return Row(
       children: [
         Expanded(
@@ -45,95 +51,122 @@ class AddingToCartRow extends StatelessWidget {
                         child: FavouriteCartcubit.get(context)
                                 .checkcartlist
                                 .isEmpty
-                            ? CustomButton(
-                                buttonText: 'Add to cart',
+                            ? CustomButtonAnimatuion(
+                                buttonText: 'ADD To Cart',
                                 onPressed: () {
-                                  //print('afteeeer${pmodel.quantity}');
                                   FavouriteCartcubit.get(context).addToCart(
                                       context: context,
-                                      productdetailId: productdetailId);
+                                      productdetailId: widget.productdetailId);
                                 },
-                                buttonColor: AppColor.kmaincolor,
-                                borderRadius: 0,
+                                onPressedtext: () {},
                               )
-                            : Row(
-                                children: [
-                                  Container(
-                                    child: IconButton(
-                                      color: Colors.grey,
-                                      padding: EdgeInsets.zero,
-                                      onPressed: () {
+                            //  CustomButton(
+
+                            //     buttonText: 'Add to cart',
+                            //     onPressed: () {
+                            //       //print('afteeeer${pmodel.quantity}');
+                            //       FavouriteCartcubit.get(context).addToCart(
+                            //           context: context,
+                            //           productdetailId: widget.productdetailId);
+                            //     },
+                            //     buttonColor: AppColor.kmaincolor,
+                            //     borderRadius: 0,
+                            //   )
+                            : Container(
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      child: CircleAvatar(
+                                        child: IconButton(
+                                          color: Colors.black,
+                                          padding: EdgeInsets.zero,
+                                          onPressed: () {
+                                            FavouriteCartcubit.get(context)
+                                                .decreasequntitybycheck(
+                                                    productquntity:
+                                                        FavouriteCartcubit.get(
+                                                                context)
+                                                            .checkcartlist[0]
+                                                            .quantity,
+                                                    checkedCartModel:
+                                                        FavouriteCartcubit.get(
+                                                                context)
+                                                            .checkcartlist[0],
+                                                    context: context,
+                                                    productdetailsid:
+                                                        widget.productdetailId);
+                                          },
+                                          icon: const Icon(Icons.remove),
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      width: 20,
+                                    ),
+                                    AnimatedSwitcher(
+                                      duration:
+                                          const Duration(milliseconds: 400),
+                                      child: Text(
                                         FavouriteCartcubit.get(context)
-                                            .decreasequntitybycheck(
-                                                productquntity:
-                                                    FavouriteCartcubit.get(
-                                                            context)
-                                                        .checkcartlist[0]
-                                                        .quantity,
-                                                checkedCartModel:
-                                                    FavouriteCartcubit.get(
-                                                            context)
-                                                        .checkcartlist[0],
-                                                context: context,
-                                                productdetailsid:
-                                                    productdetailId);
-                                        FavouriteCartcubit.get(context)
-                                            .updateCartbyCheckModel(
-                                          context: context,
-                                          checkedCartModel:
-                                              FavouriteCartcubit.get(context)
-                                                  .checkcartlist[0],
+                                            .checkcartlist[0]
+                                            .quantity
+                                            .toString(),
+                                        style: const TextStyle(
+                                            fontSize: 20, color: Colors.black),
+                                        key: ValueKey(
+                                            FavouriteCartcubit.get(context)
+                                                .checkcartlist[0]
+                                                .quantity),
+
+                                        //cartModel.quantity.toString()
+                                      ),
+                                      transitionBuilder: (child, animation) {
+                                        return ScaleTransition(
+                                          scale: animation,
+                                          child: child,
                                         );
                                       },
-                                      icon: const Icon(Icons.remove),
                                     ),
-                                  ),
-                                  Text(FavouriteCartcubit.get(context)
-                                          .checkcartlist[0]
-                                          .quantity
-                                          .toString()
-                                      //cartModel.quantity.toString()
+                                    const SizedBox(
+                                      width: 20,
+                                    ),
+
+                                    CircleAvatar(
+                                      child: IconButton(
+                                        color: Colors.black,
+                                        padding: EdgeInsets.zero,
+                                        onPressed: () {
+                                          print('peress');
+                                          FavouriteCartcubit.get(context)
+                                              .increasequntitybyCheck(
+                                                  productquntity:
+                                                      FavouriteCartcubit.get(
+                                                              context)
+                                                          .checkcartlist[0]
+                                                          .quantity,
+                                                  checkedCartModel:
+                                                      FavouriteCartcubit.get(
+                                                              context)
+                                                          .checkcartlist[0],
+                                                  context: context);
+                                        },
+                                        icon: const Icon(Icons.add),
                                       ),
-                                  IconButton(
-                                    color: Colors.grey,
-                                    padding: EdgeInsets.zero,
-                                    onPressed: () {
-                                      print('peress');
-                                      FavouriteCartcubit.get(context)
-                                          .increasequntitybyCheck(
-                                              productquntity:
-                                                  FavouriteCartcubit.get(
-                                                          context)
-                                                      .checkcartlist[0]
-                                                      .quantity,
-                                              checkedCartModel:
-                                                  FavouriteCartcubit.get(
-                                                          context)
-                                                      .checkcartlist[0],
-                                              context: context);
-                                      FavouriteCartcubit.get(context)
-                                          .updateCartbyCheckModel(
-                                              context: context,
-                                              checkedCartModel:
-                                                  FavouriteCartcubit.get(
-                                                          context)
-                                                      .checkcartlist[0]);
-                                    },
-                                    icon: const Icon(Icons.add),
-                                  ),
-                                  // IconButton(
-                                  //   color: Colors.grey,
-                                  //   padding: EdgeInsets.zero,
-                                  //   onPressed: () {
-                                  //     FavouriteCartcubit.get(context).removeFromCart(
-                                  //         context: context,
-                                  //         productdetailId: cartModel.id);
-                                  //     FavouriteCartcubit.get(context).updateCart(
-                                  //         context: context, cartModel: cartModel);
-                                  //   },
-                                  //   icon: const Icon(Icons.delete_outline),
-                                  // )
-                                ],
+                                    ),
+                                    // IconButton(
+                                    //   color: Colors.grey,
+                                    //   padding: EdgeInsets.zero,
+                                    //   onPressed: () {
+                                    //     FavouriteCartcubit.get(context).removeFromCart(
+                                    //         context: context,
+                                    //         productdetailId: cartModel.id);
+                                    //     FavouriteCartcubit.get(context).updateCart(
+                                    //         context: context, cartModel: cartModel);
+                                    //   },
+                                    //   icon: const Icon(Icons.delete_outline),
+                                    // )
+                                  ],
+                                ),
                               ));
               },
             ),
