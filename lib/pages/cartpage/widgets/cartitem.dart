@@ -46,28 +46,25 @@ class CartItemWidget extends StatelessWidget {
                         const Spacer(),
                         Row(
                           children: [
-                            Container(
-                              child: IconButton(
-                                color: Colors.grey,
-                                padding: EdgeInsets.zero,
-                                onPressed: () {
-                                  FavouriteCartcubit.get(context)
-                                      .decreasequntity(
-                                          productquntity: cartModel.quantity,
-                                          cartModel: cartModel,
-                                          context: context);
-                                  FavouriteCartcubit.get(context).updateCart(
-                                      context: context, cartModel: cartModel);
-                                },
-                                icon: const Icon(Icons.remove),
-                              ),
+                            IconButton(
+                              color: Colors.grey,
+                              padding: EdgeInsets.zero,
+                              onPressed: () {
+                                FavouriteCartcubit.get(context).decreasequntity(
+                                    productquntity: cartModel.quantity,
+                                    cartModel: cartModel,
+                                    context: context);
+                                FavouriteCartcubit.get(context).updateCart(
+                                    context: context, cartModel: cartModel);
+                              },
+                              icon: const Icon(Icons.remove),
                             ),
                             Text(cartModel.quantity.toString()),
                             IconButton(
                               color: Colors.grey,
                               padding: EdgeInsets.zero,
                               onPressed: () {
-                                print('peress');
+                                // print('peress');
                                 FavouriteCartcubit.get(context).increasequntity(
                                     productquntity: cartModel.quantity,
                                     cartModel: cartModel,
@@ -81,9 +78,9 @@ class CartItemWidget extends StatelessWidget {
                               color: Colors.grey,
                               padding: EdgeInsets.zero,
                               onPressed: () {
-                                FavouriteCartcubit.get(context).removeFromCart(
-                                    context: context,
-                                    productdetailId: cartModel.id);
+                                FavouriteCartcubit.get(context)
+                                    .removeFromCartByCartID(
+                                        context: context, cartId: cartModel.id);
                                 FavouriteCartcubit.get(context).updateCart(
                                     context: context, cartModel: cartModel);
                               },

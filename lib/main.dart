@@ -5,7 +5,6 @@ import 'package:e_commerce/cubit/favouritecartcubit/favouritecartcubit.dart';
 import 'package:e_commerce/network/local_network.dart';
 import 'package:e_commerce/pages/homepage/hombottomnav.dart';
 import 'package:e_commerce/pages/welcomepage.dart';
-import 'package:e_commerce/sharedPerference/cash_helper.dart';
 import 'package:e_commerce/simpleblocobserver.dart';
 import 'package:e_commerce/utilites/appcolors.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +18,7 @@ void main() async {
 
   AppConstant.tokensharedpref = CashDate.getData(key: 'token');
 
-  print('oooooooooooooo${AppConstant.token}');
+  print('oooooooooooooo${AppConstant.tokensharedpref}');
 
   runApp(const EcommerceApp());
 }
@@ -50,8 +49,8 @@ class EcommerceApp extends StatelessWidget {
         ),
         home: AppConstant.tokensharedpref == null ||
                 AppConstant.tokensharedpref == ''
-            ? WelcomePage()
-            : HomeBottomNav(),
+            ? const WelcomePage()
+            : const HomeBottomNav(),
       ),
     );
   }

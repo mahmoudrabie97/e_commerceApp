@@ -2,7 +2,6 @@ import 'package:e_commerce/utilites/appcolors.dart';
 import 'package:e_commerce/utilites/custommethods.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import '../../models/product_detailspid.dart';
 import '../cartpage/cartpage.dart';
 import '../categorypage/categorypage.dart';
 import '../homepage/homepage.dart';
@@ -11,7 +10,6 @@ import '../seachpage/searchpage.dart';
 
 class HomeBottomNav extends StatefulWidget {
   const HomeBottomNav({Key? key}) : super(key: key);
-  
 
   @override
   State<HomeBottomNav> createState() => _HomeBottomNavState();

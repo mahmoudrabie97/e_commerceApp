@@ -336,13 +336,15 @@ class FavouriteCartcubit extends Cubit<FavouriteCartStates> {
       }
     }).catchError((error) {
       print(error.toString());
-      showmessageToast(backgroundcolor: Colors.red, message: error.toString());
+      showmessageToast(
+          backgroundcolor: const Color.fromARGB(255, 86, 57, 55),
+          message: error.toString());
       emit(AddWTocartErrorState());
     });
   }
 
-  void removeFromCart(
-      {required BuildContext context, required int? productdetailId}) {
+  void removeFromCartByCartID(
+      {required BuildContext context, required int? cartId}) {
     Map<String, String> headers = {
       'Content-Type': 'application/x-www-form-urlencoded',
       //'Authorization': 'Bearer ${AppConstant.token}'
@@ -351,7 +353,7 @@ class FavouriteCartcubit extends Cubit<FavouriteCartStates> {
     CallApi.postData(
             data: {},
             baseUrl: basehomeurl,
-            apiUrl: '$removeitemfromCart$productdetailId',
+            apiUrl: '$removeitemfromCartBycartId$cartId',
             headers: headers,
             context: context)
         .then((value) {
@@ -362,7 +364,48 @@ class FavouriteCartcubit extends Cubit<FavouriteCartStates> {
         //tesalltqunty--;
         showCartItem(context: context);
       } else if (value.statusCode == 400) {
-        print('no item in wishlist');
+        print('no item in Cart');
+        showmessageToast(
+            backgroundcolor: Colors.red,
+            message: 'ann error occured, try later');
+        countercart = showcartItemsList.length;
+        // totalquantity += showcartItemsList.length;
+        emit(RemoveFromCartcartnotfound());
+      } else {
+        print('errrrror');
+      }
+    }).catchError((error) {
+      print(error.toString());
+      showmessageToast(backgroundcolor: Colors.red, message: error.toString());
+      emit(RemoveFromcartErrorState());
+    });
+  }
+
+  void removeFromCartByProductDetailsID(
+      {required BuildContext context, required int? productdetailsId}) {
+    Map<String, String> headers = {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Authorization': 'Bearer ${AppConstant.tokensharedpref}'
+    };
+    emit(RemoveFromCartLoadingState());
+    CallApi.postData(
+            data: {},
+            baseUrl: basehomeurl,
+            apiUrl: '$removeitemfromCartByProductDetailsID$productdetailsId',
+            headers: headers,
+            context: context)
+        .then((value) {
+      if (value!.statusCode == 200) {
+        showmessageToast(
+            backgroundcolor: Colors.green,
+            message: 'item removed from cart succefully');
+
+        //tesalltqunty--;
+        showCartItem(context: context);
+        checkproductincart(
+            context: context, productsetailid: productdetailsId ?? 0);
+      } else if (value.statusCode == 400) {
+        print('no item in cart');
         showmessageToast(
             backgroundcolor: Colors.red,
             message: 'ann error occured, try later');
@@ -540,7 +583,7 @@ class FavouriteCartcubit extends Cubit<FavouriteCartStates> {
       {required int? productquntity,
       required BuildContext context,
       required int productdetailsid,
-      required CheckedCartModel? checkedCartModel}) {
+      required CheckedCartModel? checkedCartModel}) async {
     if (productquntity! > 1) {
       productquntity = productquntity - 1;
       checkedCartModel!.quantity = productquntity;
@@ -550,10 +593,9 @@ class FavouriteCartcubit extends Cubit<FavouriteCartStates> {
       // tesalltqunty--;
       calculateTotallyquantity();
       showCartItem(context: context);
-
-      emit(DecreaseQuntityState());
     } else {
-      removeFromCart(context: context, productdetailId: productdetailsid);
+      removeFromCartByProductDetailsID(
+          context: context, productdetailsId: productdetailsid);
     }
   }
 

@@ -30,7 +30,9 @@ const String showcrtitemurl = 'Home/ShowCartItems';
 const String additemtoWishlist = 'Home/AddItemToWishlist/';
 /////////////////cart endpoints///
 const String addingitemtoCart = 'Home/AddToCart/';
-const String removeitemfromCart = 'Home/RemoveCartItems/';
+const String removeitemfromCartBycartId = 'Home/RemoveCart/';
+const String removeitemfromCartByProductDetailsID = 'Home/RemoveCartItems/';
+
 const String updatecartUrl = 'Home/UpdateCartItems';
 const String checkproductcartUrl = 'Home/CheckProductInCart';
 

@@ -11,21 +11,25 @@ class AddressPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(onPressed: (){
-          Navigator.pop(context);
-        }, icon: Icon(Icons.arrow_back,color: Colors.black,)),
+        leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: Icon(
+              Icons.arrow_back,
+              color: Colors.black,
+            )),
         backgroundColor: Colors.white,
         elevation: 0,
         title: CustomText(
           text: 'Address',
         ),
       ),
-      body:  SingleChildScrollView(
+      body: SingleChildScrollView(
         child: Padding(
-          padding:  EdgeInsets.all(15.0),
-          child:  Column(
-           crossAxisAlignment: CrossAxisAlignment.start,
-
+          padding: EdgeInsets.all(15.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CustomText(
                 text: 'Home Address',
@@ -35,19 +39,16 @@ class AddressPage extends StatelessWidget {
               SizedBox(
                 height: 15,
               ),
-
               CustomTextFormField(
-                validator: (e){
-                  if(e!.isEmpty)
-                    {
-                      return " enter vaild";
-                    }
+                validator: (e) {
+                  if (e!.isEmpty) {
+                    return " enter vaild";
+                  }
                 },
-
-
                 hintText: 'Gregory Cartwright936 Kiehn Route',
-
-                perfixicon: Icons.hourglass_empty_sharp,hinnntcolr: Color(0xff5E9E23),),
+                perfixicon: Icons.hourglass_empty_sharp,
+                hinnntcolr: Color(0xff5E9E23),
+              ),
               SizedBox(
                 height: 40,
               ),
@@ -60,9 +61,8 @@ class AddressPage extends StatelessWidget {
                 height: 15,
               ),
               CustomTextFormField(
-                  validator: (e){
-                    if(e!.isEmpty)
-                    {
+                  validator: (e) {
+                    if (e!.isEmpty) {
                       return " enter vaild";
                     }
                   },
@@ -80,15 +80,13 @@ class AddressPage extends StatelessWidget {
                 height: 15,
               ),
               CustomTextFormField(
-                  validator: (e){
-                    if(e!.isEmpty)
-                    {
+                  validator: (e) {
+                    if (e!.isEmpty) {
                       return " enter vaild";
                     }
                   },
                   hintText: 'Gregory Cartwright936 Kiehn Route',
                   perfixicon: Icons.home_work_rounded),
-
             ],
           ),
         ),

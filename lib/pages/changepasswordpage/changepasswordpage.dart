@@ -4,10 +4,8 @@ import 'package:e_commerce/utilites/widgets/customtextformfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../utilites/custommethods.dart';
 import '../../utilites/widgets/custombutton.dart';
 import '../../utilites/widgets/customtext.dart';
-import '../../utilites/widgets/showdialog.dart';
 
 class ChangePasswordPage extends StatelessWidget {
   ChangePasswordPage({Key? key}) : super(key: key);
@@ -28,13 +26,13 @@ class ChangePasswordPage extends StatelessWidget {
                 onPressed: () {
                   Navigator.pop(context);
                 },
-                icon: Icon(
+                icon: const Icon(
                   Icons.arrow_back,
                   color: Colors.black,
                 )),
             backgroundColor: Colors.white,
             elevation: 0,
-            title: CustomText(
+            title: const CustomText(
               text: 'Change Password',
             ),
           ),
@@ -54,7 +52,7 @@ class ChangePasswordPage extends StatelessWidget {
                         }
                       },
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 15,
                     ),
                     CustomTextFormField(
@@ -66,7 +64,7 @@ class ChangePasswordPage extends StatelessWidget {
                         }
                       },
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 15,
                     ),
                     CustomTextFormField(
@@ -82,11 +80,11 @@ class ChangePasswordPage extends StatelessWidget {
                         }
                       },
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 15,
                     ),
                     State is ChangePassloadingState
-                        ? CircularProgressIndicator()
+                        ? const CircularProgressIndicator()
                         : Padding(
                             padding: const EdgeInsets.only(left: 190),
                             child: SizedBox(
@@ -106,7 +104,7 @@ class ChangePasswordPage extends StatelessWidget {
 
                                     AccountCubit.get(context).changePassword(
                                         userdata: data, context: context);
-                                    // ShowMyDialog.widgetshowMsg(
+                                    //   ShowMyDialog.widgetshowMsg(
                                     //     context,
                                     //     AccountCubit.get(context).responseBody == null
                                     //         ?  snackBar

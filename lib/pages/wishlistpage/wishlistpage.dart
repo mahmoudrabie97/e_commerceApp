@@ -6,20 +6,16 @@ import 'package:e_commerce/utilites/extentionhelper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../cubit/productcubit/productcubit.dart';
-
 class WishListsPage extends StatefulWidget {
-  const WishListsPage({Key? key, }) : super(key: key);
-
-
+  const WishListsPage({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<WishListsPage> createState() => _WishListsPageState();
-
 }
 
 class _WishListsPageState extends State<WishListsPage> {
-
   @override
   Widget build(BuildContext context) {
     FavouriteCartcubit.get(context).getwishlistsitms(context: context);

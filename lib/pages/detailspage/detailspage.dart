@@ -1,7 +1,6 @@
 import 'package:e_commerce/cubit/favouritecartcubit/favouritecartcubit.dart';
 import 'package:e_commerce/cubit/homecubit/homecubit.dart';
 import 'package:e_commerce/cubit/productcubit/productcubit.dart';
-import 'package:e_commerce/models/checkedcartmodel.dart';
 import 'package:e_commerce/network/endpoints.dart';
 import 'package:e_commerce/pages/detailspage/widgets/addingtocartrow.dart';
 import 'package:e_commerce/pages/detailspage/widgets/detailspricerow.dart';

@@ -10,14 +10,10 @@ import 'package:e_commerce/utilites/extentionhelper.dart';
 import 'package:e_commerce/utilites/widgets/customtext.dart';
 import 'package:flutter/material.dart';
 
-import '../../models/product_detailspid.dart';
 import '../../network/local_network.dart';
-import '../../sharedPerference/cash_helper.dart';
 
 class ProfilePage extends StatelessWidget {
-  const ProfilePage(
-      {Key? key,   this.index = 0})
-      : super(key: key);
+  const ProfilePage({Key? key, this.index = 0}) : super(key: key);
 
   final int index;
 
@@ -103,9 +99,7 @@ class ProfilePage extends StatelessWidget {
             ),
             GestureDetector(
               onTap: () {
-                context.push(WishListsPage(
-
-                ));
+                context.push(WishListsPage());
               },
               child: buildlisttile(
                   const Icon(Icons.favorite,

@@ -6,7 +6,6 @@ import 'package:e_commerce/utilites/extentionhelper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:iconly/iconly.dart';
 
 bool isEmailValid(String email) {
   final emailRegex = RegExp(r'^[\w-]+(.[\w-]+)*@([\w-]+.)+[a-zA-Z]{2,7}$');

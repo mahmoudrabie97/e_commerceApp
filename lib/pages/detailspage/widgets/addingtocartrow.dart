@@ -1,14 +1,9 @@
 import 'package:e_commerce/cubit/favouritecartcubit/favouritecartcubit.dart';
 import 'package:e_commerce/cubit/favouritecartcubit/favouritecartstates.dart';
-import 'package:e_commerce/models/checkedcartmodel.dart';
-import 'package:e_commerce/pages/cartpage/cartpage.dart';
 
-import 'package:e_commerce/utilites/appcolors.dart';
-import 'package:e_commerce/utilites/extentionhelper.dart';
 import 'package:e_commerce/utilites/widgets/custombutton.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:animated_text_kit/animated_text_kit.dart';
 
 class AddingToCartRow extends StatefulWidget {
   final int productdetailId;
@@ -32,6 +27,8 @@ class AddingToCartRow extends StatefulWidget {
 class _AddingToCartRowState extends State<AddingToCartRow> {
   @override
   Widget build(BuildContext context) {
+    print('POPOPO${widget.productdetailId}');
+
     FavouriteCartcubit.get(context).checkproductincart(
         context: context, productsetailid: widget.productdetailId);
     return Row(

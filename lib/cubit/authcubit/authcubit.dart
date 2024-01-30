@@ -69,7 +69,8 @@ class AuthCubit extends Cubit<AuthStates> {
         userModel = UserModel.fromJson(responseBody);
 
         AppConstant.token = userModel!.accessToken;
-        CashDate.setDate(key: 'token', value: userModel?.accessToken);
+        await CashDate.setDate(key: 'token', value: userModel?.accessToken);
+        AppConstant.tokensharedpref = CashDate.getData(key: 'token');
 
         emit(LoginSucsessState());
       } else if (value.statusCode == 400) {
